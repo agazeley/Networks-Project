@@ -79,6 +79,7 @@ while True:
             print ('received: ' + str(data))
             # If a message is recieved handle the message
             if data:
+                data = data.split()
                 handle(connection,data)
             else:
                 print('no more data from ' +str(client_address))
