@@ -51,6 +51,7 @@ class simple_server:
                 self.log("Failed to bind sockets for ports " + str(user_port) + " and 8080. ")
                 self.shutdown()
                 sys.exit(1)
+
         print ( "Server running on " + self.host + ":" + str ( self.port ) )
         self.log("Server running on " + self.host + ":" + str ( self.port ))
         self.accept_requests()

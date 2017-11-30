@@ -73,7 +73,7 @@ class simple_server:
         while True:
             print ( "Waiting for connections" )
             # Change this number to change maximum number of requests
-            self.sock.listen ( 10 )
+            self.sock.listen ( 2 )
 
             # Conn, addr is the connection object and the address of that connection for new connections
             conn , addr = self.sock.accept ( )
