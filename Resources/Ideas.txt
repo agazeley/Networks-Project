@@ -1,0 +1,8 @@
+Online Game
+
+Server + Client
+Client Connects to server
+Client can create games on server
+Other client connects to server games, Automatic or have browser?
+Play game
+Return to Lobby? Disconnect? rematch?
