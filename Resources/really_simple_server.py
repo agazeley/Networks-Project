@@ -19,33 +19,40 @@ def send_msg(connection,msg):
 def handle(connection,data):
 
     file = "server_data_test.txt"
+    data = data.lower ( ).strip ( '!' )
 
-    data = data.lower().strip('!')
+    reply = data
+    send_msg ( connection , reply )
+
     # Handles hello message
+    '''
     if data == "hello server":
         reply = 'Hello client'
-        send_msg(connection,reply)
+        send_msg ( connection , reply )
 
     # handles file request
     elif data == "give me the file":
-        size = file_size(file)
-        send_msg(connection,str(size))
+        size = file_size ( file )
+        send_msg ( connection , str ( size ) )
 
     # handles client ready message
     elif data == "i am ready":
-        with open(file, 'r') as myfile:
-            reply = myfile.read()
-            send_msg(connection,reply)
+        with open ( file , 'r' ) as myfile:
+            reply = myfile.read ( )
+            send_msg ( connection , reply )
 
     # Handles thank you message
     elif data == "thank you":
         reply = "Goodbye"
-        send_msg(connection,reply)
+        send_msg ( connection , reply )
 
     # Catch all
     else:
         _reply = 'Do not understand server command'
-        send_msg(connection,_reply)
+        send_msg ( connection , _reply )
+    '''
+
+
     return
 
 #Sever setup

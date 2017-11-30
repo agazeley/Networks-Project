@@ -15,7 +15,20 @@ sock.connect(server_address)
 # Automated conversation from HW prompt
 messages = ["Hello server", "Give me the file!","I am ready","Thank you"]
 
+while True:
+    msg = input("Send a message: ")
+    size = len(msg)
+    msg = msg.encode()
+    sock.sendall(msg)
+    reply = sock.recv(size).decode('UTF-8')
+    if reply:
+        print("Received: " + str(reply))
+
+
+
+
 #loop and send messages in correct order
+'''
 for msg in messages:
     time.sleep(1)
     size = 1024
@@ -28,3 +41,4 @@ for msg in messages:
     reply = sock.recv(size).decode('UTF-8')
     if reply:
             print('received: ' + str(reply))
+'''
