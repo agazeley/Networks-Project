@@ -4,3 +4,20 @@
 2017-11-29 19:11:02: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-11-29 19:15:47: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-11-29 19:16:12: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:39:05: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:39:54: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:42:28: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:43:19: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:43:41: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:55:16: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:55:55: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 19:57:12: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 20:04:09: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 20:05:30: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 20:05:57: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 20:07:48: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-29 20:09:55: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-30 14:43:27: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-30 15:01:28: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-30 15:25:09: name 'sock' is not defined
+2017-11-30 15:25:26: name 'sock' is not defined

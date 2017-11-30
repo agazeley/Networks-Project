@@ -10,12 +10,12 @@ class client:
         self.server_port = port
         self.logger = log.logger('client')
         self.msg_size = 2048
+        self.sock = socket.socket ( socket.AF_INET , socket.SOCK_STREAM )
 
     def start_client ( self ):
-        self.sock = socket.socket ( socket.AF_INET , socket.SOCK_STREAM )
         print ( 'connecting to %s port ' + str(self.server_port) )
         try:
-            sock.connect ( (self.server_ip , self.server_port) )
+            self.sock.connect ( (self.server_ip , self.server_port) )
         except Exception as e:
             print ( "Failed to connect to server" )
             self.logger.log ( str ( e ) )
@@ -27,25 +27,28 @@ class client:
             msg = input ( "Send a message: " )
             size = len ( msg )
             msg = msg.encode ( )
-            sock.sendall ( msg )
-            reply = sock.recv ( self.msg_size ).decode ( 'UTF-8' )
+            self.sock.sendall ( msg )
+            reply = self.sock.recv ( self.msg_size ).decode ( 'UTF-8' )
             if reply:
                 print ( "Received: " + str ( reply ) )
         return
 
     def send_msg(self,msg):
         msg = str ( msg )
-        print ( "sending: " + msg )
         msg = msg.encode ( )
-        self.sock.sendall ( msg )
+        self.sock.sendall(msg)
+        print("Sent " + str(msg))
         return
+    def get_reply(self):
+        reply = self.sock.recv(self.msg_size).decode('UTF-8')
+        return  reply
 
 class game:
 
     def __init__(self,ip,port):
         self.client_port = port
         self.client_ip = ip
-        self.client = client(self.client_ip,self.client_port)
+        self.client = client(ip,port)
         self.logger = log.logger("game")
 
         return
@@ -60,18 +63,24 @@ class game:
         inp = True
         while inp:
             selection = self.get_menu_input()
-            if selection == 1 or selection == 2:
+
+            if selection:
                 #inp = False
                 if selection == 1:
                     self.client.send_msg(selection)
-                    reply = sock.recv ( self.msg_size ).decode ( 'UTF-8' )
+                    reply = self.client.get_reply()
                     print(reply)
                     # Do something in the client
                 elif selection == 2:
                     self.client.send_msg ( selection )
-                    reply = sock.recv ( self.msg_size ).decode ( 'UTF-8' )
+                    reply = self.client.sock.recv ( self.client.msg_size ).decode ( 'UTF-8' )
                     print(reply)
                     # Do something else in the client
+                elif selection == 3:
+                    exit(0)
+                else:
+                    print(str(selection))
+                    self.client.send_msg(selection)
 
     def get_menu_input(self):
         cmd = input("What do you want to do? ")
@@ -83,16 +92,6 @@ class game:
             self.logger.write_log()
 
         return cmd
-
-
-
-
-# Create a TCP/IP socket
-sock = socket.socket ( socket.AF_INET , socket.SOCK_STREAM )
-
-# Connect the socket to the port where the server is listening
-# server_address = ('10.200.100.21', 50001)
-server_address = ('localhost' , 50001)
 
 usr_client = game('localhost',50001)
 usr_client.start()
