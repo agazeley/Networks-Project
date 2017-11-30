@@ -1,6 +1,27 @@
 import socket
 import sys
 import time
+import log
+
+
+class client:
+
+    def __init__(self,host,port):
+        self.server_ip = host
+        self.server_port = port
+        self.logger = log()
+
+
+    def start_client(self):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print ( 'connecting to %s port %s' % self.port )
+        try:
+            sock.connect((self.server_ip,self.server_port))
+        except Exception as e:
+            print("Failed to connect to server")
+            self.logger.log(str(e))
+        
+
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
