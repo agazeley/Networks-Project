@@ -1,7 +1,6 @@
 import socket
-import sys
-import time
 import log
+import json as js
 
 
 class client:
@@ -20,7 +19,14 @@ class client:
             print ( "Failed to connect to server" )
             self.logger.log ( str ( e ) )
             self.logger.write_log()
-        return
+
+        serverMessage = self.sock.recv ( 1024 ).decode()
+        if serverMessage == "Connection successful":
+            return
+        else:
+            self.logger.log("Failed to connect. Shutting down client")
+            self.logger.write_log()
+            exit(0)
 
     def run(self):
         while True:
@@ -39,6 +45,7 @@ class client:
         self.sock.sendall(msg)
         print("Sent " + str(msg))
         return
+
     def get_reply(self):
         reply = self.sock.recv(self.msg_size).decode('UTF-8')
         return  reply
@@ -67,31 +74,40 @@ class game:
             if selection:
                 #inp = False
                 if selection == 1:
-                    self.client.send_msg(selection)
+                    data = {}
+                    data[ 'cmd' ] = 'game'
+                    data[ 'msg' ] = selection
+                    data = js.dumps ( data )
+                    self.client.send_msg(data)
                     reply = self.client.get_reply()
                     print(reply)
                     # Do something in the client
                 elif selection == 2:
-                    self.client.send_msg ( selection )
+                    data = {}
+                    data['cmd'] = 'connect'
+                    data['msg'] = selection
+                    data = js.dumps(data)
+                    self.client.send_msg ( data )
+
                     reply = self.client.sock.recv ( self.client.msg_size ).decode ( 'UTF-8' )
                     print(reply)
                     # Do something else in the client
                 elif selection == 3:
                     exit(0)
-                else:
-                    print(str(selection))
-                    self.client.send_msg(selection)
 
     def get_menu_input(self):
-        cmd = input("What do you want to do? ")
-        try:
-            cmd = int(cmd)
-        except Exception as e:
-            print("Failed to conver to int. Try again.")
-            self.logger.log(str(e))
-            self.logger.write_log()
-
+        while True:
+            cmd = input("What do you want to do? ")
+            try:
+                cmd = int(cmd)
+            except Exception as e:
+                print("Failed to conver to int. Try again.")
+                self.logger.log(str(e))
+                self.logger.write_log()
+            finally:
+                break
         return cmd
+
 
 usr_client = game('localhost',50001)
 usr_client.start()

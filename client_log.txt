@@ -21,3 +21,7 @@
 2017-11-30 15:01:28: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-11-30 15:25:09: name 'sock' is not defined
 2017-11-30 15:25:26: name 'sock' is not defined
+2017-11-30 16:04:19: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-30 16:05:22: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-11-30 16:08:33: Failed to connect. Shutting down client
+2017-11-30 16:09:11: [WinError 10061] No connection could be made because the target machine actively refused it

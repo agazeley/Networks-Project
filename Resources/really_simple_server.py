@@ -3,6 +3,7 @@ import sys
 import os
 import socket
 
+# https://stackoverflow.com/questions/36083964/i-got-a-connection-error-in-my-socket-program
 HOST="localhost"
 PORT=50001
 
@@ -14,16 +15,15 @@ print("Waiting for connection")
 connection, address=mySocket.accept()
 print("Connection recieved from:", address[0])
 
-connection.send(bytearray("SERVER>>> Connection successful", "utf-8"))
+connection.send(bytearray("Connection successful", "utf-8"))
 clientMessage=connection.recv(1024)
 
 while clientMessage != "Client: end":
     if not clientMessage:
         break
-
+    clientMessage = clientMessage.decode()
     print (clientMessage)
-    serverMessage=input("Server: ")
-    connection.send(bytearray("Server: "+serverMessage, "utf-8"))
+    connection.send(bytearray(clientMessage, "utf-8"))
     clientMessage=connection.recv(1024)
 
 print("Connection ended.")
