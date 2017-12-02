@@ -25,3 +25,4 @@
 2017-11-30 16:05:22: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-11-30 16:08:33: Failed to connect. Shutting down client
 2017-11-30 16:09:11: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-12-02 10:33:36: [WinError 10061] No connection could be made because the target machine actively refused it

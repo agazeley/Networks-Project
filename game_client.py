@@ -39,6 +39,18 @@ class client:
                 print ( "Received: " + str ( reply ) )
         return
 
+    def create_request(self,player,type,req):
+        data = {}
+        data['player'] = player
+        data['req_type'] = type
+        data['req'] = req
+        data = js.dumps ( data )
+        return data
+
+    def server_request(self,data):
+        self.send_msg(data)
+        return self.get_reply()
+
     def send_msg(self,msg):
         msg = str ( msg )
         msg = msg.encode ( )
@@ -62,42 +74,41 @@ class game:
 
     def start(self):
         self.client.start_client()
-        self.name = input("What is your name?")
+        self.name = input("What is your name? ")
 
-    def menu(self):
+    def print_main_menu(self):
         print ( "1. Play" )
         print ( "2. Connect" )
+        return
+
+    def print_board_menu(self):
+        print("Board sizes")
+        print("1. 7 X 7")
+        print("2. 10 X 10")
+        return
+
+    def menu(self):
+        self.print_main_menu()
         inp = True
         while inp:
-            selection = self.get_menu_input()
+            selection = self.get_integer_input("What do you want to do?")
 
             if selection:
                 #inp = False
                 if selection == 1:
-                    data = {}
-                    data[ 'cmd' ] = 'game'
-                    data[ 'msg' ] = selection
-                    data = js.dumps ( data )
-                    self.client.send_msg(data)
-                    reply = self.client.get_reply()
-                    print(reply)
+                    data = self.client.create_request(self.name,'cmd','game')
+                    reply = self.client.server_request(data)
                     # Do something in the client
                 elif selection == 2:
-                    data = {}
-                    data['cmd'] = 'connect'
-                    data['msg'] = selection
-                    data = js.dumps(data)
-                    self.client.send_msg ( data )
-
-                    reply = self.client.sock.recv ( self.client.msg_size ).decode ( 'UTF-8' )
-                    print(reply)
+                    data = self.client.create_request ( self.name , 'cmd' , 'connect' )
+                    reply = self.client.server_request ( data )
                     # Do something else in the client
                 elif selection == 3:
                     exit(0)
 
-    def get_menu_input(self):
+    def get_integer_input(self,msg):
         while True:
-            cmd = input("What do you want to do? ")
+            cmd = input(msg)
             try:
                 cmd = int(cmd)
             except Exception as e:
@@ -108,6 +119,21 @@ class game:
                 break
         return cmd
 
+
+    def play(self):
+        victorious = False
+        while not victorious:
+            self.print_board_menu()
+            selection = self.get_integer_input("What board do you want to use? ")
+
+            # print options for board types
+            # create board
+            # send board info to server
+            # mae moves
+            # check if won game
+            # next players turn
+            #
+        return
 
 usr_client = game('localhost',50001)
 usr_client.start()

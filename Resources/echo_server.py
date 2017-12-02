@@ -22,7 +22,7 @@ while clientMessage != "Client: end":
     if not clientMessage:
         break
     clientMessage = clientMessage.decode()
-    print (clientMessage)
+    print ("Message: " + clientMessage)
     connection.send(bytearray(clientMessage, "utf-8"))
     clientMessage=connection.recv(1024)
 
