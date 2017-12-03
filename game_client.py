@@ -69,7 +69,6 @@ class game:
         self.client_ip = ip
         self.client = client(ip,port)
         self.logger = log.logger("game")
-
         return
 
     def start(self):
@@ -118,7 +117,6 @@ class game:
             finally:
                 break
         return cmd
-
 
     def play(self):
         victorious = False

@@ -14,7 +14,7 @@ class game_server:
         self.port = port
         self.root_dir = 'www'
         self.logger = log.logger ( 'server' )
-        self.games = []
+        self.games = {} # key = game_id, item = game object
         self.id_int = 0
 
     def make_server_request(self,game_id,type,msg):
@@ -84,24 +84,58 @@ class game_server:
 
             # Figure out if the request method is
 
+    def handle(self,data):
+
+        if data['req_type'] == 'new_game':
+            # MAKE GAME ON SERVER
+            players = (data['player'],'p2')
+            self.games[self.id_int] = game(id=self.id_int,players=players)
+            # return success message if successful
+            request = self.make_server_request (self.id_int,'game_made',1 )
+            self.id_int += 1
+
+        elif data['req_type'] == 'join_game':
+            game_id = data['req']
+            self.games[game_id].players[1] = data['player']
+            # return success message if successful
+            request = self.make_server_request(game_id,'join_result',1)
+
+        elif data['req_type'] == 'move':
+            (x,y) = data['req']
+            game_id = data[ 'game_id' ]
+            result = self.games[data['game_id']].hit_or_miss(data['player'],x,y)
+            if self.games[game_id].won_yet():
+                print("Somebody won")
+                # send win message
+            else:
+                request = self.make_server_request(game_id,'move_result',int(result))
+                self.send_msg(request)
+            # check victory comditions
+        elif data['req_type'] == 'lobby_rdy':
+            # make a lobby class to deal with lobby stuff?
+            game_id = data[ 'game_id' ]
+            if data['player'] == self.games[game_id].players[0]:
+                self.games[game_id].ready[0] = True
+                request = self.make_server_request(game_id,'player_rdy',0)
+                self.send_msg(request)
+            elif data['player'] == self.games[game_id].players[1]:
+                self.games[ game_id ].ready[ 1 ] = True
+                request = self.make_server_request(game_id,'player_rdy',1)
+                self.send_msg(request)
+
+            if self.games[ game_id ].ready == (True,True):
+                request = self.make_server_request(game_id,'game_start',1)
+                self.send_msg(request)
+        elif data['req_type'] == 'board_setup':
+            # board setup process
+        return
+
     def new_client(self,conn,addr):
         reply = "Connection recieved from:" + str ( addr )
         conn.send ( bytearray ( "Connection successful" , "utf-8" ) )
 
         data = conn.recv ( 1024 ).decode ( 'UTF-8' )
         data = js.loads(data)
-
-        if data['req_type'] == 'new_game':
-            # MAKE GAME ON SERVER
-            players = (data['player'],'p2')
-            self.games.append(game(id=self.id_int,players=players,))
-            self.id_int += 1
-        elif data['req_type'] == 'join_game':
-            game_id = data['req']
-        elif data['req_type'] == 'move':
-            (x,y) = data['req']
-        else:
-            
 
         return
 
@@ -116,8 +150,9 @@ class game:
         self.move_log = [] # (player,x,y)
         self.num_hits = 0
         self.ships_sum = 100
+        self.ready = (False,False)
 
-    def init_boards(self,p1_board=None,p2_board=None,ships_sum):
+    def init_boards(self,ships_sum,p1_board=None,p2_board=None):
         # tiles represented by tuples of (ship_bool,hit_bool)
         self.ships_sum = ships_sum
         self.p1_board = [[ (0,0) for x in range(self.x_size)] for y in range(self.y_size)]
