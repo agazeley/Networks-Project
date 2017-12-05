@@ -126,7 +126,7 @@ class game:
                     self.client.server_request ( data )
                     reply = js.loads(self.client.get_reply())
                     # Do something else in the client
-                    if reply['req'] == 1:
+                    if reply['join_result'] == 1:
                         print("Game successfully joined")
                     else:
                         print("Failed to join game")

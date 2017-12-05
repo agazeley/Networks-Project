@@ -2,3 +2,15 @@
 2017-12-04 19:23:07: Why was there an exception thrown at shutdown?
 2017-12-04 19:34:30: Failed to bind sockets for ports 80 and 8080. 
 2017-12-04 19:34:30: Why was there an exception thrown at shutdown?
+2017-12-04 19:45:06: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:45:06: Why was there an exception thrown at shutdown?
+2017-12-04 19:45:14: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:45:14: Why was there an exception thrown at shutdown?
+2017-12-04 19:46:58: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:46:58: Why was there an exception thrown at shutdown?
+2017-12-04 19:48:53: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:48:53: Why was there an exception thrown at shutdown?
+2017-12-04 20:09:36: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 20:09:36: Why was there an exception thrown at shutdown?
+2017-12-04 20:16:29: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 20:16:29: Why was there an exception thrown at shutdown?

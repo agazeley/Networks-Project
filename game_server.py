@@ -99,7 +99,7 @@ class game_server:
         elif data['req_type'] == 'join_game':
             game_id = data['req']
             if self.games[game_id]:
-                self.games[game_id].players[1] = data['player']
+                self.games[game_id].players = (self.games[game_id].players[0],data['player'])
                 # return success message if successful
                 request = self.make_server_request(game_id,'join_result',1)
                 return request
@@ -149,13 +149,15 @@ class game_server:
         reply = "Connection recieved from:" + str ( addr )
         conn.send ( bytearray ( "Connection successful" , "utf-8" ) )
 
-        data = conn.recv ( 1024 ).decode ( 'UTF-8' )
-        data = js.loads(data)
-        # what do we do when a new client connects?
-        request = self.handle(data)
-        if request:
-            conn.send(bytearray(request,'utf-8'))
-
+        while True:
+            data = conn.recv ( 1024 ).decode ( 'UTF-8' )
+            if data:
+                data = js.loads(data)
+            # what do we do when a new client connects?
+            request = self.handle(data)
+            if request:
+                print("Sending: " + request)
+                conn.send(bytearray(request,'utf-8'))
         return
 
 class game:
