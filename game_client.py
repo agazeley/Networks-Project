@@ -1,7 +1,7 @@
 import socket
 import log
 import json as js
-
+import errno
 
 class client:
     def __init__ ( self , host , port ):
@@ -49,7 +49,7 @@ class client:
 
     def server_request(self,data):
         self.send_msg(data)
-        return self.get_reply()
+        return
 
     def send_msg(self,msg):
         msg = str ( msg )
@@ -59,8 +59,21 @@ class client:
         return
 
     def get_reply(self):
-        reply = self.sock.recv(self.msg_size).decode('UTF-8')
-        return  reply
+        reply = ""
+        try:
+            reply = self.sock.recv(self.msg_size).decode('UTF-8')
+        except socket.error as e:
+            err = e.args[0]
+            if err == errno.EAGAIN or err == errno.EWOULDBLOCK:
+                print('No data recieved')
+                self.logger.log(e)
+
+            else:
+                # a "real" error occurred
+                print(e)
+                self.logger.log(e)
+        self.logger.write_log()
+        return reply
 
 class game:
 
@@ -95,13 +108,28 @@ class game:
             if selection:
                 #inp = False
                 if selection == 1:
-                    data = self.client.create_request(self.name,'cmd','game')
-                    reply = self.client.server_request(data)
-                    # Do something in the client
+                    data = self.client.create_request(self.name,'new_game','game')
+                    self.client.server_request(data)
+                    reply = self.client.get_reply()
+                    if reply:
+                        reply = js.loads(reply)
+                        if reply['msg'] == 1:
+                            # Handle the reply
+                            game_id= str(reply['game_id'])
+                            print("Game made. Game id is: " + game_id)
+                            # Do something in the client
+                        else:
+                            print("Failed to create game :(")
                 elif selection == 2:
-                    data = self.client.create_request ( self.name , 'cmd' , 'connect' )
-                    reply = self.client.server_request ( data )
+                    game_num = self.get_integer_input("What game number do you want to join?")
+                    data = self.client.create_request ( self.name , 'join_game' , game_num )
+                    self.client.server_request ( data )
+                    reply = js.loads(self.client.get_reply())
                     # Do something else in the client
+                    if reply['req'] == 1:
+                        print("Game successfully joined")
+                    else:
+                        print("Failed to join game")
                 elif selection == 3:
                     exit(0)
 
@@ -133,7 +161,7 @@ class game:
             #
         return
 
-usr_client = game('localhost',50001)
+usr_client = game('localhost',8080)
 usr_client.start()
 usr_client.menu()
 

@@ -72,34 +72,40 @@ class game_server:
         return
 
     def accept_requests ( self ):
-
+        print("Waiting for connections")
         while True:
-            print ( "Waiting for connections" )
+
             # Change this number to change maximum number of requests
             self.sock.listen ( 4 )
 
             # Conn, addr is the connection object and the address of that connection for new connections
             conn , addr = self.sock.accept ( )
             thread._start_new_thread(self.new_client,(conn,addr))
-
+            print("Connection?")
             # Figure out if the request method is
 
     def handle(self,data):
-
+        print(data)
         if data['req_type'] == 'new_game':
             # MAKE GAME ON SERVER
             players = (data['player'],'p2')
-            self.games[self.id_int] = game(id=self.id_int,players=players)
+            new_game = game(id=self.id_int,players=players)
+            self.games[self.id_int] = new_game
             # return success message if successful
             request = self.make_server_request (self.id_int,'game_made',1 )
             self.id_int += 1
-
+            print(str(new_game.players))
+            return request
         elif data['req_type'] == 'join_game':
             game_id = data['req']
-            self.games[game_id].players[1] = data['player']
-            # return success message if successful
-            request = self.make_server_request(game_id,'join_result',1)
-
+            if self.games[game_id]:
+                self.games[game_id].players[1] = data['player']
+                # return success message if successful
+                request = self.make_server_request(game_id,'join_result',1)
+                return request
+            else:
+                request = self.make_server_request(game_id,'join_game',0)
+                return request
         elif data['req_type'] == 'move':
             (x,y) = data['req']
             game_id = data[ 'game_id' ]
@@ -107,26 +113,36 @@ class game_server:
             if self.games[game_id].won_yet():
                 print("Somebody won")
                 request = self.make_server_request(game_id,'win',data['player'])
+                return request
             else:
                 request = self.make_server_request(game_id,'move_result',int(result))
-                self.send_msg(request)
-            # check victory comditions
+                return request
+            if self.games[game_id].won_yet():
+                # Send victory message
+                request = self.make_server_request(game_id,'game','win')
+                return request
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
             game_id = data[ 'game_id' ]
             if data['player'] == self.games[game_id].players[0]:
                 self.games[game_id].ready[0] = True
                 request = self.make_server_request(game_id,'player_rdy',0)
-                self.send_msg(request)
+                return request
             elif data['player'] == self.games[game_id].players[1]:
                 self.games[ game_id ].ready[ 1 ] = True
                 request = self.make_server_request(game_id,'player_rdy',1)
-                self.send_msg(request)
-
+                return request
             if self.games[ game_id ].ready == (True,True):
                 request = self.make_server_request(game_id,'game_start',1)
-                self.send_msg(request)
+                return request
         elif data['req_type'] == 'board_setup':
+            game_id = data['game_id']
+            # make the gameboard using the board sent in data
+            new_board = data['req']
+            if data['player'] == self.games[game_id].players[0]:
+                self.games[game_id].update_boards(p1_board = new_board)
+            else:
+                self.games[game_id].update_boards(p2_board = new_board)
         return
 
     def new_client(self,conn,addr):
@@ -135,6 +151,10 @@ class game_server:
 
         data = conn.recv ( 1024 ).decode ( 'UTF-8' )
         data = js.loads(data)
+        # what do we do when a new client connects?
+        request = self.handle(data)
+        if request:
+            conn.send(bytearray(request,'utf-8'))
 
         return
 
@@ -145,10 +165,9 @@ class game:
         self.x_size = x_size
         self.y_size = y_size
         self.players = players
-        self.init_boards()
+        self.init_boards(100)
         self.move_log = [] # (player,x,y)
         self.num_hits = 0
-        self.ships_sum = 100
         self.ready = (False,False)
 
     def init_boards(self,ships_sum,p1_board=None,p2_board=None):

@@ -1,0 +1,4 @@
+2017-12-04 19:23:07: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:23:07: Why was there an exception thrown at shutdown?
+2017-12-04 19:34:30: Failed to bind sockets for ports 80 and 8080. 
+2017-12-04 19:34:30: Why was there an exception thrown at shutdown?

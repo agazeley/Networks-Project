@@ -12,7 +12,7 @@ request['req'] = p1_board
 test = js.dumps(request)
 print(test)
 dec = js.loads(test)
-print(dec['req'][3][4][1])
+print(dec['req'][3][4])
 # move
 request['game_id'] = 3
 request['player'] = "andrew"
