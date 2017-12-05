@@ -106,7 +106,7 @@ class game_server:
             result = self.games[data['game_id']].hit_or_miss(data['player'],x,y)
             if self.games[game_id].won_yet():
                 print("Somebody won")
-                # send win message
+                request = self.make_server_request(game_id,'win',data['player'])
             else:
                 request = self.make_server_request(game_id,'move_result',int(result))
                 self.send_msg(request)
@@ -127,7 +127,6 @@ class game_server:
                 request = self.make_server_request(game_id,'game_start',1)
                 self.send_msg(request)
         elif data['req_type'] == 'board_setup':
-            # board setup process
         return
 
     def new_client(self,conn,addr):
