@@ -3,6 +3,7 @@ import time
 import json as js
 import sys
 import log
+from server_game import game
 import threading as thread
 from datetime import datetime
 
@@ -30,7 +31,7 @@ class game_server:
 
         # Using out given host and port info we need to start the server up
         # Need to give the server a socket and bind the socket to the host:port
-        self.sock = socket.socket ( socket.AF_INET , socket.SOCK_STREAM )
+        self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
         print ( "Spinning up the server on port " + str ( self.port ) )
         try:
             self.sock.bind ( (self.host , self.port) )
@@ -78,13 +79,13 @@ class game_server:
         while True:
 
             # Change this number to change maximum number of requests
-            self.sock.listen ( 4 )
-
             # Conn, addr is the connection object and the address of that connection for new connections
-            conn , addr = self.sock.accept ( )
-            self.clients[conn_int] = (conn,addr,"",None)
-            thread._start_new_thread(self.new_client,(conn,addr,conn_int))
-            print("Connection?")
+            data , (ip,port) = self.sock.recvfrom(1024)
+            if data.decode().lower() == 'hi server':
+                print ( "New connection recieved" )
+                self.clients[conn_int] = (ip,port,"",None)
+                thread._start_new_thread(self.new_client,(ip,port,conn_int))
+                conn_int += 1
             # Figure out if the request method is
 
     def handle(self,data):
@@ -107,7 +108,7 @@ class game_server:
                 request = self.make_server_request(game_id,'join_result',1)
                 return request
             else:
-                request = self.make_server_request(game_id,'join_game',0)
+                request = self.make_server_request(game_id,'join_result',0)
                 return request
         elif data['req_type'] == 'move':
             (x,y) = data['req']
@@ -161,76 +162,23 @@ class game_server:
                 self.games[game_id].update_boards(p2_board = new_board)
         return
 
-    def new_client(self,conn,addr,id):
-        reply = "Connection recieved from:" + str ( addr )
-        conn.send ( bytearray ( "Connection successful" , "utf-8" ) )
-        data = js.loads(conn.recv ( 1024 ).decode ( 'UTF-8' ))
-        (conn,addr,player,game_id) = self.clients[id]
-        self.clients[id] = (conn,addr,data['player'],game_id)
+    def new_client(self,ip,port,id):
+        reply = "Connection recieved from:" + str ( ip ) + ":" + str(port)
+        self.sock.sendto ( bytearray ( "Connection successful" , "utf-8" ),(ip,port) )
+        data = js.loads(self.sock.recv ( 1024 ).decode ( 'UTF-8' ))
+        (ip,port,player,game_id) = self.clients[id]
+        self.clients[id] = (ip,port,data['player'],game_id)
         while True:
-            data = conn.recv ( 1024 ).decode ( 'UTF-8' )
+            data = self.sock.recv ( 1024 ).decode ( 'UTF-8' )
             if data:
                 data = js.loads(data)
             # what do we do when a new client connects?
             request = self.handle(data)
             if request:
                 print("Sending: " + request)
-                conn.send(bytearray(request,'utf-8'))
+                self.sock.sendto(bytearray(request,'utf-8'),(ip,port))
         return
 
-class game:
-
-    def __init__(self,id=0,x_size=7,y_size=7,players=('p1','p2')):
-        self.game_id = id
-        self.x_size = x_size
-        self.y_size = y_size
-        self.players = players
-        self.init_boards(100)
-        self.move_log = [] # (player,x,y,result)
-        self.num_hits = 0
-        self.ready = (False,False)
-        self.turn = True # True = p1, false = p2
-
-
-    def init_boards(self,ships_sum,p1_board=None,p2_board=None):
-        # tiles represented by tuples of (ship_bool,hit_bool)
-        self.ships_sum = ships_sum
-        self.p1_board = [[ (0,0) for x in range(self.x_size)] for y in range(self.y_size)]
-        self.p2_board = [[ (0,0) for x in range(self.x_size)] for y in range(self.y_size)]
-        self.update_boards(p1_board,p2_board)
-        return
-    def update_boards(self,p1_board=None,p2_board=None):
-        if p1_board:
-            for x in range(self.x_size):
-                for y in range(self.y_size):
-                    self.p1_board[x][y] = p1_board[x][y]
-        elif p2_board:
-            for x in range(self.x_size):
-                for y in range(self.y_size):
-                    self.p2_board[x][y] = p2_board[x][y]
-        return
-    def hit_or_miss(self,player,x_pos,y_pos):
-        hit = False
-        if  player == self.players[0]:
-            if self.p2_board[x_pos][y_pos][0]: # if ship bool true
-                self.p2_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
-                self.num_hits += 1
-                hit = True
-            self.move_log.append((player,x_pos,y_pos,hit))
-        elif player == self.players[1]:
-            if self.p1_board[x_pos][y_pos][0]: # if ship bool true
-                self.p1_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
-                self.num_hits += 1
-                hit = True
-            self.move_log.append((player,x_pos,y_pos,hit))
-        else:
-            print("Tried to make move with unknown player")
-        return hit
-    def won_yet(self):
-        if self.num_hits == self.ships_sum:
-            return 1
-        else:
-            return 0
 
 server = game_server ( 'localhost' , 80 , True )
 server.start_server ( )
