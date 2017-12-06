@@ -109,7 +109,10 @@ class game_server:
         elif data['req_type'] == 'move':
             (x,y) = data['req']
             game_id = data[ 'game_id' ]
-            result = self.games[data['game_id']].hit_or_miss(data['player'],x,y)
+            if self.games[game_id].ready == (False,True) or self.games[game_id].ready == (True,False):
+                request = self.make_server_request(game_id,"move_result","not yet")
+                return request
+            result = self.games[game_id].hit_or_miss(data['player'],x,y)
             if self.games[game_id].won_yet():
                 print("Somebody won")
                 request = self.make_server_request(game_id,'win',data['player'])
@@ -126,9 +129,13 @@ class game_server:
                 self.games[ game_id ].ready[ 1 ] = True
             if self.games[ game_id ].ready == (True,True):
                 request = self.make_server_request(game_id,'game_start',1)
-                return request
+                # Resets for board setup
+                self.games[ game_id ].ready = (False,False)
             elif self.games[game_id].ready == (True,False):
                 request = self.make_server_request(game_id,'player',(True,False))
+            elif self.games[game_id].ready == (False,True):
+                request = self.make_server_request ( game_id , 'player' , (False , True) )
+            return request
         elif data['req_type'] == 'board_setup':
             game_id = data['game_id']
             # make the gameboard using the board sent in data
@@ -166,6 +173,7 @@ class game:
         self.num_hits = 0
         self.ready = (False,False)
 
+
     def init_boards(self,ships_sum,p1_board=None,p2_board=None):
         # tiles represented by tuples of (ship_bool,hit_bool)
         self.ships_sum = ships_sum
@@ -178,7 +186,7 @@ class game:
             for x in range(self.x_size):
                 for y in range(self.y_size):
                     self.p1_board[x][y] = p1_board[x][y]
-        if p2_board:
+        elif p2_board:
             for x in range(self.x_size):
                 for y in range(self.y_size):
                     self.p2_board[x][y] = p2_board[x][y]
