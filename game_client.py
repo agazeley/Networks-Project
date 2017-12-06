@@ -28,16 +28,6 @@ class client:
             self.logger.write_log()
             exit(0)
 
-    def run(self):
-        while True:
-            msg = input ( "Send a message: " )
-            size = len ( msg )
-            msg = msg.encode ( )
-            self.sock.sendall ( msg )
-            reply = self.sock.recv ( self.msg_size ).decode ( 'UTF-8' )
-            if reply:
-                print ( "Received: " + str ( reply ) )
-        return
 
     def create_request(self,player,type,req,game_id=None):
         data = {}
@@ -89,6 +79,8 @@ class game:
     def start(self):
         self.client.start_client()
         self.name = input("What is your name? ")
+        request = self.client.create_request(self.name,'data',self.name)
+        self.client.server_request(request)
 
     def print_main_menu(self):
         print ( "1. Play" )
@@ -120,7 +112,7 @@ class game:
                             game_id= str(reply['game_id'])
                             print("Game made. Game id is: " + game_id)
                             self.game_id = int(game_id)
-                            # Do something in the client
+                            self.play()
                         else:
                             print("Failed to create game :(")
                 elif selection == 2:
@@ -131,8 +123,9 @@ class game:
                     # Do something else in the client
                     if reply['join_result'] == 1:
                         print("Game successfully joined")
-                        self.game_id = game_id
+                        self.game_id = int(reply['game_id'])
                         # Waiting for other player to start
+                        self.play()
                     else:
                         print("Failed to join game")
                 elif selection == 3:
@@ -194,7 +187,7 @@ class game:
         while True:
             ready = self.get_YN_input ( "Input 'Y' when youre ready to play" )
             if ready == 'y':
-                request = self.client.create_request ( self.name , "lobby_rdy" , self.name )
+                request = self.client.create_request ( self.name , "lobby_rdy" , self.name,game_id=self.game_id )
                 self.client.server_request ( request )
                 break
             else:
@@ -218,6 +211,7 @@ class game:
                     print ( "P1 Ready ? " + str ( p1_rdy ) + "P2 Ready ? " + str ( p2_rdy ) )
         # Game started and request for board message has been sent
         # Run ship setup
+        self.opponent_board = [ [ 0 for x in range ( 7 ) ] for y in range ( 7 ) ]
         user_board = self.get_board()
         request = self.client.create_request(self.name,'board_setup',user_board,self.game_id)
         self.client.server_request(request)
@@ -229,7 +223,6 @@ class game:
             # mae moves
             # check if won game
             # next players turn
-            self.opponent_board = [[ 0 for x in range(7)] for y in range(7)]
             (x,y) = self.get_move()
             request = self.client.create_request(self.name,'move',(x,y))
             reply = js.loads ( self.client.get_reply ( ) )
@@ -241,7 +234,11 @@ class game:
             elif reply['type'] == 'move_result' and reply['msg'] == False:
                 print("Miss!")
                 print("Opponents turn...")
-                # Need wait for move function
+            elif reply['type'] == 'win':
+                if reply['msg'] == self.name:
+                    print("You won!")
+                else:
+                    print("You lost!")
 
         return
 
