@@ -117,24 +117,18 @@ class game_server:
             else:
                 request = self.make_server_request(game_id,'move_result',int(result))
                 return request
-            if self.games[game_id].won_yet():
-                # Send victory message
-                request = self.make_server_request(game_id,'game','win')
-                return request
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
             game_id = data[ 'game_id' ]
             if data['player'] == self.games[game_id].players[0]:
                 self.games[game_id].ready[0] = True
-                request = self.make_server_request(game_id,'player_rdy',0)
-                return request
             elif data['player'] == self.games[game_id].players[1]:
                 self.games[ game_id ].ready[ 1 ] = True
-                request = self.make_server_request(game_id,'player_rdy',1)
-                return request
             if self.games[ game_id ].ready == (True,True):
                 request = self.make_server_request(game_id,'game_start',1)
                 return request
+            elif self.games[game_id].ready == (True,False):
+                request = self.make_server_request(game_id,'player',(True,False))
         elif data['req_type'] == 'board_setup':
             game_id = data['game_id']
             # make the gameboard using the board sent in data

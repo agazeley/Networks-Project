@@ -39,8 +39,10 @@ class client:
                 print ( "Received: " + str ( reply ) )
         return
 
-    def create_request(self,player,type,req):
+    def create_request(self,player,type,req,game_id=None):
         data = {}
+        if game_id:
+            data['game_id'] = game_id
         data['player'] = player
         data['req_type'] = type
         data['req'] = req
@@ -103,7 +105,7 @@ class game:
         self.print_main_menu()
         inp = True
         while inp:
-            selection = self.get_integer_input("What do you want to do?")
+            selection = self.get_integer_input("What do you want to do? ")
 
             if selection:
                 #inp = False
@@ -117,21 +119,35 @@ class game:
                             # Handle the reply
                             game_id= str(reply['game_id'])
                             print("Game made. Game id is: " + game_id)
+                            self.game_id = int(game_id)
                             # Do something in the client
                         else:
                             print("Failed to create game :(")
                 elif selection == 2:
-                    game_num = self.get_integer_input("What game number do you want to join?")
+                    game_num = self.get_integer_input("What game number do you want to join? ")
                     data = self.client.create_request ( self.name , 'join_game' , game_num )
                     self.client.server_request ( data )
                     reply = js.loads(self.client.get_reply())
                     # Do something else in the client
                     if reply['join_result'] == 1:
                         print("Game successfully joined")
+                        self.game_id = game_id
+                        # Waiting for other player to start
                     else:
                         print("Failed to join game")
                 elif selection == 3:
                     exit(0)
+
+    def get_board(self):
+        print("Board Choice")
+        inp = True
+        while inp:
+            selection = self.get_integer_input("What board do you want to use? ")
+            if selection == 1:
+                board = []
+                f = open('BS1.txt','r')
+                for line in f.readlines():
+                    line = line.strip().split("")
 
     def get_integer_input(self,msg):
         while True:
@@ -139,18 +155,51 @@ class game:
             try:
                 cmd = int(cmd)
             except Exception as e:
-                print("Failed to conver to int. Try again.")
+                print("Failed to convert to int. Try again.")
                 self.logger.log(str(e))
                 self.logger.write_log()
             finally:
                 break
         return cmd
 
-    def play(self):
+    def get_YN_input(self,msg):
+        while True:
+            cmd = input(msg).strip()
+            cmd = cmd.lower ( )
+            if cmd == "yes" or cmd == "y" or cmd == "no" or cmd == "n":
+                break
+        return cmd
+
+    def play ( self ):
+        while True:
+            ready = self.get_YN_input ( "Input 'Y' when youre ready to play" )
+            if ready == 'y':
+                request = self.client.create_request ( self.name , "lobby_rdy" , self.name )
+                self.client.server_request ( request )
+                break
+            else:
+                _exit = self.get_YN_input("Do you want to exit? ")
+                if _exit == 'y' or _exit == 'yes':
+                    self.logger.log("Exiting...")
+                    exit(0)
+                else:
+                    print("Asking to ready up again...")
+
+        # Wants to exit game?
+        not_ready = True
+        while not_ready:
+            reply = js.loads ( self.client.get_reply ( ) )
+            for key in reply.keys ( ):
+                if key == 'game_start':
+                    print ( "Game starting..." )
+                    not_ready = False
+                elif key == 'player':
+                    (p1_rdy , p2_rdy) = reply[ 'msg' ]
+                    print ( "P1 Ready ? " + str ( p1_rdy ) + "P2 Ready ? " + str ( p2_rdy ) )
+        # Run ship setup
+
         victorious = False
         while not victorious:
-            self.print_board_menu()
-            selection = self.get_integer_input("What board do you want to use? ")
 
             # print options for board types
             # create board
@@ -161,7 +210,7 @@ class game:
             #
         return
 
-usr_client = game('localhost',8080)
+usr_client = game('localhost',80)
 usr_client.start()
 usr_client.menu()
 

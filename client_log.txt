@@ -29,3 +29,5 @@
 2017-12-04 18:45:50: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-12-04 18:46:41: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-12-04 20:16:35: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-12-06 12:00:14: [WinError 10061] No connection could be made because the target machine actively refused it
+2017-12-06 12:00:33: [WinError 10061] No connection could be made because the target machine actively refused it
