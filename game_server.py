@@ -46,23 +46,21 @@ class game:
                         self.p2_board[ x ][ y ] = p2_board[ x ][ y ]
             return
 
-        def hit_or_miss ( self , player , x_pos , y_pos ):
+        def hit_or_miss ( self , p1 , x_pos , y_pos ):
             hit = False
-            if player == self.players[ 0 ]:
+            if p1:
                 if self.p2_board[ x_pos ][ y_pos ][ 0 ] == 1:  # if ship bool true
                     self.p2_board[ x_pos ][ y_pos ] = (1 , 1)
                     # set hit bool to true
                     self.num_hits += 1
                     hit = True
                 self.move_log.append ( (player , x_pos , y_pos , hit) )
-            elif player == self.players[ 1 ]:
+            else:
                 if self.p1_board[ x_pos ][ y_pos ][ 0 ] == 1:  # if ship bool true
                     self.p1_board[ x_pos ][ y_pos ] = (1 , 1)  # set hit bool to true
                     self.num_hits += 1
                     hit = True
                 self.move_log.append ( (player , x_pos , y_pos , hit) )
-            else:
-                print ( "Tried to make move with unknown player" )
             return hit
 
         def won_yet ( self ):
@@ -120,6 +118,18 @@ class lobby:
                 c.append ( game_server.make_server_request ( self.id , 'game_start' , 0 ) )
             c.append (player.ip )
             c.append (player.port )
+            request.append(c)
+        return request
+    def move_made(self,x,y,_player,result):
+        request = []
+        for p in self.players:
+            c = []
+            if p == _player:
+                c.append(game_server.make_server_request(self.id,'move_result',(result,x,y)))
+            else:
+                c.append(game_server.make_server_request(self.id,'turn',(result,x,y)))
+            c.append(p.ip)
+            c.append(p.port)
             request.append(c)
         return request
 
@@ -265,26 +275,17 @@ class game_server:
         elif data['req_type'] == 'move':
             (x,y) = data['req']
             game_id = data[ 'game_id' ]
+            _lobby = self.get_lobby(game_id)
             #Check to make sure its you turn/board placement is complete
-            result = self.games[game_id].hit_or_miss(data['player'],x,y)
-            if self.games[game_id].won_yet():
+            result = _lobby.game.hit_or_miss(_lobby.is_p1(_player.name),x,y)
+            if _lobby.game.won_yet():
                 print("Somebody won")
-                request = game_server.make_server_request(game_id,'win',data['player'])
-                return request
+                request = game_server.make_server_request(game_id,'win',_player.name)
             else:
                 _players = []
                 request = []
-                for client in self.clients.keys():
-                    if self.clients[client][3] == game_id:
-                        _players.append(self.clients[client])
-                for p in _players:
-                    c = [ ]
-                    _req = game_server.make_server_request(game_id,"move_result",(result,x,y,self.turn))
-                    c.append ( _req )
-                    c.append(self.clients[p[2]][0])
-                    c.append(self.clients[p[2]][1])
-                    request.append(c)
-                return request
+                request = _lobby.move_made(x,y,_player,result)
+            return request
 
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?

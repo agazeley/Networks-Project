@@ -225,12 +225,6 @@ class game:
         self.client.server_request(request)
         victorious = False
         while not victorious:
-            # print options for board types
-            # create board
-            # send board info to server
-            # make moves
-            # check if won game
-            # next players turn
             reply = js.loads ( self.client.get_reply ( ) )
             if reply['type'] == 'move_req':
                 (x,y) = self.get_move()
@@ -240,15 +234,28 @@ class game:
                 print ( "Not your turn or the board has not been setup yet" )
             elif reply['type'] == 'move_result' and reply['msg'][0] == 1:
                 print("Hit!")
-                self.opponent_board[x][y] = 1
+                self.opponent_board[x][y] = (1,1)
             elif reply['type'] == 'move_result' and reply['msg'][0] == 0:
                 print("Miss!")
                 print("Opponents turn...")
+                self.opponent_board[x][y] = (0,1)
+            elif reply['type'] == 'turn':
+                if reply['msg'][0] == 1:
+                    print("Opponent hit at" + str((reply['msg'][1],reply['msg'][2])))
+                    (x,y) = self.get_move()
+                    request = self.client.create_request ( self.name , 'move' , (x , y) , self.game_id )
+                    self.client.server_request ( request )
+                else:
+                    print ( "Opponent miss at" + str ( (reply[ 'msg' ][ 1 ] , reply[ 'msg' ][ 2 ]) ) )
+                    (x , y) = self.get_move ( )
+                    request = self.client.create_request ( self.name , 'move' , (x , y) , self.game_id )
+                    self.client.server_request ( request )
             elif reply['type'] == 'win':
                 if reply['msg'] == self.name:
                     print("You won!")
                 else:
                     print("You lost!")
+                victorious = False
 
         return
 
