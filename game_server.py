@@ -16,7 +16,8 @@ class game_server:
         self.logger = log.logger ( 'server' )
         self.games = {} # key = game_id, item = game object
         self.id_int = 0
-        self.clients = {} # key = player name (ip,port,name,game_id)
+        self.clients = {} # key = player name (ip,port,name,game_id,bool_p1?)
+        self.turn = True # true = p1
 
     def make_server_request(self,game_id,type,msg):
         data = {}
@@ -92,6 +93,7 @@ class game_server:
                 else:
                     request = self.handle(data)
                     if request:
+                        print(request)
                         if type(request) == type([]):
                             for item in request:
                                 self.sock.sendto ( bytearray (item[0] , 'utf-8' ), (item[1] ,item[2]))
@@ -112,7 +114,7 @@ class game_server:
             request = self.make_server_request (self.id_int,'game_made',1 )
             print("Game made: "+ str(new_game.players))
             (ip,port,name,game_id) = self.clients[data['player']]
-            self.clients[ data[ 'player' ] ] = (ip,port,name,self.id_int)
+            self.clients[ data[ 'player' ] ] = (ip,port,name,self.id_int,True)
             self.id_int += 1
             return request
         elif data['req_type'] == 'join_game':
@@ -125,7 +127,7 @@ class game_server:
                     if self.games[game_id].players[1] == self.clients[client][2]:
                         # (ip,port,name,game_id)
                         (ip,port,name,_old_game_id) = self.clients[data['player']]
-                        self.clients[data['player']] = (ip,port,name,game_id)
+                        self.clients[data['player']] = (ip,port,name,game_id,False)
                 print(self.clients)
                 return request
             else:
@@ -135,16 +137,24 @@ class game_server:
             (x,y) = data['req']
             game_id = data[ 'game_id' ]
             #Check to make sure its you turn/board placement is complete
-            if self.games[game_id].ready == (False,True) or self.games[game_id].ready == (True,False) or self.games[game_id].ready == (False,False):
-                request = self.make_server_request(game_id,"move_result","not yet")
-                return request
             result = self.games[game_id].hit_or_miss(data['player'],x,y)
             if self.games[game_id].won_yet():
                 print("Somebody won")
                 request = self.make_server_request(game_id,'win',data['player'])
                 return request
             else:
-                request = self.make_server_request(game_id,'move_result',int(result))
+                _players = []
+                request = []
+                for client in self.clients.keys():
+                    if self.clients[client][3] == game_id:
+                        _players.append(self.clients[client])
+                for p in _players:
+                    c = [ ]
+                    _req = self.make_server_request(game_id,"move_result",(result,x,y,self.turn))
+                    c.append ( _req )
+                    c.append(self.clients[p[2]][0])
+                    c.append(self.clients[p[2]][1])
+                    request.append(c)
                 return request
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
@@ -194,8 +204,12 @@ class game_server:
             new_board = data['req']
             if data['player'] == self.games[game_id].players[0]:
                 self.games[game_id].update_boards(p1_board = new_board)
+                print("Player 1's board updated")
+                request = self.make_server_request(game_id,"move_req",1)
+                return request
             else:
                 self.games[game_id].update_boards(p2_board = new_board)
+                print("Player 2's board updated")
         return
 
 
@@ -245,17 +259,19 @@ class game:
                 for y in range(self.y_size):
                     self.p2_board[x][y] = p2_board[x][y]
         return
+
     def hit_or_miss(self,player,x_pos,y_pos):
         hit = False
         if  player == self.players[0]:
-            if self.p2_board[x_pos][y_pos][0]: # if ship bool true
-                self.p2_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
+            if self.p2_board[x_pos][y_pos][0] == 1: # if ship bool true
+                self.p2_board[ x_pos ][ y_pos ] = (1,1)
+                # set hit bool to true
                 self.num_hits += 1
                 hit = True
             self.move_log.append((player,x_pos,y_pos,hit))
         elif player == self.players[1]:
-            if self.p1_board[x_pos][y_pos][0]: # if ship bool true
-                self.p1_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
+            if self.p1_board[x_pos][y_pos][0] == 1: # if ship bool true
+                self.p1_board[ x_pos ][ y_pos ] = (1,1) # set hit bool to true
                 self.num_hits += 1
                 hit = True
             self.move_log.append((player,x_pos,y_pos,hit))

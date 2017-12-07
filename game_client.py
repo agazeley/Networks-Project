@@ -141,15 +141,21 @@ class game:
                 board = []
                 f = open('BS1.txt','r')
                 for line in f.readlines():
-                    line = list(map(int,line.split(",")))
-                    board.append(line)
+                    row = []
+                    line = list(map(int,line.split(',')))
+                    for i in range(len(line)):
+                        row.append((line[i],0))
+                    board.append(row)
                 return board
             elif selection == 2:
                 board = [ ]
-                f = open ( 'BS1.txt' , 'r' )
+                f = open ( 'BS2.txt' , 'r' )
                 for line in f.readlines ( ):
-                    line = list ( map ( int , line.split ( "," ) ) )
-                    board.append ( line )
+                    row = [ ]
+                    line = list ( map ( int , line.split ( ',' ) ) )
+                    for i in range ( len ( line ) ):
+                        row.append ( (line[ i ] , 0) )
+                    board.append ( row )
                 return board
 
     def get_integer_input(self,msg):
@@ -225,15 +231,17 @@ class game:
             # make moves
             # check if won game
             # next players turn
-            (x,y) = self.get_move()
-            request = self.client.create_request(self.name,'move',(x,y))
             reply = js.loads ( self.client.get_reply ( ) )
-            if reply['type'] == 'move_result' and reply[ 'msg' ] == 'not yet':
+            if reply['type'] == 'move_req':
+                (x,y) = self.get_move()
+                request = self.client.create_request(self.name,'move',(x,y),self.game_id)
+                self.client.server_request(request)
+            elif reply['type'] == 'move_result' and reply[ 'msg' ] == 'not yet':
                 print ( "Not your turn or the board has not been setup yet" )
-            elif reply['type'] == 'move_result' and reply['msg'] == True:
+            elif reply['type'] == 'move_result' and reply['msg'][0] == 1:
                 print("Hit!")
                 self.opponent_board[x][y] = 1
-            elif reply['type'] == 'move_result' and reply['msg'] == False:
+            elif reply['type'] == 'move_result' and reply['msg'][0] == 0:
                 print("Miss!")
                 print("Opponents turn...")
             elif reply['type'] == 'win':
