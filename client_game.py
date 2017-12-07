@@ -1,3 +1,8 @@
+from game_client import client
+import socket
+import log
+import json as js
+
 class game:
 
     def __init__(self,ip,port):
@@ -34,7 +39,7 @@ class game:
                 #inp = False
                 if selection == 1:
                     data = self.client.create_request(self.name,'new_game','game')
-                    self.client.server_request(data)
+                    self.client.server_request(data,self.)
                     reply = self.client.get_reply()
                     if reply:
                         reply = js.loads(reply)

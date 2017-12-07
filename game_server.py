@@ -3,7 +3,6 @@ import time
 import json as js
 import sys
 import log
-from server_game import game
 import threading as thread
 from datetime import datetime
 
@@ -17,7 +16,7 @@ class game_server:
         self.logger = log.logger ( 'server' )
         self.games = {} # key = game_id, item = game object
         self.id_int = 0
-        self.clients = {} # (conn,addr,name,game_id)
+        self.clients = {} # (ip,port,name,game_id)
 
     def make_server_request(self,game_id,type,msg):
         data = {}
@@ -82,14 +81,22 @@ class game_server:
             # Conn, addr is the connection object and the address of that connection for new connections
             data , (ip,port) = self.sock.recvfrom(1024)
             if data.decode().lower() == 'hi server':
-                print ( "New connection recieved" )
+                print ( "New connection recieved from: " + str((ip,port)) )
                 self.clients[conn_int] = (ip,port,"",None)
-                thread._start_new_thread(self.new_client,(ip,port,conn_int))
+                self.sock.sendto ( bytearray ( "Connection successful" , "utf-8" ) , (ip , port) )
                 conn_int += 1
-            # Figure out if the request method is
+            elif data:
+                data = js.loads(data)
+                request = self.handle(data)
+                if request:
+                    print ( "Sending: " + request )
+                    self.sock.sendto ( bytearray ( request , 'utf-8' ) , (ip , port))
+        return
+
+    # Figure out if the request method is
 
     def handle(self,data):
-        print(data)
+        print("Recieved: " + str(data))
         if data['req_type'] == 'new_game':
             # MAKE GAME ON SERVER
             players = (data['player'],'p2')
@@ -98,7 +105,7 @@ class game_server:
             # return success message if successful
             request = self.make_server_request (self.id_int,'game_made',1 )
             self.id_int += 1
-            print(str(new_game.players))
+            print("Game made: "+ str(new_game.players))
             return request
         elif data['req_type'] == 'join_game':
             game_id = data['req']
@@ -144,13 +151,16 @@ class game_server:
 
             #Logic behind ready requests
             if self.games[ game_id ].ready == (True,True):
+                # Need to send message to both players that the game is starting
                 request = self.make_server_request(game_id,'game_start',1)
+                print("Both players ready in game: " ,str(game_id))
                 # Resets for board setup
                 self.games[ game_id ].ready = (False,False)
             elif self.games[game_id].ready == (True,False):
                 request = self.make_server_request(game_id,'player',(True,False))
             elif self.games[game_id].ready == (False,True):
                 request = self.make_server_request ( game_id , 'player' , (False , True) )
+            print("Players ready: " + str(self.games[game_id].ready))
             return request
         elif data['req_type'] == 'board_setup':
             game_id = data['game_id']
@@ -162,9 +172,10 @@ class game_server:
                 self.games[game_id].update_boards(p2_board = new_board)
         return
 
+
+    # OUTDATED AND UNUSED
     def new_client(self,ip,port,id):
-        reply = "Connection recieved from:" + str ( ip ) + ":" + str(port)
-        self.sock.sendto ( bytearray ( "Connection successful" , "utf-8" ),(ip,port) )
+
         data = js.loads(self.sock.recv ( 1024 ).decode ( 'UTF-8' ))
         (ip,port,player,game_id) = self.clients[id]
         self.clients[id] = (ip,port,data['player'],game_id)
@@ -179,6 +190,57 @@ class game_server:
                 self.sock.sendto(bytearray(request,'utf-8'),(ip,port))
         return
 
+class game:
+
+    def __init__(self,id=0,x_size=7,y_size=7,players=('p1','p2')):
+        self.game_id = id
+        self.x_size = x_size
+        self.y_size = y_size
+        self.players = players
+        self.init_boards(100)
+        self.move_log = [] # (player,x,y,result)
+        self.num_hits = 0
+        self.ready = (False,False)
+        self.turn = True # True = p1, false = p2
+    def init_boards(self,ships_sum,p1_board=None,p2_board=None):
+        # tiles represented by tuples of (ship_bool,hit_bool)
+        self.ships_sum = ships_sum
+        self.p1_board = [[ (0,0) for x in range(self.x_size)] for y in range(self.y_size)]
+        self.p2_board = [[ (0,0) for x in range(self.x_size)] for y in range(self.y_size)]
+        self.update_boards(p1_board,p2_board)
+        return
+    def update_boards(self,p1_board=None,p2_board=None):
+        if p1_board:
+            for x in range(self.x_size):
+                for y in range(self.y_size):
+                    self.p1_board[x][y] = p1_board[x][y]
+        elif p2_board:
+            for x in range(self.x_size):
+                for y in range(self.y_size):
+                    self.p2_board[x][y] = p2_board[x][y]
+        return
+    def hit_or_miss(self,player,x_pos,y_pos):
+        hit = False
+        if  player == self.players[0]:
+            if self.p2_board[x_pos][y_pos][0]: # if ship bool true
+                self.p2_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
+                self.num_hits += 1
+                hit = True
+            self.move_log.append((player,x_pos,y_pos,hit))
+        elif player == self.players[1]:
+            if self.p1_board[x_pos][y_pos][0]: # if ship bool true
+                self.p1_board[ x_pos ][ y_pos ][1] = 1 # set hit bool to true
+                self.num_hits += 1
+                hit = True
+            self.move_log.append((player,x_pos,y_pos,hit))
+        else:
+            print("Tried to make move with unknown player")
+        return hit
+    def won_yet(self):
+        if self.num_hits == self.ships_sum:
+            return 1
+        else:
+            return 0
 
 server = game_server ( 'localhost' , 80 , True )
 server.start_server ( )

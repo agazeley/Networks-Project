@@ -1,3 +1,13 @@
+import game_server
+import socket
+import time
+import json as js
+import sys
+import log
+from game_server import game_server
+from server_game import game
+import threading as thread
+
 class game:
 
     def __init__(self,id=0,x_size=7,y_size=7,players=('p1','p2')):
