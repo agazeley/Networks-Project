@@ -2,6 +2,51 @@ import socket
 import log
 import json as js
 import errno
+import random
+
+def make_ship_position ( board , xPos , yPos , isHorizontal , length , ship ):
+    """
+    Function makes a ship on a board given a set of variables
+
+    board -> list of board tiles
+    xPos -> x-coordinate of first ship piece
+    yPos -> y-coordinate of first ship piece
+    isHorizontal -> True if ship is horizontal
+    length -> length of ship
+    returns tuple: True if ship position is valid and list ship coordinates
+    """
+    ship_coordinates = [ ]  # the coordinates the ship will occupy
+    if isHorizontal:
+        for i in range ( length ):
+            if (i + xPos > 9) or (board[ i + xPos ][ yPos ] != None) or hasAdjacent ( board , i + xPos , yPos ,
+                                                                                      ship ):  # if the ship goes out of bound, hits another ship, or is adjacent to another ship
+                return (False , ship_coordinates)  # then return false
+            else:
+                ship_coordinates.append ( (i + xPos , yPos) )
+    else:
+        for i in range ( length ):
+            if (i + yPos > 9) or (board[ xPos ][ i + yPos ] != None) or hasAdjacent ( board , xPos , i + yPos ,
+                                                                                      ship ):  # if the ship goes out of bound, hits another ship, or is adjacent to another ship
+                return (False , ship_coordinates)  # then return false
+            else:
+                ship_coordinates.append ( (xPos , i + yPos) )
+    return (True , ship_coordinates)
+
+def hasAdjacent ( board , xPos , yPos , ship ):
+    """
+    Funtion checks if a ship has adjacent ships
+
+    board -> list of board tiles
+    xPos -> x-coordinate of first ship piece
+    yPos -> y-coordinate of first ship piece
+    ship -> the ship being checked for adjacency
+    returns true if there are adjacent ships and false if there are no adjacent ships
+    """
+    for x in range ( xPos - 1 , xPos + 2 ):
+        for y in range ( yPos - 1 , yPos + 2 ):
+            if (x in range ( 10 )) and (y in range ( 10 )) and (board[ x ][ y ] not in (ship , None)):
+                return True
+    return False
 
 class client:
     def __init__ ( self , host , port ):
@@ -76,6 +121,8 @@ class game:
         self.client_ip = ip
         self.client = client(ip,port)
         self.logger = log.logger("game")
+        self.ships = [ 'battleship' , 'cruiser1' , 'cruiser2' , 'destroyer1' , 'destroyer2' , 'submarine1' ,
+                  'submarine2' ]
         return
 
     def start(self):
@@ -259,6 +306,28 @@ class game:
 
         return
 
+    def generate_board(self,board,ships):
+        new_board = board[:]
+        ship_length = 0
+        for ship in ships:
+            valid_ship_position = False
+            while not valid_ship_position:
+                x_start_pos = random.randint(0,6)
+                y_start_pos = range.randint(0,6)
+                is_horizontal = random.randint(0,1)
+
+                if 'battleship' in ship:
+                    ship_length = 4
+                elif 'cruiser' in ship:
+                    ship_length = 3
+                elif 'destroyer' in ship:
+                    ship_length = 2
+                elif 'submarine' in ship:
+                    ship_length = 1
+                valid_ship_position, ship_coords = make_ship_position(new_board,x_start_pos,y_start_pos,is_horizontal,ship_length,ship)
+                if valid_ship_position:
+                    for coord in ship_coords:
+                        new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
 
 usr_client = game('localhost',80)
 usr_client.start()

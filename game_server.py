@@ -321,24 +321,6 @@ class game_server:
                 print ( "Player 2's board updated")
         return
 
-    # OUTDATED AND UNUSED
-    def new_client(self,ip,port,id):
-
-        data = js.loads(self.sock.recv ( 1024 ).decode ( 'UTF-8' ))
-        (ip,port,player,game_id) = self.clients[id]
-        self.clients[id] = (ip,port,data['player'],game_id)
-        while True:
-            data = self.sock.recv ( 1024 ).decode ( 'UTF-8' )
-            if data:
-                data = js.loads(data)
-            # what do we do when a new client connects?
-            request = self.handle(data)
-            if request:
-                print("Sending: " + request)
-                self.sock.sendto(bytearray(request,'utf-8'),(ip,port))
-        return
-
-
 
 server = game_server ( 'localhost' , 80 , True )
 server.start_server ( )
