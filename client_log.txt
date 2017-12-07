@@ -33,3 +33,7 @@
 2017-12-06 12:00:33: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-12-06 13:59:32: [WinError 10061] No connection could be made because the target machine actively refused it
 2017-12-06 13:59:45: Failed to connect. Shutting down client
+2017-12-06 18:10:55: 'str' object has no attribute 'endcode'
+2017-12-06 18:12:49: 'str' object has no attribute 'endcode'
+2017-12-06 18:15:59: 'str' object has no attribute 'endcode'
+2017-12-06 18:16:08: 'str' object has no attribute 'endcode'

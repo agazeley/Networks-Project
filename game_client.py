@@ -11,17 +11,19 @@ class client:
         self.msg_size = 2048
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
 
-    def start_client ( self ):
+    def start_client ( self,name ):
         print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
         try:
-            self.sock.sendto ("Hi server".encode(), (self.server_ip , self.server_port) )
+            data = self.create_request(name,'connect',1)
+            self.sock.sendto (data.encode('utf-8'), (self.server_ip , self.server_port) )
         except Exception as e:
             print ( "Failed to connect to server" )
             self.logger.log ( str ( e ) )
             self.logger.write_log()
 
-        serverMessage = self.sock.recv ( 1024 ).decode()
-        if serverMessage == "Connection successful":
+        serverMessage = js.loads(self.sock.recv ( 1024 ).decode())
+        if serverMessage['type'] == "conn_request" and serverMessage['msg'] == 1:
+            self.GUID = serverMessage['game_id']
             return
         else:
             self.logger.log("Failed to connect. Shutting down client")
@@ -77,8 +79,8 @@ class game:
         return
 
     def start(self):
-        self.client.start_client()
-        self.name = input("What is your name? ")
+        self.name = input ( "What is your name? " )
+        self.client.start_client(self.name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
 
