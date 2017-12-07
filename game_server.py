@@ -16,7 +16,7 @@ class game_server:
         self.logger = log.logger ( 'server' )
         self.games = {} # key = game_id, item = game object
         self.id_int = 0
-        self.clients = {} # (ip,port,name,game_id)
+        self.clients = {} # key = player name (ip,port,name,game_id)
 
     def make_server_request(self,game_id,type,msg):
         data = {}
@@ -80,21 +80,17 @@ class game_server:
             # Change this number to change maximum number of requests
             # Conn, addr is the connection object and the address of that connection for new connections
             data , (ip,port) = self.sock.recvfrom(1024)
-
-
             if data:
                 data = data.decode()
                 data = js.loads(data)
-                print ( data )
                 if data[ 'req_type' ] == 'connect':
                     print ( "New connection recieved from: " + str ( (ip , port) ) )
-                    self.clients[ conn_int ] = (ip , port , data[ 'player' ] , None)
+                    self.clients[ data['player'] ] = (ip , port , data[ 'player' ] , None)
                     self.sock.sendto ( bytearray ( self.make_server_request ( 0 , 'conn_request' , 1 ) , "utf-8" ) ,
                                        (ip , port) )
                     conn_int += 1
                 else:
                     request = self.handle(data)
-
                     if request:
                         if type(request) == type([]):
                             for item in request:
@@ -114,8 +110,10 @@ class game_server:
             self.games[self.id_int] = new_game
             # return success message if successful
             request = self.make_server_request (self.id_int,'game_made',1 )
-            self.id_int += 1
             print("Game made: "+ str(new_game.players))
+            (ip,port,name,game_id) = self.clients[data['player']]
+            self.clients[ data[ 'player' ] ] = (ip,port,name,self.id_int)
+            self.id_int += 1
             return request
         elif data['req_type'] == 'join_game':
             game_id = data['req']
@@ -123,11 +121,11 @@ class game_server:
                 self.games[game_id].players = (self.games[game_id].players[0],data['player'])
                 # return success message if successful
                 request = self.make_server_request(game_id,'join_result',1)
-                for i in range(len(self.clients)):
-                    if data['player'] == self.clients[i][2]:
+                for client in self.clients.keys():
+                    if self.games[game_id].players[1] == self.clients[client][2]:
                         # (ip,port,name,game_id)
-                        (ip,port,name,_old_game_id) = self.clients[i]
-                        self.clients[i] = (ip,port,name,game_id)
+                        (ip,port,name,_old_game_id) = self.clients[data['player']]
+                        self.clients[data['player']] = (ip,port,name,game_id)
                 print(self.clients)
                 return request
             else:
@@ -169,12 +167,15 @@ class game_server:
             if self.games[ game_id ].ready == (True,True):
                 # Need to send message to both players that the game is starting
                 request = [ ]
-                for client in self.clients.items():
-                    if client[1][3] == game_id:
-                        c = []
-                        c.append(self.make_server_request ( game_id , 'game_start' , 1 ))
-                        c.append(client[1][0])
-                        c.append(client[1][1])
+                for client in self.clients.keys():
+                    if self.clients[client][3] == game_id:
+                        c = [ ]
+                        if self.clients[client][2] == self.games[game_id].players[0]:
+                            c.append(self.make_server_request ( game_id , 'game_start' , 1 ))
+                        else:
+                            c.append(self.make_server_request(game_id,'game_start',0))
+                        c.append(self.clients[client][0])
+                        c.append(self.clients[client][1])
                         request.append(c)
                 print("Both players ready in game: " ,str(game_id))
                 # Resets for board setup
