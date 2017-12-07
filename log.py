@@ -10,7 +10,7 @@ class logger:
     def log(self,message):
         _time = datetime.now ( ).strftime ( '%Y-%m-%d %H:%M:%S' )
         if self.logging_on == True:
-            self._log.append ( str ( _time ) + ": " + message )
+            self._log.append ( str ( _time ) + ": " + str(message) )
         return
     def write_log(self):
         if self.logging_on == True:

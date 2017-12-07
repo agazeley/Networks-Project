@@ -37,3 +37,5 @@
 2017-12-06 18:12:49: 'str' object has no attribute 'endcode'
 2017-12-06 18:15:59: 'str' object has no attribute 'endcode'
 2017-12-06 18:16:08: 'str' object has no attribute 'endcode'
+2017-12-07 12:05:15: [WinError 10054] An existing connection was forcibly closed by the remote host
+2017-12-07 12:07:21: [WinError 10054] An existing connection was forcibly closed by the remote host

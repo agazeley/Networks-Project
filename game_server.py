@@ -306,17 +306,18 @@ class game_server:
             return request
 
         elif data['req_type'] == 'board_setup':
-            game_id = data['game_id']
             # make the gameboard using the board sent in data
             new_board = data['req']
-            if data['player'] == self.games[game_id].players[0]:
-                self.games[game_id].update_boards(p1_board = new_board)
-                print("Player 1's board updated")
-                request = game_server.make_server_request(game_id,"move_req",1)
+            game_id = data['game_id']
+            _lobby = self.get_lobby ( game_id )
+            if _lobby.is_p1(_player.name):
+                _lobby.game.update_boards ( p1_board=new_board )
+                print ( "Player 1's board updated" )
+                request = game_server.make_server_request ( game_id , "move_req" , 1 )
                 return request
             else:
-                self.games[game_id].update_boards(p2_board = new_board)
-                print("Player 2's board updated")
+                _lobby.game.update_boards ( p2_board=new_board )
+                print ( "Player 2's board updated")
         return
 
     # OUTDATED AND UNUSED
