@@ -72,6 +72,18 @@ class game_server:
         print("Sent" + str(msg))
         return
 
+    def package_requsest(self,request,ip,port):
+        req = []
+        if ip == None or port == None:
+            req.append(request)
+            req.append(None)
+            req.append(None)
+        else:
+            req.append(request)
+            req.append(ip)
+            req.append(port)
+        return req
+
     def accept_requests ( self ):
         print("Waiting for connections")
         conn_int = 0
@@ -89,8 +101,11 @@ class game_server:
                 data = js.loads(data)
                 request = self.handle(data)
                 if request:
-                    print ( "Sending: " + request )
-                    self.sock.sendto ( bytearray ( request , 'utf-8' ) , (ip , port))
+                    if type(request) == type([]):
+                        for item in request:
+                            self.sock.sendto ( bytearray (item[0] , 'utf-8' ),item[1] ,item[2])
+                    else:
+                        self.sock.sendto(bytearray(str(request),'utf-8'),(ip,port))
         return
 
     # Figure out if the request method is
@@ -152,10 +167,18 @@ class game_server:
             #Logic behind ready requests
             if self.games[ game_id ].ready == (True,True):
                 # Need to send message to both players that the game is starting
-                request = self.make_server_request(game_id,'game_start',1)
+                request = [ ]
+                for client in self.clients.items():
+                    if client[1][3] == game_id:
+                        c = []
+                        c.append(self.make_server_request ( game_id , 'game_start' , 1 ))
+                        c.append(client[0])
+                        c.append(client[1])
+                        request.append(c)
                 print("Both players ready in game: " ,str(game_id))
                 # Resets for board setup
                 self.games[ game_id ].ready = (False,False)
+                return request
             elif self.games[game_id].ready == (True,False):
                 request = self.make_server_request(game_id,'player',(True,False))
             elif self.games[game_id].ready == (False,True):
