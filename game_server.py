@@ -88,34 +88,36 @@ class lobby:
             return True
         else:
             return False
-    def add_player ( self , player ):
+    def add_player ( self , _player ):
         if self.players[ 1 ] == None and self.players[ 0 ] != None:
             (p1 , p2) = self.players
-            self.players = (p1 , player)
+            self.players = (p1 , _player)
         elif self.players[ 0 ] == None and self.players[ 1 ] != None:
             (p1 , p2) = self.players
-            self.players = (player , p2)
+            self.players = (_player , p2)
         else:
-            self.players = (player , None)
+            self.players = (_player , None)
         return
 
         # Simple server class to handle GET and HEAD requests
-    def rdy_player(self,player):
-        if player == self.players[0].name:
-            (p1,p2) = self.ready
-            self.ready = (True,p2)
+    def rdy_player(self,rdy):
+        (p1 , p2) = self.ready
+        if self.is_p1(rdy.name):
+            p1 = not p1
+            self.ready = (p1,p2)
         else:
-            (p1 , p2) = self.ready
-            self.ready = (p1 , True)
+            p2 = not p2
+            self.ready = (p1,p2)
+
         return self.ready
     def game_start(self):
         request = []
         for player in self.players:
             c = []
             if self.is_p1(player.name):
-                c.append ( self.make_server_request ( self.id , 'game_start' , 1 ) )
+                c.append ( game_server.make_server_request ( self.id , 'game_start' , 1 ) )
             else:
-                c.append ( self.make_server_request ( self.id , 'game_start' , 0 ) )
+                c.append ( game_server.make_server_request ( self.id , 'game_start' , 0 ) )
             c.append (player.ip )
             c.append (player.port )
             request.append(c)
@@ -134,7 +136,7 @@ class game_server:
         self.clients = {} # key = player name (ip,port,name,game_id,bool_p1?)
         self.turn = True # true = p1
 
-    def make_server_request(self,game_id,type,msg):
+    def make_server_request(game_id,type,msg):
         data = {}
         data['game_id'] =game_id
         data['type'] = type
@@ -215,7 +217,7 @@ class game_server:
                     print ( "New connection recieved from: " + str ( (ip , port) ) )
                     new_player = player(data['player'],ip,port)
                     self.players.append(new_player)
-                    self.sock.sendto ( bytearray ( self.make_server_request ( 0 , 'conn_request' , 1 ) , "utf-8" ) ,
+                    self.sock.sendto ( bytearray ( game_server.make_server_request ( 0 , 'conn_request' , 1 ) , "utf-8" ) ,
                                        (ip , port) )
                     #conn_int += 1 # Do I need this?
                 else:
@@ -234,29 +236,30 @@ class game_server:
 
     def handle(self,data):
         print("Recieved: " + str(data))
+        _player = self.get_player(data['player'])
 
         if data['req_type'] == 'new_game':
             # MAKE GAME ON SERVER
-            new_lobby = lobby(self.id_int,self.get_player(data['player']),None)
+            new_lobby = lobby(self.id_int,_player,None)
             self.lobbies.append(new_lobby)
             # return success message if successful
-            request = self.make_server_request (self.id_int,'game_made',1 )
+            request = game_server.make_server_request (self.id_int,'game_made',1 )
             print("Game made: "+ str(new_lobby.players[0].name))
             self.id_int += 1
             return request
 
         elif data['req_type'] == 'join_game':
             game_id = data['req']
-            lobby = self.get_lobby(game_id)
-            if lobby:
+            _lobby = self.get_lobby(game_id)
+            if _lobby:
                 new_player = self.get_player(data['player'])
-                lobby.add_player(new_player)
+                _lobby.add_player(new_player)
                 # return success message if successful
-                request = self.make_server_request(game_id,'join_result',1)
-                print(str(lobby.players))
+                request = game_server.make_server_request(game_id,'join_result',1)
+                print(str(_lobby.players))
                 return request
             else:
-                request = self.make_server_request(game_id,'join_result',0)
+                request = game_server.make_server_request(game_id,'join_result',0)
                 return request
 
         elif data['req_type'] == 'move':
@@ -266,7 +269,7 @@ class game_server:
             result = self.games[game_id].hit_or_miss(data['player'],x,y)
             if self.games[game_id].won_yet():
                 print("Somebody won")
-                request = self.make_server_request(game_id,'win',data['player'])
+                request = game_server.make_server_request(game_id,'win',data['player'])
                 return request
             else:
                 _players = []
@@ -276,7 +279,7 @@ class game_server:
                         _players.append(self.clients[client])
                 for p in _players:
                     c = [ ]
-                    _req = self.make_server_request(game_id,"move_result",(result,x,y,self.turn))
+                    _req = game_server.make_server_request(game_id,"move_result",(result,x,y,self.turn))
                     c.append ( _req )
                     c.append(self.clients[p[2]][0])
                     c.append(self.clients[p[2]][1])
@@ -286,20 +289,20 @@ class game_server:
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
             game_id = data[ 'game_id' ]
-            lobby = self.get_lobby(game_id)
+            _lobby = self.get_lobby(game_id)
             # Logic behind ready up
-            (p1 , p2) = lobby.rdy_player ( data[ 'player' ] )
-            if lobby.lobby_rdy():
+            (p1 , p2) = _lobby.rdy_player( _player )
+            if _lobby.lobby_rdy():
                 # Send request to both clients
-                request = lobby.game_start()
+                request = _lobby.game_start()
             else:
                 if (p1,p2) == (True,False):
-                    request = self.make_server_request ( game_id , 'player' , (True , False) )
+                    request = game_server.make_server_request ( game_id , 'player' , (True , False) )
                 else:
-                    request = self.make_server_request ( game_id , 'player' , (False , True) )
+                    request = game_server.make_server_request ( game_id , 'player' , (False , True) )
             #Logic behind ready requests
                 return request
-            print("Players ready: " + str(lobby.ready))
+            print("Players ready: " + str(_lobby.ready))
             return request
 
         elif data['req_type'] == 'board_setup':
@@ -309,7 +312,7 @@ class game_server:
             if data['player'] == self.games[game_id].players[0]:
                 self.games[game_id].update_boards(p1_board = new_board)
                 print("Player 1's board updated")
-                request = self.make_server_request(game_id,"move_req",1)
+                request = game_server.make_server_request(game_id,"move_req",1)
                 return request
             else:
                 self.games[game_id].update_boards(p2_board = new_board)

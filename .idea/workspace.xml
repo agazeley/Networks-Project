@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7285bd-2a1d-456d-b9c0-8bbd0eccbb91" name="Default" comment="Adding MySocket class">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_server.py" afterPath="$PROJECT_DIR$/game_server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_log.txt" afterPath="$PROJECT_DIR$/server_log.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,14 +16,87 @@
     <SUITE FILE_PATH="coverage/Networks_Project$game_client.coverage" NAME="game_client Coverage Results" MODIFIED="1512447455875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Networks_Project$game_server.coverage" NAME="game_server Coverage Results" MODIFIED="1512447452875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="game_server.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/game_server.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="576">
+                    <caret line="183" column="33" lean-forward="true" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
+                    <folding>
+                      <element signature="e#0#13#0" expanded="true" />
+                      <element signature="e#194#325#0" expanded="false" />
+                      <element signature="e#348#2748#0" expanded="false" />
+                      <element signature="e#436#730#0" expanded="false" />
+                      <element signature="e#822#1200#0" expanded="false" />
+                      <element signature="e#1282#1678#0" expanded="false" />
+                      <element signature="e#1751#2601#0" expanded="false" />
+                      <element signature="e#2645#2748#0" expanded="false" />
+                      <element signature="e#2818#2966#0" expanded="false" />
+                      <element signature="e#3001#3096#0" expanded="false" />
+                      <element signature="e#3130#3222#0" expanded="false" />
+                      <element signature="e#3270#3693#0" expanded="false" />
+                      <element signature="e#3732#3942#0" expanded="false" />
+                      <element signature="e#3977#4409#0" expanded="false" />
+                      <element signature="e#4489#5042#0" expanded="false" />
+                      <element signature="e#5099#5245#0" expanded="false" />
+                      <element signature="e#5287#6501#0" expanded="false" />
+                      <element signature="e#6538#6963#0" expanded="false" />
+                      <element signature="e#7001#7121#0" expanded="false" />
+                      <element signature="e#7162#7270#0" expanded="false" />
+                      <element signature="e#7308#7409#0" expanded="false" />
+                      <element signature="e#7453#8895#0" expanded="false" />
+                      <element signature="e#8975#12669#0" expanded="false" />
+                      <element signature="e#12743#13306#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="game_client.py" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/game_client.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="324">
+                    <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+                    <folding>
+                      <element signature="e#0#13#0" expanded="true" />
+                      <element signature="e#120#318#0" expanded="false" />
+                      <element signature="e#364#1127#0" expanded="false" />
+                      <element signature="e#1196#1414#0" expanded="false" />
+                      <element signature="e#1459#1570#0" expanded="false" />
+                      <element signature="e#1608#1767#0" expanded="false" />
+                      <element signature="e#1802#2268#0" expanded="false" />
+                      <element signature="e#2499#2703#0" expanded="false" />
+                      <element signature="e#2744#2809#0" expanded="false" />
+                      <element signature="e#2851#2940#0" expanded="false" />
+                      <element signature="e#2970#4707#0" expanded="false" />
+                      <element signature="e#4742#5683#0" expanded="false" />
+                      <element signature="e#5730#6057#0" expanded="false" />
+                      <element signature="e#5754#6038#0" expanded="false" />
+                      <element signature="e#6099#6292#0" expanded="false" />
+                      <element signature="e#6326#6642#0" expanded="false" />
+                      <element signature="e#6675#9285#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="UDP_Server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -33,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/BS2.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="81">
-              <caret line="3" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <caret line="3" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -42,8 +115,8 @@
       <file leaf-file-name="json_practice.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Resources/json_practice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+            <state relative-caret-position="621">
+              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -71,6 +144,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>1</find>
+      <find>lobby</find>
+      <find>_players</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,10 +179,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="952" />
+    <option name="width" value="976" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -124,7 +198,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -154,6 +227,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,7 +257,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.game_client">
+  <component name="RunManager" selected="Python.game_server">
     <configuration default="false" name="json_practice" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -403,19 +477,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="952" y="0" width="976" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1859375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37265137" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.49583334" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="0" y="29" width="1920" height="1001" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.49583334" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="1" y="502" width="959" height="527" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32711306" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3307436" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -471,7 +545,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="94" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -480,6 +554,38 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BS2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/json_practice.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BS1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client_game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -526,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5427">
           <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -577,23 +682,22 @@
             <element signature="e#1282#1678#0" expanded="false" />
             <element signature="e#1751#2601#0" expanded="false" />
             <element signature="e#2645#2748#0" expanded="false" />
-            <element signature="e#2767#4398#0" expanded="false" />
             <element signature="e#2818#2966#0" expanded="false" />
             <element signature="e#3001#3096#0" expanded="false" />
             <element signature="e#3130#3222#0" expanded="false" />
-            <element signature="e#3269#3689#0" expanded="false" />
-            <element signature="e#3731#3945#0" expanded="false" />
-            <element signature="e#4478#5031#0" expanded="false" />
-            <element signature="e#5093#5239#0" expanded="false" />
-            <element signature="e#5281#6495#0" expanded="false" />
-            <element signature="e#6532#6957#0" expanded="false" />
-            <element signature="e#6995#7115#0" expanded="false" />
-            <element signature="e#7156#7264#0" expanded="false" />
-            <element signature="e#7302#7403#0" expanded="false" />
-            <element signature="e#7447#8882#0" expanded="false" />
-            <element signature="e#10079#11101#0" expanded="false" />
-            <element signature="e#12006#12560#0" expanded="false" />
-            <element signature="e#12649#13212#0" expanded="false" />
+            <element signature="e#3270#3693#0" expanded="false" />
+            <element signature="e#3732#3942#0" expanded="false" />
+            <element signature="e#3977#4409#0" expanded="false" />
+            <element signature="e#4489#5042#0" expanded="false" />
+            <element signature="e#5099#5245#0" expanded="false" />
+            <element signature="e#5287#6501#0" expanded="false" />
+            <element signature="e#6538#6963#0" expanded="false" />
+            <element signature="e#7001#7121#0" expanded="false" />
+            <element signature="e#7162#7270#0" expanded="false" />
+            <element signature="e#7308#7409#0" expanded="false" />
+            <element signature="e#7453#8895#0" expanded="false" />
+            <element signature="e#8975#12669#0" expanded="false" />
+            <element signature="e#12743#13306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -660,23 +764,22 @@
             <element signature="e#1282#1678#0" expanded="false" />
             <element signature="e#1751#2601#0" expanded="false" />
             <element signature="e#2645#2748#0" expanded="false" />
-            <element signature="e#2767#4398#0" expanded="false" />
             <element signature="e#2818#2966#0" expanded="false" />
             <element signature="e#3001#3096#0" expanded="false" />
             <element signature="e#3130#3222#0" expanded="false" />
-            <element signature="e#3269#3689#0" expanded="false" />
-            <element signature="e#3731#3945#0" expanded="false" />
-            <element signature="e#4478#5031#0" expanded="false" />
-            <element signature="e#5093#5239#0" expanded="false" />
-            <element signature="e#5281#6495#0" expanded="false" />
-            <element signature="e#6532#6957#0" expanded="false" />
-            <element signature="e#6995#7115#0" expanded="false" />
-            <element signature="e#7156#7264#0" expanded="false" />
-            <element signature="e#7302#7403#0" expanded="false" />
-            <element signature="e#7447#8882#0" expanded="false" />
-            <element signature="e#10079#11101#0" expanded="false" />
-            <element signature="e#12006#12560#0" expanded="false" />
-            <element signature="e#12649#13212#0" expanded="false" />
+            <element signature="e#3270#3693#0" expanded="false" />
+            <element signature="e#3732#3942#0" expanded="false" />
+            <element signature="e#3977#4409#0" expanded="false" />
+            <element signature="e#4489#5042#0" expanded="false" />
+            <element signature="e#5099#5245#0" expanded="false" />
+            <element signature="e#5287#6501#0" expanded="false" />
+            <element signature="e#6538#6963#0" expanded="false" />
+            <element signature="e#7001#7121#0" expanded="false" />
+            <element signature="e#7162#7270#0" expanded="false" />
+            <element signature="e#7308#7409#0" expanded="false" />
+            <element signature="e#7453#8895#0" expanded="false" />
+            <element signature="e#8975#12669#0" expanded="false" />
+            <element signature="e#12743#13306#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -765,9 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="628">
           <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -807,42 +907,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python/Python36-32/Lib/json/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9180">
-          <caret line="342" column="0" lean-forward="false" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python/Python36-32/Lib/json/encoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5427">
           <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python/Python36-32/Lib/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resources/json_practice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python/Python36-32/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+        <state relative-caret-position="621">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -851,14 +926,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BS2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <caret line="3" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -867,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="762" column="0" lean-forward="false" selection-start-line="762" selection-start-column="0" selection-end-line="762" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -891,7 +964,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
+        <state relative-caret-position="324">
           <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -915,10 +988,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Python/Python36-32/Lib/json/decoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="342" column="0" lean-forward="false" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python36-32/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python36-32/Lib/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="238" column="33" lean-forward="true" selection-start-line="238" selection-start-column="33" selection-end-line="238" selection-end-column="33" />
+        <state relative-caret-position="576">
+          <caret line="183" column="33" lean-forward="true" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#194#325#0" expanded="false" />
@@ -928,32 +1033,23 @@
             <element signature="e#1282#1678#0" expanded="false" />
             <element signature="e#1751#2601#0" expanded="false" />
             <element signature="e#2645#2748#0" expanded="false" />
-            <element signature="e#2767#4398#0" expanded="false" />
             <element signature="e#2818#2966#0" expanded="false" />
             <element signature="e#3001#3096#0" expanded="false" />
             <element signature="e#3130#3222#0" expanded="false" />
-            <element signature="e#3269#3689#0" expanded="false" />
-            <element signature="e#3731#3945#0" expanded="false" />
-            <element signature="e#4478#5031#0" expanded="false" />
-            <element signature="e#5093#5239#0" expanded="false" />
-            <element signature="e#5281#6495#0" expanded="false" />
-            <element signature="e#6532#6957#0" expanded="false" />
-            <element signature="e#6995#7115#0" expanded="false" />
-            <element signature="e#7156#7264#0" expanded="false" />
-            <element signature="e#7302#7403#0" expanded="false" />
-            <element signature="e#7447#8882#0" expanded="false" />
-            <element signature="e#10079#11101#0" expanded="false" />
-            <element signature="e#12006#12560#0" expanded="false" />
-            <element signature="e#12649#13212#0" expanded="false" />
+            <element signature="e#3270#3693#0" expanded="false" />
+            <element signature="e#3732#3942#0" expanded="false" />
+            <element signature="e#3977#4409#0" expanded="false" />
+            <element signature="e#4489#5042#0" expanded="false" />
+            <element signature="e#5099#5245#0" expanded="false" />
+            <element signature="e#5287#6501#0" expanded="false" />
+            <element signature="e#6538#6963#0" expanded="false" />
+            <element signature="e#7001#7121#0" expanded="false" />
+            <element signature="e#7162#7270#0" expanded="false" />
+            <element signature="e#7308#7409#0" expanded="false" />
+            <element signature="e#7453#8895#0" expanded="false" />
+            <element signature="e#8975#12669#0" expanded="false" />
+            <element signature="e#12743#13306#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
