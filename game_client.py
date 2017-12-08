@@ -6,6 +6,8 @@ import socket
 import random , sys , pygame
 from pygame.locals import *
 import log
+from textbox import TextBox
+
 
 # Set variables, like screen width and height
 # globals
@@ -36,7 +38,11 @@ GREEN = (0 , 204 , 0)
 GRAY = (60 , 60 , 60)
 BLUE = (0 , 50 , 255)
 YELLOW = (255 , 255 , 0)
+LIGHT_YELLOW = (200,200,0)
 DARKGRAY = (40 , 40 , 40)
+BRIGHT_RED = (255,0,0)
+BRIGHT_GREEN = (0,255,0)
+RED = (200,0,0)
 
 # Determine what to colour each element of the game
 BGCOLOR = GRAY
@@ -469,6 +475,60 @@ class graphics:
         self.clock = pygame.time.Clock()
         self.pboard = None
 
+    def text_objects (self, text , font ):
+        textSurface = font.render ( text , True , BLACK )
+        return textSurface , textSurface.get_rect ( )
+
+    # msg = Text on button, x is starting x, y is starting y,
+    # w is width, h is height, ic is initial color, ac is hover color
+    def button (self, msg , x , y , w , h , ic , ac,action=None,args=None ):
+        mouse = pygame.mouse.get_pos ( )
+        clicked = pygame.mouse.get_pressed()
+
+        if x + w > mouse[ 0 ] > x and y + h > mouse[ 1 ] > y:
+            pygame.draw.rect ( self.game_display , ac , (x , y , w , h) )
+
+            if clicked[0] == 1 and action != None:
+                action() # run action function
+        else:
+            pygame.draw.rect ( self.game_display , ic , (x , y , w , h) )
+
+        smallText = pygame.font.Font ( "freesansbold.ttf" , 20 )
+        textSurf , textRect = self.text_objects ( msg , smallText )
+        textRect.center = ((x + (w / 2)) , (y + (h / 2)))
+        self.game_display.blit ( textSurf , textRect )
+
+    def print_on_enter (self, id , final ):
+        print ( 'enter pressed, textbox contains {}'.format ( final ) )
+
+    def game_intro(self):
+        settings = {"command": self.print_on_enter , "inactive_on_enter": False , }
+
+        intro = True
+        while intro:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+
+            self.game_display.fill(WHITE)
+
+            largeText = pygame.font.Font ( 'freesansbold.ttf' , 65 )
+            TextSurf , TextRect = self.text_objects ( "Battleship: Main Menu" , largeText )
+            TextRect.center = ((self.display_width / 2) , (self.display_height / 2))
+            self.game_display.blit ( TextSurf , TextRect )
+
+            mouse = pygame.mouse.get_pos()
+
+            self.button ( "Start!" , 150 , 450 , 100 , 50 , GREEN , BRIGHT_GREEN,self.game_loop)
+            self.button ( "Connect" , 350 , 450 , 100 , 50 , LIGHT_YELLOW ,YELLOW )
+            self.button ( "Quit!" , 550 , 450 , 100 , 50 , RED , BRIGHT_RED,quit)
+            entry = TextBox(rect=(70,100,150,30))
+
+
+            pygame.display.update ( )
+            FPSCLOCK.tick(FPS )
+
     def blowup_animation (self, coord ):
         """
         Function creates the explosition played if a ship is shot.
@@ -579,6 +639,7 @@ class graphics:
                 if tile_rect.collidepoint ( x , y ):
                     return (tilex , tiley)
         return (None , None)
+
     def check_for_quit (self):
         """
         Function checks if the user has attempted to quit the game.
@@ -605,6 +666,7 @@ class graphics:
             marker_surf , marker_rect = self.make_text_objs ( str ( ylist[ i ] ) , BASICFONT , TEXTCOLOR )
             marker_rect.topleft = (left , top)
             DISPLAYSURF.blit ( marker_surf , marker_rect )
+
     def draw_board(self,board,reveal):
         for tilex in range(self.x):
             for tiley in range(self.y):
@@ -638,9 +700,7 @@ class graphics:
         xmarkers = [i for i in range(self.x)]
         ymarkers = [i for i in range(self.y)]
         return xmarkers,ymarkers
-    def text_objects (self, text , font ):
-        textSurface = font.render ( text , True , self.colors['black'] )
-        return textSurface , textSurface.get_rect ( )
+
     def message_display(self,text):
         large_text = pygame.font.Font('freesanbold.ttf',115)
         TextSurf,TextRect = self.text_objects(text,large_text)
@@ -698,6 +758,7 @@ class graphics:
 
             self.check_for_quit ( )
 
+            #Get the loop events
             for event in pygame.event.get ( ):
                 if event.type == MOUSEBUTTONUP:
                     if HELP_RECT.collidepoint ( event.pos ):
@@ -711,6 +772,7 @@ class graphics:
                         mouse_clicked = True
                 elif event.type == MOUSEMOTION:
                     mousex , mousey = event.pos
+
             tilex , tiley = self.get_tile_at_pixel ( mousex , mousey )
             if tilex != None and tiley != None:
                 if not self.revealed[ tilex ][ tiley ]:
@@ -725,15 +787,18 @@ class graphics:
                             self.counter.append ( (tilex , tiley) )
                             return len ( self.counter )
                     self.counter.append ( (tilex , tiley) )
+
+            self.button ( "Quit!" , 600 , 450 , 100 , 50 , LIGHT_YELLOW , YELLOW , self.game_intro )
             pygame.display.update ( )
             FPSCLOCK.tick ( FPS )
 
 
 
 _graphics = graphics ( )
-while True:
-    shots_taken = _graphics.game_loop()
-    _graphics.show_gameover_scene(shots_taken)
+_graphics.game_intro()
+#while True:
+#    shots_taken = _graphics.game_loop()
+#    _graphics.show_gameover_scene(shots_taken)
 
 '''
 usr_client = game('localhost',80)
