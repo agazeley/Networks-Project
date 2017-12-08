@@ -10,11 +10,13 @@ class game:
         self.client_ip = ip
         self.client = client(ip,port)
         self.logger = log.logger("game")
+        self.ships = [ 'battleship' , 'cruiser1' , 'cruiser2' , 'destroyer1' , 'destroyer2' , 'submarine1' ,
+                  'submarine2' ]
         return
 
     def start(self):
-        self.client.start_client()
-        self.name = input("What is your name? ")
+        self.name = input ( "What is your name? " )
+        self.client.start_client(self.name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
 
@@ -39,7 +41,7 @@ class game:
                 #inp = False
                 if selection == 1:
                     data = self.client.create_request(self.name,'new_game','game')
-                    self.client.server_request(data,self.)
+                    self.client.server_request(data)
                     reply = self.client.get_reply()
                     if reply:
                         reply = js.loads(reply)
@@ -57,7 +59,7 @@ class game:
                     self.client.server_request ( data )
                     reply = js.loads(self.client.get_reply())
                     # Do something else in the client
-                    if reply['join_result'] == 1:
+                    if reply['type'] == 'join_result' and reply['msg'] == 1:
                         print("Game successfully joined")
                         self.game_id = int(reply['game_id'])
                         # Waiting for other player to start
@@ -75,15 +77,21 @@ class game:
                 board = []
                 f = open('BS1.txt','r')
                 for line in f.readlines():
-                    line = list(map(int,line.split(",")))
-                    board.append(line)
+                    row = []
+                    line = list(map(int,line.split(',')))
+                    for i in range(len(line)):
+                        row.append((line[i],0))
+                    board.append(row)
                 return board
             elif selection == 2:
                 board = [ ]
-                f = open ( 'BS1.txt' , 'r' )
+                f = open ( 'BS2.txt' , 'r' )
                 for line in f.readlines ( ):
-                    line = list ( map ( int , line.split ( "," ) ) )
-                    board.append ( line )
+                    row = [ ]
+                    line = list ( map ( int , line.split ( ',' ) ) )
+                    for i in range ( len ( line ) ):
+                        row.append ( (line[ i ] , 0) )
+                    board.append ( row )
                 return board
 
     def get_integer_input(self,msg):
@@ -138,42 +146,75 @@ class game:
         not_ready = True
         while not_ready:
             reply = js.loads ( self.client.get_reply ( ) )
-            for key in reply.keys ( ):
-                if key == 'game_start':
-                    print ( "Game starting..." )
-                    not_ready = False
-                elif key == 'player':
-                    (p1_rdy , p2_rdy) = reply[ 'msg' ]
-                    print ( "P1 Ready ? " + str ( p1_rdy ) + "P2 Ready ? " + str ( p2_rdy ) )
+            if reply['type'] == 'game_start':
+                print ( "Game starting..." )
+                not_ready = False
+            elif reply[ 'type' ] == 'lobby_rdy':
+                (p1_rdy , p2_rdy) = reply[ 'msg' ]
+                print ( "P1 Ready ? " + str ( p1_rdy ) + "P2 Ready ? " + str ( p2_rdy ) )
+
         # Game started and request for board message has been sent
         # Run ship setup
-        self.opponent_board = [ [ 0 for x in range ( 7 ) ] for y in range ( 7 ) ]
-        user_board = self.get_board()
+        self.opponent_board = [ [ None for x in range ( 7 ) ] for y in range ( 7 ) ]
+        user_board = self.generate_board(self.opponent_board,self.ships)
         request = self.client.create_request(self.name,'board_setup',user_board,self.game_id)
         self.client.server_request(request)
         victorious = False
         while not victorious:
-            # print options for board types
-            # create board
-            # send board info to server
-            # mae moves
-            # check if won game
-            # next players turn
-            (x,y) = self.get_move()
-            request = self.client.create_request(self.name,'move',(x,y))
             reply = js.loads ( self.client.get_reply ( ) )
-            if reply['type'] == 'move_result' and reply[ 'msg' ] == 'not yet':
+            if reply['type'] == 'move_req':
+                (x,y) = self.get_move()
+                request = self.client.create_request(self.name,'move',(x,y),self.game_id)
+                self.client.server_request(request)
+            elif reply['type'] == 'move_result' and reply[ 'msg' ] == 'not yet':
                 print ( "Not your turn or the board has not been setup yet" )
-            elif reply['type'] == 'move_result' and reply['msg'] == True:
+            elif reply['type'] == 'move_result' and reply['msg'][0] == 1:
                 print("Hit!")
-                self.opponent_board[x][y] = 1
-            elif reply['type'] == 'move_result' and reply['msg'] == False:
+                self.opponent_board[x][y] = (1,1)
+            elif reply['type'] == 'move_result' and reply['msg'][0] == 0:
                 print("Miss!")
                 print("Opponents turn...")
+                self.opponent_board[x][y] = (0,1)
+            elif reply['type'] == 'turn':
+                if reply['msg'][0] == 1:
+                    print("Opponent hit at" + str((reply['msg'][1],reply['msg'][2])))
+                    (x,y) = self.get_move()
+                    request = self.client.create_request ( self.name , 'move' , (x , y) , self.game_id )
+                    self.client.server_request ( request )
+                else:
+                    print ( "Opponent miss at" + str ( (reply[ 'msg' ][ 1 ] , reply[ 'msg' ][ 2 ]) ) )
+                    (x , y) = self.get_move ( )
+                    request = self.client.create_request ( self.name , 'move' , (x , y) , self.game_id )
+                    self.client.server_request ( request )
             elif reply['type'] == 'win':
                 if reply['msg'] == self.name:
                     print("You won!")
                 else:
                     print("You lost!")
+                victorious = False
 
         return
+
+    def generate_board(self,board,ships):
+        new_board = board[:]
+        ship_length = 0
+        for ship in ships:
+            valid_ship_position = False
+            while not valid_ship_position:
+                x_start_pos = random.randint(0,6)
+                y_start_pos = random.randint(0,6)
+                is_horizontal = random.randint(0,1)
+
+                if 'battleship' in ship:
+                    ship_length = 4
+                elif 'cruiser' in ship:
+                    ship_length = 3
+                elif 'destroyer' in ship:
+                    ship_length = 2
+                elif 'submarine' in ship:
+                    ship_length = 1
+                valid_ship_position, ship_coords = make_ship_position(new_board,x_start_pos,y_start_pos,is_horizontal,ship_length,ship)
+                if valid_ship_position:
+                    for coord in ship_coords:
+                        new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
+        return new_board

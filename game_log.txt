@@ -3,3 +3,9 @@
 2017-11-30 15:45:00: invalid literal for int() with base 10: 'Eat more food'
 2017-11-30 16:04:04: invalid literal for int() with base 10: ''
 2017-12-06 12:05:26: invalid literal for int() with base 10: 'w'
+2017-12-07 16:27:45: Move value out of range
+2017-12-07 16:29:01: Move value out of range
+2017-12-07 16:29:07: Move value out of range
+2017-12-07 17:02:04: not enough values to unpack (expected 2, got 1)
+2017-12-07 17:16:14: Move value out of range
+2017-12-07 17:40:54: not enough values to unpack (expected 2, got 1)
