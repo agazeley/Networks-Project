@@ -49,6 +49,9 @@ class game:
 
         def hit_or_miss ( self , _player , x_pos , y_pos ):
             hit = False
+            if self.move_log.count((_player,x_pos,y_pos)) > 0:
+                print("YOU MADE THIS MOVE ALREADY DUMMY. MISS")
+                return False
             if _player == self.player1:
                 if self.p2_board[ x_pos ][ y_pos ][ 0 ] == 1:  # if ship bool true
                     self.p2_board[ x_pos ][ y_pos ] = (1 , 1)
@@ -311,7 +314,7 @@ class game_server:
             #Check to make sure its you turn/board placement is complete
             if self.lobbies[game_id].game.won_yet(_player):
                 print("Somebody won")
-                request = self.lobbies[game_id].game_won(game_id,_player)
+                request = self.lobbies[game_id].game_won(_player,game_id)
             else:
                 _players = []
                 request = []

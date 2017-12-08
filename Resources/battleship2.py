@@ -1,3 +1,5 @@
+import pygame
+from inputbox import inputbox
 
 # Set variables, like screen width and height
 # globals
@@ -135,7 +137,6 @@ class battleship:
             FPSCLOCK.tick ( FPS )
 
         return
-
     def add_ships_to_board ( self,board , ships ):
         """
         Function goes through a list of ships and add them randomly into a board.
@@ -174,8 +175,6 @@ class battleship:
     def start(self):
 
         # Game initialization and server connection
-        inp = inputbox ( 400 , 200 )
-        self.name = inp.ask ( "What is your name" )
         self.client.start_client ( self.name )
         request = self.client.create_request ( self.name , 'data' , self.name )
         self.client.server_request ( request )

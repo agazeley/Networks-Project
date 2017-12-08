@@ -3,8 +3,76 @@ import json as js
 import pygame
 import random
 import socket
+import random , sys , pygame
 from pygame.locals import *
 import log
+
+# Set variables, like screen width and height
+# globals
+FPS = 30  # Determines the number of frames per second
+REVEALSPEED = 8  # Determines the speed at which the squares reveals after being clicked
+WINDOWWIDTH = 800  # Width of game window
+WINDOWHEIGHT = 600  # Height of game window
+TILESIZE = 40  # Size of the squares in each grid(tile)
+MARKERSIZE = 40  # Size of the box which contatins the number that indicates how many ships in this row/col
+BUTTONHEIGHT = 20  # Height of a standard button
+BUTTONWIDTH = 40  # Width of a standard button
+TEXT_HEIGHT = 25  # Size of the text
+TEXT_LEFT_POSN = 10  # Where the text will be positioned
+BOARDWIDTH = 10  # Number of grids horizontally
+BOARDHEIGHT = 10  # Number of grids vertically
+DISPLAYWIDTH = 200  # Width of the game board
+EXPLOSIONSPEED = 10  # How fast the explosion graphics will play
+
+XMARGIN = int ( (WINDOWWIDTH - (
+BOARDWIDTH * TILESIZE) - DISPLAYWIDTH - MARKERSIZE) / 2 )  # x-position of the top left corner of board
+YMARGIN = int (
+    (WINDOWHEIGHT - (BOARDHEIGHT * TILESIZE) - MARKERSIZE) / 2 )  # y-position of the top left corner of board
+
+# Colours which will be used by the game
+BLACK = (0 , 0 , 0)
+WHITE = (255 , 255 , 255)
+GREEN = (0 , 204 , 0)
+GRAY = (60 , 60 , 60)
+BLUE = (0 , 50 , 255)
+YELLOW = (255 , 255 , 0)
+DARKGRAY = (40 , 40 , 40)
+
+# Determine what to colour each element of the game
+BGCOLOR = GRAY
+BUTTONCOLOR = GREEN
+TEXTCOLOR = WHITE
+TILECOLOR = GREEN
+BORDERCOLOR = BLUE
+TEXTSHADOWCOLOR = BLUE
+SHIPCOLOR = YELLOW
+HIGHLIGHTCOLOR = BLUE
+
+global DISPLAYSURF , FPSCLOCK , BASICFONT , HELP_SURF , HELP_RECT , NEW_SURF , NEW_RECT , SHOTS_SURF , SHOTS_RECT , BIGFONT , COUNTER_SURF , COUNTER_RECT , HBUTTON_SURF , EXPLOSION_IMAGES
+pygame.init ( )
+FPSCLOCK = pygame.time.Clock ( )
+# Fonts used by the game
+DISPLAYSURF = pygame.display.set_mode ( (WINDOWWIDTH , WINDOWHEIGHT) )
+BASICFONT = pygame.font.Font ( 'freesansbold.ttf' , 20 )
+BIGFONT = pygame.font.Font ( 'freesansbold.ttf' , 50 )
+
+# Create and label the buttons
+HELP_SURF = BASICFONT.render ( "HELP" , True , WHITE )
+HELP_RECT = HELP_SURF.get_rect ( )
+HELP_RECT.topleft = (WINDOWWIDTH - 180 , WINDOWHEIGHT - 350)
+NEW_SURF = BASICFONT.render ( "NEW GAME" , True , WHITE )
+NEW_RECT = NEW_SURF.get_rect ( )
+NEW_RECT.topleft = (WINDOWWIDTH - 200 , WINDOWHEIGHT - 200)
+
+# The 'Shots:' label at the top
+SHOTS_SURF = BASICFONT.render ( "Shots: " , True , WHITE )
+SHOTS_RECT = SHOTS_SURF.get_rect ( )
+SHOTS_RECT.topleft = (WINDOWWIDTH - 750 , WINDOWHEIGHT - 570)
+
+# Load the explosion graphics from the /img folder
+EXPLOSION_IMAGES = [ pygame.image.load ( "img/blowup1.png" ) , pygame.image.load ( "img/blowup2.png" ) ,
+    pygame.image.load ( "img/blowup3.png" ) , pygame.image.load ( "img/blowup4.png" ) ,
+    pygame.image.load ( "img/blowup5.png" ) , pygame.image.load ( "img/blowup6.png" ) ]
 
 def make_ship_position ( board , xPos , yPos , isHorizontal , length , ship ):
     """
@@ -288,8 +356,8 @@ class game:
         user_board = self.get_board()
         request = self.client.create_request(self.name,'board_setup',user_board,self.game_id)
         self.client.server_request(request)
-        victorious = False
-        while not victorious:
+
+        while True:
             reply = js.loads ( self.client.get_reply ( ) )
             if reply['type'] == 'move_req':
                 (x,y) = self.get_move()
@@ -316,12 +384,12 @@ class game:
                     request = self.client.create_request ( self.name , 'move' , (x , y) , self.game_id )
                     self.client.server_request ( request )
             elif reply['type'] == 'win':
-                if reply['msg'] == self.name:
-                    print("You won!")
-                else:
-                    print("You lost!")
-                victorious = False
-
+                print("You won!")
+                break
+            elif reply['type'] == 'lose':
+                print("You lost.")
+                break
+        self.menu()
         return
 
     def generate_board(self,board,ships):
@@ -347,6 +415,74 @@ class game:
                     for coord in ship_coords:
                         new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
         return new_board
+
+class graphics:
+
+    def __init__(self,pboard):
+        pygame.init()
+        self.display_width = 800
+        self.display_height = 600
+        self.x = 7
+        self.y = 7
+        self.colors = {}
+        self.colors['black'] = (0,0,0)
+        self.colors['white'] = (255,255,255)
+        self.colors['red'] = (255,0,0)
+        self.colors['green'] = (0,255,0)
+        self.colors['blue'] = (0,0,255)
+        self.game_display = pygame.display.set_mode((self.display_width,self.display_height))
+        pygame.display.set_caption("BATTLESHIP!")
+        self.clock = pygame.time.Clock()
+        self.pboard = pboard
+
+    def game_loop(self):
+        self.revealed = self.generate_default_tiles(False)
+        mousex,mousey = 0,0
+        self.counter = 0
+        xmarkers, ymarkers = self.set_markers()
+        while True:
+            COUNTER_SURF = BASICFONT.render(str(len(self.counter)))
+            COUNTER_RECT = SHOTS_SURF.get_rect()
+            COUNTER_RECT.topleft = (self.x - 680,self.y-570)
+
+            DISPLAYSURF.fill(self.colors['white'])
+
+            DISPLAYSURF.blit(HELP_SURF,HELP_RECT)
+            DISPLAYSURF.blit(NEW_SURF,NEW_RECT)
+            DISPLAYSURF.blit(SHOTS_SURF,SHOTS_RECT)
+            DISPLAYSURF.blit(COUNTER_SURF,COUNTER_RECT)
+
+            self.draw_board()
+
+
+
+        return
+    def set_markers(self):
+        xmarkers = [i for i in range(self.x)]
+        ymarkers = [i for i in range(self.y)]
+        return xmarkers,ymarkers
+    def text_objects (self, text , font ):
+        textSurface = font.render ( text , True , self.colors['black'] )
+        return textSurface , textSurface.get_rect ( )
+    def message_display(self,text):
+        large_text = pygame.font.Font('freesanbold.ttf',115)
+        TextSurf,TextRect = self.text_objects(text,large_text)
+        TextRect.center = ((self.display_width/2),(self.display_height/2))
+        self.game_display.blit(TextSurf,TextRect)
+        pygame.display.update()
+        self.game_loop()
+
+    def generate_default_tiles (self, default_value ):
+        """
+        Function generates a list of 10 x 10 tiles. The list will contain tuples
+        ('shipName', boolShot) set to their (default_value).
+
+        default_value -> boolean which tells what the value to set to
+        returns the list of tuples
+        """
+        default_tiles = [ [ default_value ] * self.y for i in range ( self.x ) ]
+
+        return default_tiles
 
 usr_client = game('localhost',80)
 usr_client.start()
