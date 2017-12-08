@@ -126,6 +126,7 @@ class client:
         self.logger = log.logger('client')
         self.msg_size = 2048
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
+        self.user_client = game('localhost',80)
 
     def start_client ( self,name ):
         print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
@@ -416,14 +417,47 @@ class game:
                         new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
         return new_board
 
+    def show_gameover_screen (self, shots_fired ):
+        """
+        Function display a gameover screen when the user has successfully shot at every ship pieces.
+
+        shots_fired -> the number of shots taken before game is over
+        """
+        DISPLAYSURF.fill ( BGCOLOR )
+        titleSurf , titleRect = self.make_text_objs ( 'Congrats! Puzzle solved in:' , BIGFONT , TEXTSHADOWCOLOR )
+        titleRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 ))
+        DISPLAYSURF.blit ( titleSurf , titleRect )
+
+        titleSurf , titleRect = self.make_text_objs ( 'Congrats! Puzzle solved in:' , BIGFONT , TEXTCOLOR )
+        titleRect.center = (int ( WINDOWWIDTH / 2 ) - 3 , int ( WINDOWHEIGHT / 2 ) - 3)
+        DISPLAYSURF.blit ( titleSurf , titleRect )
+
+        titleSurf , titleRect = self.make_text_objs ( str ( shots_fired ) + ' shots' , BIGFONT , TEXTSHADOWCOLOR )
+        titleRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 + 50 ))
+        DISPLAYSURF.blit ( titleSurf , titleRect )
+
+        titleSurf , titleRect = self.make_text_objs ( str ( shots_fired ) + ' shots' , BIGFONT , TEXTCOLOR )
+        titleRect.center = (int ( WINDOWWIDTH / 2 ) - 3 , int ( WINDOWHEIGHT / 2 + 50 ) - 3)
+        DISPLAYSURF.blit ( titleSurf , titleRect )
+
+        pressKeySurf , pressKeyRect = self.make_text_objs ( 'Press a key to try to beat that score.' , BASICFONT ,
+                                                       TEXTCOLOR )
+        pressKeyRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 ) + 100)
+        DISPLAYSURF.blit ( pressKeySurf , pressKeyRect )
+
+        while self.check_for_keypress ( ) == None:  # Check if the user has pressed keys, if so start a new game
+            pygame.display.update ( )
+            FPSCLOCK.tick ( )
+
+
 class graphics:
 
-    def __init__(self,pboard):
+    def __init__(self):
         pygame.init()
         self.display_width = 800
         self.display_height = 600
-        self.x = 7
-        self.y = 7
+        self.x = 10
+        self.y = 10
         self.colors = {}
         self.colors['black'] = (0,0,0)
         self.colors['white'] = (255,255,255)
@@ -433,30 +467,173 @@ class graphics:
         self.game_display = pygame.display.set_mode((self.display_width,self.display_height))
         pygame.display.set_caption("BATTLESHIP!")
         self.clock = pygame.time.Clock()
-        self.pboard = pboard
+        self.pboard = None
 
-    def game_loop(self):
-        self.revealed = self.generate_default_tiles(False)
-        mousex,mousey = 0,0
-        self.counter = 0
-        xmarkers, ymarkers = self.set_markers()
-        while True:
-            COUNTER_SURF = BASICFONT.render(str(len(self.counter)))
-            COUNTER_RECT = SHOTS_SURF.get_rect()
-            COUNTER_RECT.topleft = (self.x - 680,self.y-570)
+    def blowup_animation (self, coord ):
+        """
+        Function creates the explosition played if a ship is shot.
 
-            DISPLAYSURF.fill(self.colors['white'])
+        coord -> tuple of tile coords to apply the blowup animation
+        """
+        for image in EXPLOSION_IMAGES:  # go through the list of images in the list of pictures and play them in sequence
+            # Determine the location and size to display the image
+            image = pygame.transform.scale ( image , (TILESIZE + 10 , TILESIZE + 10) )
+            DISPLAYSURF.blit ( image , coord )
+            pygame.display.flip ( )
+            FPSCLOCK.tick ( EXPLOSIONSPEED )  # Determine the delay to play the image with
 
-            DISPLAYSURF.blit(HELP_SURF,HELP_RECT)
-            DISPLAYSURF.blit(NEW_SURF,NEW_RECT)
-            DISPLAYSURF.blit(SHOTS_SURF,SHOTS_RECT)
-            DISPLAYSURF.blit(COUNTER_SURF,COUNTER_RECT)
+    def check_revealed_tile (self, board , tile ):
+        """
+        Function checks if a tile location contains a ship piece.
 
-            self.draw_board()
+        board -> the tiled board either a ship piece or none
+        tile -> location of tile
+        returns True if ship piece exists at tile location
+        """
+        return board[ tile[ 0 ][ 0 ] ][ tile[ 0 ][ 1 ] ] != None
 
+    def reveal_tile_animation (self, board , tile_to_reveal ):
+        """
+        Function creates an animation which plays when the mouse is clicked on a tile, and whatever is
+        behind the tile needs to be revealed.
 
+        board -> list of board tile tuples ('shipName', boolShot)
+        tile_to_reveal -> tuple of tile coords to apply the reveal animation to
+        """
+        for coverage in range ( TILESIZE , (-REVEALSPEED) - 1 , -REVEALSPEED ):  # Plays animation based on reveal speed
+            self.draw_tile_covers ( board , tile_to_reveal , coverage )
 
-        return
+    def draw_tile_covers (self, board , tile , coverage ):
+        """
+        Function draws the tiles according to a set of variables.
+
+        board -> list; of board tiles
+        tile -> tuple; of tile coords to reveal
+        coverage -> int; amount of the tile that is covered
+        """
+        left , top = self.left_top_coords_tile ( tile[ 0 ][ 0 ] , tile[ 0 ][ 1 ] )
+        if self.check_revealed_tile ( board , tile ):
+            pygame.draw.rect ( DISPLAYSURF , SHIPCOLOR , (left , top , TILESIZE , TILESIZE) )
+        else:
+            pygame.draw.rect ( DISPLAYSURF , BGCOLOR , (left , top , TILESIZE , TILESIZE) )
+        if coverage > 0:
+            pygame.draw.rect ( DISPLAYSURF , TILECOLOR , (left , top , coverage , TILESIZE) )
+
+        pygame.display.update ( )
+        FPSCLOCK.tick ( FPS )
+
+    def show_help_screen (self):
+        """
+        Function display a help screen until any button is pressed.
+        """
+        line1_surf , line1_rect = self.make_text_objs ( 'Press a key to return to the game' , BASICFONT , TEXTCOLOR )
+        line1_rect.topleft = (TEXT_LEFT_POSN , TEXT_HEIGHT)
+        DISPLAYSURF.blit ( line1_surf , line1_rect )
+
+        line2_surf , line2_rect = self.make_text_objs ( 'This is a battleship puzzle game. Your objective is ' \
+                                                   'to sink all the ships in as few' , BASICFONT , TEXTCOLOR )
+        line2_rect.topleft = (TEXT_LEFT_POSN , TEXT_HEIGHT * 3)
+        DISPLAYSURF.blit ( line2_surf , line2_rect )
+
+        line3_surf , line3_rect = self.make_text_objs ( 'shots as possible. The markers on' \
+                                                   ' the edges of the game board tell you how' , BASICFONT , TEXTCOLOR )
+        line3_rect.topleft = (TEXT_LEFT_POSN , TEXT_HEIGHT * 4)
+        DISPLAYSURF.blit ( line3_surf , line3_rect )
+
+        line4_surf , line4_rect = self.make_text_objs ( 'many ship pieces are in each' \
+                                                   ' column and row. To reset your game click on' , BASICFONT ,
+                                                   TEXTCOLOR )
+        line4_rect.topleft = (TEXT_LEFT_POSN , TEXT_HEIGHT * 5)
+        DISPLAYSURF.blit ( line4_surf , line4_rect )
+
+        line5_surf , line5_rect = self.make_text_objs ( 'the "New Game" button.' , BASICFONT , TEXTCOLOR )
+        line5_rect.topleft = (TEXT_LEFT_POSN , TEXT_HEIGHT * 6)
+        DISPLAYSURF.blit ( line5_surf , line5_rect )
+
+        while self.check_for_keypress ( ) == None:  # Check if the user has pressed keys, if so go back to the game
+            pygame.display.update ( )
+            FPSCLOCK.tick ( )
+
+    def draw_highlight_tile (self, tilex , tiley ):
+        """
+        Function draws the hovering highlight over the tile.
+
+        tilex -> int; x position of tile
+        tiley -> int; y position of tile
+        """
+        left , top = self.left_top_coords_tile ( tilex , tiley )
+        pygame.draw.rect ( DISPLAYSURF , HIGHLIGHTCOLOR , (left , top , TILESIZE , TILESIZE) , 4 )
+
+    def get_tile_at_pixel (self, x , y ):
+        """
+        Function finds the corresponding tile coordinates of pixel at top left, defaults to (None, None) given a coordinate.
+
+        x -> int; x position of pixel
+        y -> int; y position of pixel
+        returns tuple (tilex, tiley)
+        """
+        for tilex in range ( BOARDWIDTH ):
+            for tiley in range ( BOARDHEIGHT ):
+                left , top = self.left_top_coords_tile ( tilex , tiley )
+                tile_rect = pygame.Rect ( left , top , TILESIZE , TILESIZE )
+                if tile_rect.collidepoint ( x , y ):
+                    return (tilex , tiley)
+        return (None , None)
+    def check_for_quit (self):
+        """
+        Function checks if the user has attempted to quit the game.
+        """
+        for event in pygame.event.get ( QUIT ):
+            pygame.quit ( )
+            sys.exit ( )
+
+    def draw_markers (self, xlist , ylist ):
+        """
+        Function draws the two list of markers to the side of the board.
+        xlist -> list of row markers
+        ylist -> list of column markers
+        """
+        for i in range ( len ( xlist ) ):  # Draw the x-marker list
+            left = i * MARKERSIZE + XMARGIN + MARKERSIZE + (TILESIZE / 3)
+            top = YMARGIN
+            marker_surf , marker_rect = self.make_text_objs ( str ( xlist[ i ] ) , BASICFONT , TEXTCOLOR )
+            marker_rect.topleft = (left , top)
+            DISPLAYSURF.blit ( marker_surf , marker_rect )
+        for i in range ( len ( ylist ) ):  # Draw the y-marker list
+            left = XMARGIN
+            top = i * MARKERSIZE + YMARGIN + MARKERSIZE + (TILESIZE / 3)
+            marker_surf , marker_rect = self.make_text_objs ( str ( ylist[ i ] ) , BASICFONT , TEXTCOLOR )
+            marker_rect.topleft = (left , top)
+            DISPLAYSURF.blit ( marker_surf , marker_rect )
+    def draw_board(self,board,reveal):
+        for tilex in range(self.x):
+            for tiley in range(self.y):
+                left, top = self.left_top_coords_tile(tilex,tiley)
+                if not reveal[tilex][tiley]:
+                    pygame.draw.rect(DISPLAYSURF,TILECOLOR,(left,top,TILESIZE,TILESIZE))
+                else:
+                    if board[ tilex ][ tiley ] != None:
+                        pygame.draw.rect ( DISPLAYSURF , SHIPCOLOR , (left , top , TILESIZE , TILESIZE) )
+                    else:
+                        pygame.draw.rect ( DISPLAYSURF , BGCOLOR , (left , top , TILESIZE , TILESIZE) )
+        for x in range(0,(BOARDWIDTH+1)*TILESIZE,TILESIZE):
+            pygame.draw.line(DISPLAYSURF,DARKGRAY,(x+XMARGIN + MARKERSIZE, YMARGIN + MARKERSIZE),(x + XMARGIN+MARKERSIZE,WINDOWHEIGHT- YMARGIN))
+        for y in range(0,(BOARDHEIGHT+1)*TILESIZE,TILESIZE):
+            pygame.draw.line ( DISPLAYSURF , DARKGRAY , (XMARGIN + MARKERSIZE , y + YMARGIN + MARKERSIZE) ,
+                               (WINDOWWIDTH - (DISPLAYWIDTH + MARKERSIZE * 2) , y + YMARGIN + MARKERSIZE) )
+
+    def left_top_coords_tile(self, tilex , tiley ):
+        """
+        Function calculates and returns the pixel of the tile in the top left corner
+
+        tilex -> int; x position of tile
+        tiley -> int; y position of tile
+        returns tuple (int, int) which indicates top-left pixel coordinates of tile
+        """
+        left = tilex * TILESIZE + XMARGIN + MARKERSIZE
+        top = tiley * TILESIZE + YMARGIN + MARKERSIZE
+        return (left , top)
+
     def set_markers(self):
         xmarkers = [i for i in range(self.x)]
         ymarkers = [i for i in range(self.y)]
@@ -484,7 +661,82 @@ class graphics:
 
         return default_tiles
 
+    def make_text_objs (self, text , font , color ):
+        """
+        Function creates a text.
+
+        text -> string; content of text
+        font -> Font object; face of font
+        color -> tuple of color (red, green blue); colour of text
+        returns the surface object, rectangle object
+        """
+        surf = font.render ( text , True , color )
+        return surf , surf.get_rect ( )
+
+    def game_loop ( self ):
+        main_board = self.generate_default_tiles ( None )
+        self.revealed = self.generate_default_tiles ( False )
+        mousex , mousey = 0 , 0
+        self.counter = [ ]
+        xmarkers , ymarkers = self.set_markers ( )
+        won = False
+        while True:
+            COUNTER_SURF = BASICFONT.render ( str ( len ( self.counter ) ),True,WHITE )
+            COUNTER_RECT = SHOTS_SURF.get_rect ( )
+            COUNTER_RECT.topleft = (self.x - 680 , self.y - 570)
+
+            DISPLAYSURF.fill ( BGCOLOR )
+
+            DISPLAYSURF.blit ( HELP_SURF , HELP_RECT )
+            DISPLAYSURF.blit ( NEW_SURF , NEW_RECT )
+            DISPLAYSURF.blit ( SHOTS_SURF , SHOTS_RECT )
+            DISPLAYSURF.blit ( COUNTER_SURF , COUNTER_RECT )
+
+            self.draw_board ( main_board , self.revealed )
+            self.draw_markers ( xmarkers , ymarkers )
+            mouse_clicked = False
+
+            self.check_for_quit ( )
+
+            for event in pygame.event.get ( ):
+                if event.type == MOUSEBUTTONUP:
+                    if HELP_RECT.collidepoint ( event.pos ):
+                        DISPLAYSURF.fill ( BGCOLOR )
+                        self.show_help_screen ( )
+                    elif NEW_RECT.collidepoint ( event.pos ):
+                        # Reset to menu somehow
+                        print ( "Reset Clicked" )
+                    else:
+                        mousex , mousey = event.pos
+                        mouse_clicked = True
+                elif event.type == MOUSEMOTION:
+                    mousex , mousey = event.pos
+            tilex , tiley = self.get_tile_at_pixel ( mousex , mousey )
+            if tilex != None and tiley != None:
+                if not self.revealed[ tilex ][ tiley ]:
+                    self.draw_highlight_tile ( tilex , tiley )
+                if not self.revealed[ tilex ][ tiley ] and mouse_clicked:
+                    self.reveal_tile_animation ( main_board , [ (tilex , tiley) ] )
+                    self.revealed[ tilex ][ tiley ] = True
+                    if self.check_revealed_tile ( main_board , [ (tilex , tiley) ] ):
+                        left , top = self.left_top_coords_tile ( tilex , tiley )
+                        self.blowup_animation ( (left , top) )
+                        if won:
+                            self.counter.append ( (tilex , tiley) )
+                            return len ( self.counter )
+                    self.counter.append ( (tilex , tiley) )
+            pygame.display.update ( )
+            FPSCLOCK.tick ( FPS )
+
+
+
+_graphics = graphics ( )
+while True:
+    shots_taken = _graphics.game_loop()
+    _graphics.show_gameover_scene(shots_taken)
+
+'''
 usr_client = game('localhost',80)
 usr_client.start()
 usr_client.menu()
-
+'''
