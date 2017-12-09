@@ -132,7 +132,6 @@ class client:
         self.logger = log.logger('client')
         self.msg_size = 2048
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
-        self.user_client = game('localhost',80)
 
     def start_client ( self,name ):
         print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
@@ -194,17 +193,17 @@ class client:
 
 class game:
 
-    def __init__(self,ip,port):
+    def __init__(self,ip,port,):
         self.client_port = port
         self.client_ip = ip
         self.client = client(ip,port)
         self.logger = log.logger("game")
         self.ships = [ 'battleship' , 'cruiser1' , 'cruiser2' , 'destroyer1' , 'destroyer2' , 'submarine1' ,
                   'submarine2' ]
+
         return
 
     def start(self):
-        self.name = input ( "What is your name? " )
         self.client.start_client(self.name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
@@ -227,6 +226,15 @@ class game:
         print("Board sizes")
         print("1. 7 X 7")
         print("2. 10 X 10")
+        return
+
+    def get_lobbies(self):
+        lobbies = js.loads ( self.client.get_reply ( ) )
+        lobbies = lobbies[ 'msg' ]
+        self.lobbies = lobbies
+        if len(self.lobbies) > 0:
+            for game_id,count in self.lobbies:
+                print("Game ID: " + str(game_id) + "    Players : " + str(count))
         return
 
     def menu(self):
@@ -459,6 +467,7 @@ class game:
 class graphics:
 
     def __init__(self):
+
         pygame.init()
         self.display_width = 800
         self.display_height = 600
@@ -474,6 +483,8 @@ class graphics:
         pygame.display.set_caption("BATTLESHIP!")
         self.clock = pygame.time.Clock()
         self.pboard = None
+        self.game_logic = game
+        self.reply = False
 
     def text_objects (self, text , font ):
         textSurface = font.render ( text , True , BLACK )
@@ -496,35 +507,47 @@ class graphics:
         smallText = pygame.font.Font ( "freesansbold.ttf" , 20 )
         textSurf , textRect = self.text_objects ( msg , smallText )
         textRect.center = ((x + (w / 2)) , (y + (h / 2)))
-        self.game_display.blit ( textSurf , textRect )
+        self.game_display.blit ( textSurf , textRect)
 
-    def print_on_enter (self, id , final ):
-        print ( 'enter pressed, textbox contains {}'.format ( final ) )
+    def get_name(self,id,final):
+        usr_client.name = final
+        print(usr_client.name)
+        return
+    def connect_to_game(self):
+        if not self.reply:
+            usr_client.start()
+            usr_client.get_lobbies()
+            self.reply = True
+        return
 
     def game_intro(self):
-        settings = {"command": self.print_on_enter , "inactive_on_enter": False , }
+        settings = {"command": self.get_name , "inactive_on_enter": False , }
+
+        self.inp_box = TextBox ( rect=(350 , 300 , 150 , 30),**settings )
 
         intro = True
         while intro:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-
+                self.inp_box.get_event(event)
 
             self.game_display.fill(WHITE)
 
             largeText = pygame.font.Font ( 'freesansbold.ttf' , 65 )
             TextSurf , TextRect = self.text_objects ( "Battleship: Main Menu" , largeText )
-            TextRect.center = ((self.display_width / 2) , (self.display_height / 2))
+            TextRect.center = ((self.display_width / 2) , (self.display_height / 6))
             self.game_display.blit ( TextSurf , TextRect )
 
             mouse = pygame.mouse.get_pos()
+            #Position buttons here
+            self.button ( "What is your name? " , 250 , 250 , 200 , 50 , RED , RED )
+            self.button ( "Start!" , 150 , 150 , 100 , 50 , GREEN , BRIGHT_GREEN,self.game_loop)
+            self.button ( "Connect" , 350 , 150 , 100 , 50 , LIGHT_YELLOW ,YELLOW,self.connect_to_game )
+            self.button ( "Quit!" , 550 , 150 , 100 , 50 , RED , BRIGHT_RED,quit)
 
-            self.button ( "Start!" , 150 , 450 , 100 , 50 , GREEN , BRIGHT_GREEN,self.game_loop)
-            self.button ( "Connect" , 350 , 450 , 100 , 50 , LIGHT_YELLOW ,YELLOW )
-            self.button ( "Quit!" , 550 , 450 , 100 , 50 , RED , BRIGHT_RED,quit)
-            entry = TextBox(rect=(70,100,150,30))
-
+            self.inp_box.update()
+            self.inp_box.draw(self.game_display)
 
             pygame.display.update ( )
             FPSCLOCK.tick(FPS )
@@ -794,14 +817,9 @@ class graphics:
 
 
 
-_graphics = graphics ( )
-_graphics.game_intro()
-#while True:
-#    shots_taken = _graphics.game_loop()
-#    _graphics.show_gameover_scene(shots_taken)
 
-'''
+
 usr_client = game('localhost',80)
-usr_client.start()
-usr_client.menu()
-'''
+_graphics = graphics()
+_graphics.game_intro()
+

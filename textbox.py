@@ -59,7 +59,7 @@ class TextBox ( object ):
     def process_kwargs ( self , kwargs ):
         defaults = {"id": None , "command": None , "active": True , "color": pg.Color ( "white" ) ,
                     "font_color": pg.Color ( "black" ) , "outline_color": pg.Color ( "black" ) , "outline_width": 2 ,
-                    "active_color": pg.Color ( "blue" ) , "font": pg.font.Font ( None , self.rect.height + 4 ) ,
+                    "active_color": pg.Color ( "black" ) , "font": pg.font.Font ( None , self.rect.height + 4 ) ,
                     "clear_on_enter": False , "inactive_on_enter": True , "blink_speed": 500 , "delete_speed": 75}
         for kwarg in kwargs:
             if kwarg in defaults:
