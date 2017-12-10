@@ -1,7 +1,6 @@
 import errno
 import json as js
 import socket
-import random , sys , pygame
 import log
 
 
@@ -271,12 +270,14 @@ class game:
                     self.client.server_request ( request )
             elif reply['type'] == 'win':
                 print("You won!")
-                break
+                request = self.client.create_request(self.name,'data,',self.name)
+                self.client.server_request(request)
+                self.menu()
             elif reply['type'] == 'lose':
                 print("You lost.")
-                break
-        self.menu()
-        return
+                request = self.client.create_request(self.name, 'data,', self.name)
+                self.client.server_request(request)
+                self.menu()
 
 usr_client = game('localhost',80)
 usr_client.start()
