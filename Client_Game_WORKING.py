@@ -1,3 +1,10 @@
+import errno
+import json as js
+import socket
+import random , sys , pygame
+import log
+
+
 class client:
     def __init__ ( self , host , port ):
         self.server_ip = host
@@ -75,8 +82,8 @@ class game:
                   'submarine2' ]
         return
 
-    def start(self,name):
-        self.name = name
+    def start(self):
+        self.name = input("What is your name? ")
         self.client.start_client(self.name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
@@ -204,7 +211,7 @@ class game:
         while True:
             ready = self.get_YN_input ( "Input 'Y' when youre ready to play " )
             if ready == 'y':
-                request = self.client.create_request ( self.name , "lobby_rdy" , self.name,game_id=self.game_id )
+                request = self.client.create_request ( self.name , "lobby_rdy" , 1,game_id=self.game_id )
                 self.client.server_request ( request )
                 break
             else:
@@ -212,7 +219,7 @@ class game:
 
                 if _exit == 'y' or _exit == 'yes':
                     self.logger.log("Exiting...")
-                    request = self.client.create_request ( self.name , "lobby_exit" , 1 , self.game_id )
+                    request = self.client.create_request ( self.name , "lobby_exit" , 0 , self.game_id )
                     self.client.server_request(request)
                     self.menu()
                 else:
@@ -225,9 +232,9 @@ class game:
             if reply['type'] == 'game_start':
                 print ( "Game starting..." )
                 not_ready = False
-            elif reply[ 'type' ] == 'lobby_rdy':
+            elif reply[ 'type' ] == 'lobby_resp':
                 (p1_rdy , p2_rdy) = reply[ 'msg' ]
-                print ( "P1 Ready ? " + str ( p1_rdy ) + "P2 Ready ? " + str ( p2_rdy ) )
+                print ( "P1 Ready ? " + str ( p1_rdy ) + " P2 Ready ? " + str ( p2_rdy ) )
 
         # Game started and request for board message has been sent
         # Run ship setup
@@ -270,62 +277,6 @@ class game:
                 break
         self.menu()
         return
-
-    def generate_board(self,board,ships):
-        new_board = board[:]
-        ship_length = 0
-        for ship in ships:
-            valid_ship_position = False
-            while not valid_ship_position:
-                x_start_pos = random.randint(0,6)
-                y_start_pos = random.randint(0,6)
-                is_horizontal = random.randint(0,1)
-
-                if 'battleship' in ship:
-                    ship_length = 4
-                elif 'cruiser' in ship:
-                    ship_length = 3
-                elif 'destroyer' in ship:
-                    ship_length = 2
-                elif 'submarine' in ship:
-                    ship_length = 1
-                valid_ship_position, ship_coords = make_ship_position(new_board,x_start_pos,y_start_pos,is_horizontal,ship_length,ship)
-                if valid_ship_position:
-                    for coord in ship_coords:
-                        new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
-        return new_board
-
-    def show_gameover_screen (self, shots_fired ):
-        """
-        Function display a gameover screen when the user has successfully shot at every ship pieces.
-
-        shots_fired -> the number of shots taken before game is over
-        """
-        DISPLAYSURF.fill ( BGCOLOR )
-        titleSurf , titleRect = self.make_text_objs ( 'Congrats! Puzzle solved in:' , BIGFONT , TEXTSHADOWCOLOR )
-        titleRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 ))
-        DISPLAYSURF.blit ( titleSurf , titleRect )
-
-        titleSurf , titleRect = self.make_text_objs ( 'Congrats! Puzzle solved in:' , BIGFONT , TEXTCOLOR )
-        titleRect.center = (int ( WINDOWWIDTH / 2 ) - 3 , int ( WINDOWHEIGHT / 2 ) - 3)
-        DISPLAYSURF.blit ( titleSurf , titleRect )
-
-        titleSurf , titleRect = self.make_text_objs ( str ( shots_fired ) + ' shots' , BIGFONT , TEXTSHADOWCOLOR )
-        titleRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 + 50 ))
-        DISPLAYSURF.blit ( titleSurf , titleRect )
-
-        titleSurf , titleRect = self.make_text_objs ( str ( shots_fired ) + ' shots' , BIGFONT , TEXTCOLOR )
-        titleRect.center = (int ( WINDOWWIDTH / 2 ) - 3 , int ( WINDOWHEIGHT / 2 + 50 ) - 3)
-        DISPLAYSURF.blit ( titleSurf , titleRect )
-
-        pressKeySurf , pressKeyRect = self.make_text_objs ( 'Press a key to try to beat that score.' , BASICFONT ,
-                                                       TEXTCOLOR )
-        pressKeyRect.center = (int ( WINDOWWIDTH / 2 ) , int ( WINDOWHEIGHT / 2 ) + 100)
-        DISPLAYSURF.blit ( pressKeySurf , pressKeyRect )
-
-        while self.check_for_keypress ( ) == None:  # Check if the user has pressed keys, if so start a new game
-            pygame.display.update ( )
-            FPSCLOCK.tick ( )
 
 usr_client = game('localhost',80)
 usr_client.start()

@@ -100,6 +100,21 @@ class lobby:
         elif self.player1 == None and self.player2 != None:
             self.player1 = _player
         return
+    def get_players(self):
+        if self.player1 != None and self.player2 != None:
+            return 2
+        else:
+            return 1
+    def remove_player(self,_player):
+        if self.player1 == _player:
+            self.player1 = None
+            (p1,p2) = self.ready
+            self.ready = (False,p2)
+        elif self.player2 == _player:
+            self.player2 == None
+            (p1 , p2) = self.ready
+            self.ready = (p1 , False)
+        return
     def game_won(self,_player,game_id):
         request = []
         for p in [self.player1,self.player2]:
@@ -227,16 +242,22 @@ class game_server:
 
     def remove_player_from_lobby(self,game_id,_player):
         _lobby = self.lobbies[game_id]
+        _lobby.remove_player(_player)
         if _lobby.id == game_id:
             if _lobby.player1 == _player:
-                _lobby.player1 = None
                 if _lobby.player2 == None:
-                    self.lobbies.remove ( _lobby )
+                     del self.lobbies[game_id]
             else:
-                _lobby.player2 = None
                 if _lobby.player1 == None:
-                    self.lobbies.remove ( _lobby )
+                    del self.lobbies[game_id]
         return
+
+    def get_lobbies(self):
+        _lobbies = []
+        for key in self.lobbies.keys ( ):
+            c = self.lobbies[key].get_players()
+            _lobbies.append ( (self.lobbies[ key ].id , c) )
+        return _lobbies
 
     def get_lobby(self,id):
         return self.lobbies[id]
@@ -287,16 +308,13 @@ class game_server:
             self.id_int += 1
             return request
         elif data['req_type'] == 'data':
-            _lobbies = []
-            for key in self.lobbies.keys():
-                c = 2
-                _lobbies.append((self.lobbies[key].id,c))
+            _lobbies = self.get_lobbies()
             request = game_server.make_server_request(0,'lobby_data',_lobbies)
             return request
         elif data['req_type'] == 'join_game':
             game_id = data['req']
             _lobby = self.lobbies[game_id]
-            if _lobby:
+            if _lobby and _lobby.get_players() != 2:
                 new_player = self.get_player(data['player'])
                 _lobby.add_player(new_player)
                 # return success message if successful
@@ -306,7 +324,6 @@ class game_server:
             else:
                 request = game_server.make_server_request(game_id,'join_result',0)
                 return request
-
         elif data['req_type'] == 'move':
             (x,y) = data['req']
             game_id = data[ 'game_id' ]
@@ -323,31 +340,32 @@ class game_server:
         elif data['req_type'] == 'lobby_exit':
             game_id = data['game_id']
             self.remove_player_from_lobby(game_id,_player)
-
-            _lobbies = [ ]
-            for _lobby in self.lobbies.items():
-                c = 2 - _lobbies.count ( None )
-                _lobbies.append ( (_lobby.id , c) )
+            _lobbies = self.get_lobbies()
             request = game_server.make_server_request ( game_id , 'lobby_data' , _lobbies )
             return request
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
-            game_id = data[ 'game_id' ]
-            _lobby = self.get_lobby(game_id)
-            # Logic behind ready up
-            (p1 , p2) = _lobby.rdy_player( _player )
-            if _lobby.lobby_rdy():
-                # Send request to both clients
-                request = _lobby.game_start()
-            else:
-                if (p1,p2) == (True,False):
-                    request = game_server.make_server_request ( game_id , 'player' , (True , False) )
+            if data['req'] == 1:
+                game_id = data[ 'game_id' ]
+                _lobby = self.get_lobby(game_id)
+                # Logic behind ready up
+                (p1 , p2) = _lobby.rdy_player( _player )
+                if _lobby.lobby_rdy():
+                    # Send request to both clients
+                    request = _lobby.game_start()
                 else:
-                    request = game_server.make_server_request ( game_id , 'player' , (False , True) )
-            #Logic behind ready requests
-            print("Players ready: " + str(_lobby.ready))
-            return request
-
+                    if (p1,p2) == (True,False):
+                        request = game_server.make_server_request ( game_id , 'lobby_resp' , (True , False) )
+                    else:
+                        request = game_server.make_server_request ( game_id , 'lobby_resp' , (False , True) )
+                #Logic behind ready requests
+                print("Players ready: " + str(_lobby.ready))
+                return request
+            elif data['req'] == 0:
+                # remove player from game
+                game_id = data['game_id']
+                _lobby = self.get_lobby(game_id)
+                _lobby.remove_player(_player.name)
         elif data['req_type'] == 'board_setup':
             # make the gameboard using the board sent in data
             new_board = data['req']

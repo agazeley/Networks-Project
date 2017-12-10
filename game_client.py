@@ -1,7 +1,5 @@
 import errno
 import json as js
-import pygame
-import random
 import socket
 import random , sys , pygame
 from pygame.locals import *

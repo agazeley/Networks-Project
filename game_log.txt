@@ -11,3 +11,5 @@
 2017-12-07 17:40:54: not enough values to unpack (expected 2, got 1)
 2017-12-07 18:10:11: Move value out of range
 2017-12-07 18:12:34: Move value out of range
+2017-12-09 15:41:19: Move value out of range
+2017-12-09 17:01:24: invalid literal for int() with base 10: 'n'
