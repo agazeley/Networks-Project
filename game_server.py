@@ -1,10 +1,7 @@
 import socket
-import time
 import json as js
 import sys
-import log
-import threading as thread
-from datetime import datetime
+
 
 class player:
     def __init__(self,name,ip,port,board=None):
@@ -174,8 +171,8 @@ class game_server:
     def __init__ ( self , host , port , logging ):
         self.host = host
         self.port = port
-        self.root_dir = 'www'
-        self.logger = log.logger ( 'server' )
+
+        #self.logger = log.logger ( 'server' )
         self.lobbies = {} # key = game_id, item = lobby  When new person creates a game make a lobby with the game in it and the players info stored
         self.players = [] # List of players on the server? Do I need this or to store info before they join a lobby?
         self.id_int = 0
@@ -208,13 +205,13 @@ class game_server:
                 print ( "Spinning up server on port " + str ( self.port ) )
             except Exception as e:
                 print ( "Failed to bind sockets for ports " + str ( user_port ) + " and 8080. " )
-                self.logger.log ( "Failed to bind sockets for ports " + str ( user_port ) + " and 8080. " )
+                #self.logger.log ( "Failed to bind sockets for ports " + str ( user_port ) + " and 8080. " )
                 self.shutdown ( )
                 sys.exit ( 1 )
         print ( "Server running on " + self.host + ":" + str ( self.port ) )
-        self.logger.log ( "Server running on " + self.host + ":" + str ( self.port ) )
+        #self.logger.log ( "Server running on " + self.host + ":" + str ( self.port ) )
         self.accept_requests ( )
-        self.logger.write_log ( )
+        #self.logger.write_log ( )
 
     def shutdown ( self ):
         # Used to quickly shutdown server
@@ -386,5 +383,5 @@ class game_server:
         return
 
 
-server = game_server ( 'localhost' , 80 , True )
+server = game_server ( '192.168.1.9' , 80 , True )
 server.start_server ( )

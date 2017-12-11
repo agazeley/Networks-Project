@@ -1,14 +1,13 @@
 import errno
 import json as js
 import socket
-import log
 
 
 class client:
     def __init__ ( self , host , port ):
         self.server_ip = host
         self.server_port = port
-        self.logger = log.logger('client')
+        #self.logger = log.logger('client')
         self.msg_size = 2048
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
 
@@ -19,16 +18,16 @@ class client:
             self.sock.sendto (data.encode('utf-8'), (self.server_ip , self.server_port) )
         except Exception as e:
             print ( "Failed to connect to server" )
-            self.logger.log ( str ( e ) )
-            self.logger.write_log()
+            #self.logger.log ( str ( e ) )
+            #self.logger.write_log()
 
         serverMessage = js.loads(self.sock.recv ( 1024 ).decode())
         if serverMessage['type'] == "conn_request" and serverMessage['msg'] == 1:
-            self.GUID = serverMessage['game_id']
+            #self.GUID = serverMessage['game_id']
             return
         else:
-            self.logger.log("Failed to connect. Shutting down client")
-            self.logger.write_log()
+            #self.logger.log("Failed to connect. Shutting down client")
+            #self.logger.write_log()
             exit(0)
 
     def create_request(self,player,type,req,game_id=None):
@@ -61,13 +60,13 @@ class client:
             err = e.args[0]
             if err == errno.EAGAIN or err == errno.EWOULDBLOCK:
                 print('No data recieved')
-                self.logger.log(e)
+                #self.logger.log(e)
 
             else:
                 # a "real" error occurred
                 print(e)
-                self.logger.log(e)
-        self.logger.write_log()
+                #self.logger.log(e)
+        #self.logger.write_log()
         return reply
 
 class game:
@@ -76,7 +75,7 @@ class game:
         self.client_port = port
         self.client_ip = ip
         self.client = client(ip,port)
-        self.logger = log.logger("game")
+        #self.logger = log.logger("game")
         self.ships = [ 'battleship' , 'cruiser1' , 'cruiser2' , 'destroyer1' , 'destroyer2' , 'submarine1' ,
                   'submarine2' ]
         return
@@ -177,8 +176,8 @@ class game:
                 cmd = int(cmd)
             except Exception as e:
                 print("Failed to convert to int. Try again.")
-                self.logger.log(str(e))
-                self.logger.write_log()
+                #self.logger.log(str(e))
+                #self.logger.write_log()
             finally:
                 break
         return cmd
@@ -202,8 +201,8 @@ class game:
             except Exception as e:
                 print(str(e))
                 print("Try again.")
-                self.logger.log(str(e))
-                self.logger.write_log()
+                #self.logger.log(str(e))
+                #self.logger.write_log()
         return (x,y)
 
     def play ( self ):
@@ -217,7 +216,7 @@ class game:
                 _exit = self.get_YN_input("Do you want to exit? ")
 
                 if _exit == 'y' or _exit == 'yes':
-                    self.logger.log("Exiting...")
+                    #self.logger.log("Exiting...")
                     request = self.client.create_request ( self.name , "lobby_exit" , 0 , self.game_id )
                     self.client.server_request(request)
                     self.menu()
@@ -279,6 +278,6 @@ class game:
                 self.client.server_request(request)
                 self.menu()
 
-usr_client = game('localhost',80)
+usr_client = game('192.168.1.9',80)
 usr_client.start()
 usr_client.menu()
