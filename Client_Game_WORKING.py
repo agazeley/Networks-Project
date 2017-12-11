@@ -1,7 +1,7 @@
 import errno
 import json as js
 import socket
-
+from pandas import DataFrame
 
 class client:
     def __init__ ( self , host , port ):
@@ -207,7 +207,7 @@ class game:
 
     def play ( self ):
         while True:
-            ready = self.get_YN_input ( "Input 'Y' when youre ready to play " )
+            ready = self.get_YN_input ( "Input 'Y' when you are ready to play " )
             if ready == 'y':
                 request = self.client.create_request ( self.name , "lobby_rdy" , 1,game_id=self.game_id )
                 self.client.server_request ( request )
@@ -251,12 +251,13 @@ class game:
                 print ( "Not your turn or the board has not been setup yet" )
             elif reply['type'] == 'move_result' and reply['msg'][0] == 1:
                 print("Hit!")
-                self.opponent_board[x][y] = (1,1)
+                self.opponent_board[x][y] = True
             elif reply['type'] == 'move_result' and reply['msg'][0] == 0:
                 print("Miss!")
                 print("Opponents turn...")
-                self.opponent_board[x][y] = (0,1)
+                self.opponent_board[x][y] = False
             elif reply['type'] == 'turn':
+                print(DataFrame(self.opponent_board))
                 if reply['msg'][0] == 1:
                     print("Opponent hit at" + str((reply['msg'][1],reply['msg'][2])))
                     (x,y) = self.get_move()
@@ -277,7 +278,7 @@ class game:
                 request = self.client.create_request(self.name, 'data', self.name)
                 self.client.server_request(request)
                 self.menu()
-
-usr_client = game('localhost',80)
+ip = input("Enter server host you want to connect to: ")
+usr_client = game(ip,80)
 usr_client.start()
 usr_client.menu()

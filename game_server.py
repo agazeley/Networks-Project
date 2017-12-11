@@ -21,7 +21,7 @@ class game:
             self.y_size = y_size
             self.player1 = _player1
             self.player2 = _player2
-            self.init_boards ( 100 )
+            self.init_boards ( 10 )
             self.move_log = [ ]  # (player,x,y,result)
             self.turn = True  # True = p1, false = p2
 
@@ -68,7 +68,7 @@ class game:
             return hit
 
         def won_yet ( self,_player ):
-            if _player.num_hits == 2:
+            if _player.num_hits == self.ships_sum:
                 return 1
             else:
                 return 0
