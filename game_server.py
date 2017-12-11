@@ -310,6 +310,7 @@ class game_server:
         elif data['req_type'] == 'data':
             _lobbies = self.get_lobbies()
             request = game_server.make_server_request(0,'lobby_data',_lobbies)
+            print(request)
             return request
         elif data['req_type'] == 'join_game':
             game_id = data['req']
@@ -332,9 +333,8 @@ class game_server:
             if self.lobbies[game_id].game.won_yet(_player):
                 print("Somebody won")
                 request = self.lobbies[game_id].game_won(_player,game_id)
+
             else:
-                _players = []
-                request = []
                 request = self.lobbies[game_id].move_made(x,y,_player,result)
             return request
         elif data['req_type'] == 'lobby_exit':

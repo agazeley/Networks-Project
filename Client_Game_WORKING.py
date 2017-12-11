@@ -270,12 +270,12 @@ class game:
                     self.client.server_request ( request )
             elif reply['type'] == 'win':
                 print("You won!")
-                request = self.client.create_request(self.name,'data,',self.name)
+                request = self.client.create_request(self.name,'data',self.name)
                 self.client.server_request(request)
                 self.menu()
             elif reply['type'] == 'lose':
                 print("You lost.")
-                request = self.client.create_request(self.name, 'data,', self.name)
+                request = self.client.create_request(self.name, 'data', self.name)
                 self.client.server_request(request)
                 self.menu()
 
