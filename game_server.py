@@ -252,6 +252,10 @@ class game_server:
                     del self.lobbies[game_id]
         return
 
+    def remove_lobby(self,game_id):
+        del self.lobbies[game_id]
+        return
+
     def get_lobbies(self):
         _lobbies = []
         for key in self.lobbies.keys ( ):
@@ -293,7 +297,6 @@ class game_server:
         return
 
     # Figure out if the request method is
-
     def handle(self,data):
         print("Recieved: " + str(data))
         _player = self.get_player(data['player'])
@@ -333,9 +336,10 @@ class game_server:
             if self.lobbies[game_id].game.won_yet(_player):
                 print("Somebody won")
                 request = self.lobbies[game_id].game_won(_player,game_id)
-
+                self.remove_lobby(game_id)
             else:
                 request = self.lobbies[game_id].move_made(x,y,_player,result)
+                self.remove_lobby(game_id)
             return request
         elif data['req_type'] == 'lobby_exit':
             game_id = data['game_id']
