@@ -250,6 +250,7 @@ class game_server:
         return
 
     def remove_lobby(self,game_id):
+        print("Deleting lobby " + str(game_id))
         del self.lobbies[game_id]
         return
 
@@ -336,7 +337,6 @@ class game_server:
                 self.remove_lobby(game_id)
             else:
                 request = self.lobbies[game_id].move_made(x,y,_player,result)
-                self.remove_lobby(game_id)
             return request
         elif data['req_type'] == 'lobby_exit':
             game_id = data['game_id']
@@ -383,5 +383,5 @@ class game_server:
         return
 
 
-server = game_server ( '192.168.1.9' , 80 , True )
+server = game_server ( 'localhost' , 80 , True )
 server.start_server ( )

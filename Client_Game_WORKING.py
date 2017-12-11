@@ -278,6 +278,6 @@ class game:
                 self.client.server_request(request)
                 self.menu()
 
-usr_client = game('192.168.1.9',80)
+usr_client = game('localhost',80)
 usr_client.start()
 usr_client.menu()
