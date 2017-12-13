@@ -3,7 +3,15 @@ import json as js
 import socket
 from pandas import DataFrame
 
+# Program: Game Client for  Server-Client Battleship
+# Final Project for CS313
+# Author: Andrew Gazeley
+
 class client:
+
+    # params
+    # host: string
+    # port: int
     def __init__ ( self , host , port ):
         self.server_ip = host
         self.server_port = port
@@ -11,6 +19,9 @@ class client:
         self.msg_size = 2048
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
 
+    # sends connect request to server at designated port and ip
+    # params
+    # name: string
     def start_client ( self,name ):
         print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
         try:
@@ -30,6 +41,12 @@ class client:
             #self.logger.write_log()
             exit(0)
 
+    # params
+    # game_id : optional int
+    # req: object
+    # type: string
+    # player: string
+    # packages a request into JSON and returns as a string
     def create_request(self,player,type,req,game_id=None):
         data = {}
         if game_id != None:
@@ -40,11 +57,15 @@ class client:
         data = js.dumps ( data )
         return data
 
+    #Does the same thing as send msg
     def server_request(self,data):
         self.sock.sendto(data.encode(),(self.server_ip,self.server_port))
         print("Sent: " + data)
         return
 
+    # param
+    # msg : string
+    # encodes msg and sends to clients connected server
     def send_msg(self,msg):
         msg = str ( msg )
         msg = msg.encode ( )
@@ -52,6 +73,7 @@ class client:
         print("Sent " + str(msg))
         return
 
+    # sits and waits for a reply from the server
     def get_reply(self):
         reply = ""
         try:
@@ -69,8 +91,13 @@ class client:
         #self.logger.write_log()
         return reply
 
+# Game class that runs the client
 class game:
 
+    # object init
+    # params
+    # ip: string
+    # port: int
     def __init__(self,ip,port):
         self.client_port = port
         self.client_ip = ip
@@ -80,12 +107,15 @@ class game:
                   'submarine2' ]
         return
 
+    # Starts a game and sets client name
+    # Stats the client, requests lobby data
     def start(self):
         self.name = input("What is your name? ")
         self.client.start_client(self.name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
 
+    # requests lobby data from server and displays it
     def print_main_menu(self):
 
         lobbies = js.loads ( self.client.get_reply ( ) )
@@ -100,12 +130,14 @@ class game:
         print ( "2. Connect" )
         return
 
+    # obsolete
     def print_board_menu(self):
         print("Board sizes")
         print("1. 7 X 7")
         print("2. 10 X 10")
         return
 
+    # displays menu and can send connect and join messages
     def menu(self):
         self.print_main_menu()
         inp = True
@@ -144,6 +176,8 @@ class game:
                 elif selection == 3:
                     exit(0)
 
+    # gets board
+    # current only two options
     def get_board(self):
         print("Board Choice")
         while True:
@@ -169,6 +203,9 @@ class game:
                     board.append ( row )
                 return board
 
+    # waits for user to enter number then returns it
+    # param
+    # msg: string
     def get_integer_input(self,msg):
         while True:
             cmd = input(msg)
@@ -182,6 +219,9 @@ class game:
                 break
         return cmd
 
+    # param
+    # msg: string
+    # Waits for user to enter y,yes,n,no then returns it
     def get_YN_input(self,msg):
         while True:
             cmd = input(msg).strip()
@@ -190,6 +230,9 @@ class game:
                 break
         return cmd
 
+    # Gets a move in the form of 'x y'
+    # If its not within the game board size requests more input
+    # currently x = 6, y = 6
     def get_move(self):
         while True:
             try:
@@ -205,7 +248,12 @@ class game:
                 #self.logger.write_log()
         return (x,y)
 
+    #client plays the game
     def play ( self ):
+
+        # Lobby ready up client side.
+        # if user inputs y client sends 'lobby_rdy'
+        # if user inputs n client sends 'lobby_exit'
         while True:
             ready = self.get_YN_input ( "Input 'Y' when you are ready to play " )
             if ready == 'y':
@@ -223,7 +271,9 @@ class game:
                 else:
                     print("Asking to ready up again...")
 
-        # Wants to exit game?
+        # TODO: Wants to exit game?
+        # client sits and waits for game_start message from server
+        # interprets lobby info from the server as well
         not_ready = True
         while not_ready:
             reply = js.loads ( self.client.get_reply ( ) )
@@ -235,12 +285,14 @@ class game:
                 print ( "P1 Ready ? " + str ( p1_rdy ) + " P2 Ready ? " + str ( p2_rdy ) )
 
         # Game started and request for board message has been sent
-        # Run ship setup
+        # sets up blank opponent board and gets user board
+        # after it sends the users board to the server
         self.opponent_board = [ [ None for x in range ( 7 ) ] for y in range ( 7 ) ]
         user_board = self.get_board()
         request = self.client.create_request(self.name,'board_setup',user_board,self.game_id)
         self.client.server_request(request)
 
+        # Big loop for making moves and handling victory or defeat
         while True:
             reply = js.loads ( self.client.get_reply ( ) )
             if reply['type'] == 'move_req':
@@ -278,6 +330,8 @@ class game:
                 request = self.client.create_request(self.name, 'data', self.name)
                 self.client.server_request(request)
                 self.menu()
+
+# main
 ip = input("Enter server host you want to connect to: ")
 usr_client = game(ip,80)
 usr_client.start()
