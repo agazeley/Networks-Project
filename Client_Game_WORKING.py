@@ -278,6 +278,9 @@ class game:
                 request = self.client.create_request(self.name, 'data', self.name)
                 self.client.server_request(request)
                 self.menu()
+        return
+
+
 ip = input("Enter server host you want to connect to: ")
 usr_client = game(ip,80)
 usr_client.start()
