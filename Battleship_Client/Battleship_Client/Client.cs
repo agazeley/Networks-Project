@@ -62,6 +62,7 @@ namespace Battleship_Client
                 return false;
             }
         }
+
         public bool send(string data)
         {
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
@@ -91,6 +92,7 @@ namespace Battleship_Client
                 return false;
             }
         }
+
         public bool server_request(string data)
         {
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
@@ -133,5 +135,19 @@ namespace Battleship_Client
             return JsonConvert.SerializeObject(data);
         }
 
+        public string get_reply()
+        {
+            try
+            {
+                string reply = this.client.Receive(ref this.ep_server).ToString();
+                return reply;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return "";
+            }
+
+        }
     }
 }
