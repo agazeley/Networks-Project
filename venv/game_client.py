@@ -5,7 +5,7 @@ import random , sys , pygame
 from pygame.locals import *
 import log
 from textbox import TextBox
-
+import inputbox as ib
 
 # Set variables, like screen width and height
 # globals
@@ -133,6 +133,7 @@ class client:
 
     def start_client ( self,name ):
         print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
+        self.name = name
         try:
             data = self.create_request(name,'connect',1)
             self.sock.sendto (data.encode('utf-8'), (self.server_ip , self.server_port) )
@@ -201,8 +202,8 @@ class game:
 
         return
 
-    def start(self):
-        self.client.start_client(self.name)
+    def start(self,name):
+        self.client.start_client(name)
         request = self.client.create_request(self.name,'data',self.name)
         self.client.server_request(request)
 
@@ -461,7 +462,6 @@ class game:
             pygame.display.update ( )
             FPSCLOCK.tick ( )
 
-
 class graphics:
 
     def __init__(self):
@@ -507,10 +507,7 @@ class graphics:
         textRect.center = ((x + (w / 2)) , (y + (h / 2)))
         self.game_display.blit ( textSurf , textRect)
 
-    def get_name(self,id,final):
-        usr_client.name = final
-        print(usr_client.name)
-        return
+
     def connect_to_game(self):
         if not self.reply:
             usr_client.start()
@@ -518,11 +515,17 @@ class graphics:
             self.reply = True
         return
 
+    def pre_intro(self):
+        inp = ib.inputbox ( 400 , 200 )
+        self.name = inp.ask ( 'What is your name? ' )
+        del inp
+        self.game_intro()
+
     def game_intro(self):
-        settings = {"command": self.get_name , "inactive_on_enter": False , }
+        # settings = {"command": self.get_name , "inactive_on_enter": False , }
+        self.inp_box = TextBox ( rect=(850 , 600 , 150 , 30) )
 
-        self.inp_box = TextBox ( rect=(350 , 300 , 150 , 30),**settings )
-
+        # self.name = self.get_name()
         intro = True
         while intro:
             for event in pygame.event.get():
@@ -544,8 +547,8 @@ class graphics:
             self.button ( "Connect" , 350 , 150 , 100 , 50 , LIGHT_YELLOW ,YELLOW,self.connect_to_game )
             self.button ( "Quit!" , 550 , 150 , 100 , 50 , RED , BRIGHT_RED,quit)
 
-            self.inp_box.update()
-            self.inp_box.draw(self.game_display)
+            # self.inp_box.update()
+            # self.inp_box.draw(self.game_display)
 
             pygame.display.update ( )
             FPSCLOCK.tick(FPS )
@@ -819,5 +822,5 @@ class graphics:
 
 usr_client = game('localhost',80)
 _graphics = graphics()
-_graphics.game_intro()
+_graphics.pre_intro()
 

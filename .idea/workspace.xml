@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7285bd-2a1d-456d-b9c0-8bbd0eccbb91" name="Default" comment="Adding MySocket class">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Final Project.iml" afterPath="$PROJECT_DIR$/.idea/Final Project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BS1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BS2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Client_Game_WORKING.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/MySocket.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Networks_FP_documentation.docx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client_game.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client_log.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game_client.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/inputbox.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/log.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/textbox.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client_Game_WORKING.py" afterPath="$PROJECT_DIR$/Client_Game_WORKING.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,56 +32,95 @@
       <file leaf-file-name="game_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2133">
-              <caret line="249" column="14" lean-forward="true" selection-start-line="249" selection-start-column="14" selection-end-line="249" selection-end-column="14" />
+            <state relative-caret-position="324">
+              <caret line="169" column="18" lean-forward="false" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#115#272#0" expanded="false" />
+                <element signature="e#295#2876#0" expanded="false" />
+                <element signature="e#2895#6028#0" expanded="false" />
+                <element signature="e#6053#15217#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client_game.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client_game.py">
+      <file leaf-file-name="client_demo.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game_client.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Client_Game_WORKING.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Client_Game_WORKING.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+            <state relative-caret-position="470">
+              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
               <folding>
-                <element signature="e#0#12#0" expanded="true" />
-                <element signature="e#93#2295#0" expanded="false" />
-                <element signature="e#383#1151#0" expanded="false" />
-                <element signature="e#1220#1438#0" expanded="false" />
-                <element signature="e#2350#2638#0" expanded="false" />
-                <element signature="e#2669#2870#0" expanded="false" />
-                <element signature="e#2912#3265#0" expanded="false" />
-                <element signature="e#3307#3396#0" expanded="false" />
-                <element signature="e#3426#5163#0" expanded="false" />
-                <element signature="e#5198#6139#0" expanded="false" />
-                <element signature="e#6186#6515#0" expanded="false" />
-                <element signature="e#6557#6750#0" expanded="false" />
-                <element signature="e#6784#7253#0" expanded="false" />
-                <element signature="e#7286#10937#0" expanded="false" />
+                <element signature="e#75#127#0" expanded="false" />
+                <element signature="e#199#207#0" expanded="false" />
+                <element signature="e#497#556#0" expanded="false" />
+                <element signature="e#972#1002#0" expanded="false" />
+                <element signature="e#1407#1415#0" expanded="false" />
+                <element signature="e#1929#2040#0" expanded="false" />
+                <element signature="e#2046#2053#0" expanded="false" />
+                <element signature="e#2165#2324#0" expanded="false" />
+                <element signature="e#2408#2877#0" expanded="false" />
+                <element signature="e#2544#2823#0" expanded="false" />
+                <element signature="e#2640#2701#0" expanded="false" />
+                <element signature="e#2737#2823#0" expanded="false" />
+                <element signature="e#2930#12623#0" expanded="false" />
+                <element signature="e#2930#2943#0" expanded="false" />
+                <element signature="e#3030#3318#0" expanded="false" />
+                <element signature="e#3183#3303#0" expanded="false" />
+                <element signature="e#3324#3360#0" expanded="false" />
+                <element signature="e#3434#3635#0" expanded="false" />
+                <element signature="e#3731#4084#0" expanded="false" />
+                <element signature="e#3893#4009#0" expanded="false" />
+                <element signature="e#4141#4230#0" expanded="false" />
+                <element signature="e#4319#6062#0" expanded="false" />
+                <element signature="e#4392#6062#0" expanded="false" />
+                <element signature="e#4498#6062#0" expanded="false" />
+                <element signature="e#4566#5222#0" expanded="false" />
+                <element signature="e#4788#5222#0" expanded="false" />
+                <element signature="e#4886#5130#0" expanded="false" />
+                <element signature="e#5280#5991#0" expanded="false" />
+                <element signature="e#5722#5912#0" expanded="false" />
+                <element signature="e#6062#6074#0" expanded="false" />
+                <element signature="e#6139#7086#0" expanded="false" />
+                <element signature="e#6193#7086#0" expanded="false" />
+                <element signature="e#6310#6652#0" expanded="false" />
+                <element signature="e#6424#6623#0" expanded="false" />
+                <element signature="e#6702#7080#0" expanded="false" />
+                <element signature="e#6824#7051#0" expanded="false" />
+                <element signature="e#7086#7134#0" expanded="false" />
+                <element signature="e#7210#7539#0" expanded="false" />
+                <element signature="e#7234#7520#0" expanded="false" />
+                <element signature="e#7350#7477#0" expanded="false" />
+                <element signature="e#7412#7436#0" expanded="false" />
+                <element signature="e#7545#7552#0" expanded="false" />
+                <element signature="e#7668#7861#0" expanded="false" />
+                <element signature="e#7692#7842#0" expanded="false" />
+                <element signature="e#7867#7901#0" expanded="false" />
+                <element signature="e#8027#8496#0" expanded="false" />
+                <element signature="e#8051#8475#0" expanded="false" />
+                <element signature="e#8072#8292#0" expanded="false" />
+                <element signature="e#8344#8475#0" expanded="false" />
+                <element signature="e#8410#8434#0" expanded="false" />
+                <element signature="e#8557#12623#0" expanded="false" />
+                <element signature="e#8557#8586#0" expanded="false" />
+                <element signature="e#8724#9475#0" expanded="false" />
+                <element signature="e#8839#9005#0" expanded="false" />
+                <element signature="e#9040#9475#0" expanded="false" />
+                <element signature="e#9163#9386#0" expanded="false" />
+                <element signature="e#9475#9502#0" expanded="false" />
+                <element signature="e#9688#10061#0" expanded="false" />
+                <element signature="e#9797#9859#0" expanded="false" />
+                <element signature="e#9926#10051#0" expanded="false" />
+                <element signature="e#10061#10119#0" expanded="false" />
+                <element signature="e#10595#12623#0" expanded="false" />
+                <element signature="e#10702#10867#0" expanded="false" />
+                <element signature="e#11117#11179#0" expanded="false" />
+                <element signature="e#11270#11377#0" expanded="false" />
+                <element signature="e#11436#12145#0" expanded="false" />
+                <element signature="e#11535#11808#0" expanded="false" />
+                <element signature="e#11851#12145#0" expanded="false" />
+                <element signature="e#12203#12381#0" expanded="false" />
+                <element signature="e#12440#12621#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -103,6 +150,12 @@
       <find>BASICFONT</find>
       <find>ships_sum</find>
       <find>youre</find>
+      <find>self.name</find>
+      <find>start()</find>
+      <find>print</find>
+      <find>inp</find>
+      <find>box</find>
+      <find>start_client</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,12 +181,13 @@
         <option value="$PROJECT_DIR$/Resources/battleship2.py" />
         <option value="$PROJECT_DIR$/Resources/battleship.py" />
         <option value="$PROJECT_DIR$/textbox.py" />
-        <option value="$PROJECT_DIR$/game_client.py" />
         <option value="$PROJECT_DIR$/BS1.txt" />
         <option value="$PROJECT_DIR$/game_server.py" />
         <option value="$PROJECT_DIR$/Demo/game_server_demo.py" />
-        <option value="$PROJECT_DIR$/Demo/client_demo.py" />
         <option value="$PROJECT_DIR$/Client_Game_WORKING.py" />
+        <option value="$PROJECT_DIR$/game.py" />
+        <option value="$PROJECT_DIR$/game_client.py" />
+        <option value="$PROJECT_DIR$/Demo/client_demo.py" />
       </list>
     </option>
   </component>
@@ -176,15 +230,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Networks-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Networks-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Python/Spotify" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -209,25 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Client_Game_WORKING">
-    <configuration default="false" name="Client_Game_WORKING" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client_Game_WORKING.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.game">
     <configuration default="false" name="game_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -247,55 +297,73 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="game_server_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="client_game" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/game_server_demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/client_game.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Client_Demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="game" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/Client_Demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/game.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="client_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="game_client" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/client_demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/game_client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="inputbox" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Final Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/inputbox.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -385,19 +453,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.server_game" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Client_Game_WORKING" />
-      <item index="2" class="java.lang.String" itemvalue="Python.game_server" />
-      <item index="3" class="java.lang.String" itemvalue="Python.game_server_demo" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Client_Demo" />
-      <item index="5" class="java.lang.String" itemvalue="Python.client_demo" />
+      <item index="1" class="java.lang.String" itemvalue="Python.game_server" />
+      <item index="2" class="java.lang.String" itemvalue="Python.client_game" />
+      <item index="3" class="java.lang.String" itemvalue="Python.game" />
+      <item index="4" class="java.lang.String" itemvalue="Python.game_client" />
+      <item index="5" class="java.lang.String" itemvalue="Python.inputbox" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Client_Game_WORKING" />
+        <item index="0" class="java.lang.String" itemvalue="Python.game" />
         <item index="1" class="java.lang.String" itemvalue="Python.game_server" />
-        <item index="2" class="java.lang.String" itemvalue="Python.game_server_demo" />
-        <item index="3" class="java.lang.String" itemvalue="Python.client_demo" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Client_Demo" />
+        <item index="2" class="java.lang.String" itemvalue="Python.game_client" />
+        <item index="3" class="java.lang.String" itemvalue="Python.inputbox" />
+        <item index="4" class="java.lang.String" itemvalue="Python.client_game" />
       </list>
     </recent_temporary>
   </component>
@@ -430,15 +498,15 @@
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177083" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13489583" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="1" y="38" width="958" height="991" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="6" y="46" width="958" height="991" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30296376" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56531286" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -452,29 +520,6 @@
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39809927" sideWeight="0.50416666" order="7" side_tool="true" content_ui="tabs" x="961" y="38" width="958" height="991" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14895834" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39809927" sideWeight="0.49583334" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -528,14 +573,15 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="155" />
+      <option name="time" value="159" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="inp" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python/Python36-32/Lib/codecs.py" />
-    <entry file="file://C:/Python/Python36-32/Lib/json/encoder.py" />
-    <entry file="file://C:/Python/Python36-32/Lib/json/__init__.py" />
     <entry file="file://$PROJECT_DIR$/game_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -550,6 +596,9 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#115#272#0" expanded="false" />
+            <element signature="e#295#2876#0" expanded="false" />
+            <element signature="e#2895#6028#0" expanded="false" />
+            <element signature="e#6053#15217#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -589,6 +638,9 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#115#272#0" expanded="false" />
+            <element signature="e#295#2876#0" expanded="false" />
+            <element signature="e#2895#6028#0" expanded="false" />
+            <element signature="e#6053#15217#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -700,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inputbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game_log.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -797,31 +842,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
+    <entry file="file://$PROJECT_DIR$/Client_Game_WORKING.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="332" column="0" lean-forward="false" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="false" />
-            <element signature="e#199#2879#0" expanded="false" />
-            <element signature="e#292#491#0" expanded="false" />
-            <element signature="e#633#1407#0" expanded="false" />
-            <element signature="e#1629#1847#0" expanded="false" />
-            <element signature="e#2165#2324#0" expanded="false" />
-            <element signature="e#2408#2877#0" expanded="false" />
-            <element signature="e#2930#12623#0" expanded="false" />
-            <element signature="e#3030#3318#0" expanded="false" />
-            <element signature="e#3434#3635#0" expanded="false" />
-            <element signature="e#3731#4084#0" expanded="false" />
-            <element signature="e#4141#4230#0" expanded="false" />
-            <element signature="e#4319#6062#0" expanded="false" />
-            <element signature="e#6139#7086#0" expanded="false" />
-            <element signature="e#7210#7539#0" expanded="false" />
-            <element signature="e#7668#7861#0" expanded="false" />
-            <element signature="e#8027#8496#0" expanded="false" />
-            <element signature="e#8724#9475#0" expanded="false" />
-            <element signature="e#9688#10061#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="189">
+          <caret line="71" column="11" lean-forward="false" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -829,89 +854,147 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#167#484#0" expanded="false" />
-            <element signature="e#327#484#0" expanded="false" />
-            <element signature="e#507#3573#0" expanded="false" />
-            <element signature="e#724#1024#0" expanded="false" />
-            <element signature="e#1341#1720#0" expanded="false" />
-            <element signature="e#1886#2026#0" expanded="false" />
-            <element signature="e#2241#3257#0" expanded="false" />
-            <element signature="e#3427#3573#0" expanded="false" />
-            <element signature="e#3592#7810#0" expanded="false" />
-            <element signature="e#3760#3899#0" expanded="false" />
-            <element signature="e#4411#4580#0" expanded="false" />
-            <element signature="e#4885#5172#0" expanded="false" />
-            <element signature="e#5354#5758#0" expanded="false" />
-            <element signature="e#5952#6009#0" expanded="false" />
-            <element signature="e#6158#6368#0" expanded="false" />
-            <element signature="e#6490#7184#0" expanded="false" />
-            <element signature="e#7396#7810#0" expanded="false" />
-            <element signature="e#7835#18125#0" expanded="false" />
-            <element signature="e#7927#8258#0" expanded="false" />
-            <element signature="e#8435#8581#0" expanded="false" />
-            <element signature="e#8671#9888#0" expanded="false" />
-            <element signature="e#9964#10389#0" expanded="false" />
-            <element signature="e#11036#11391#0" expanded="false" />
-            <element signature="e#12161#13603#0" expanded="false" />
-            <element signature="e#13743#18123#0" expanded="false" />
-            <element signature="e#13909#14288#0" expanded="false" />
-            <element signature="e#14381#14543#0" expanded="false" />
-            <element signature="e#14650#15255#0" expanded="false" />
-            <element signature="e#15360#15903#0" expanded="false" />
-            <element signature="e#16004#16249#0" expanded="false" />
-            <element signature="e#16350#17441#0" expanded="false" />
-            <element signature="e#17523#18108#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client_game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        <state relative-caret-position="216">
+          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python36-32/Lib/site-packages/pkg_resources/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="1191" column="0" lean-forward="false" selection-start-line="1191" selection-start-column="0" selection-end-line="1191" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python36-32/Lib/site-packages/pygame/pkgdata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="382">
+          <caret line="463" column="0" lean-forward="true" selection-start-line="463" selection-start-column="0" selection-end-line="463" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2133">
-          <caret line="249" column="14" lean-forward="true" selection-start-line="249" selection-start-column="14" selection-end-line="249" selection-end-column="14" />
+        <state relative-caret-position="324">
+          <caret line="169" column="18" lean-forward="false" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#115#272#0" expanded="false" />
+            <element signature="e#295#2876#0" expanded="false" />
+            <element signature="e#2895#6028#0" expanded="false" />
+            <element signature="e#6053#15217#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client_Game_WORKING.py">
+    <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state relative-caret-position="470">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
           <folding>
-            <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#93#2295#0" expanded="false" />
-            <element signature="e#383#1151#0" expanded="false" />
-            <element signature="e#1220#1438#0" expanded="false" />
-            <element signature="e#2350#2638#0" expanded="false" />
-            <element signature="e#2669#2870#0" expanded="false" />
-            <element signature="e#2912#3265#0" expanded="false" />
-            <element signature="e#3307#3396#0" expanded="false" />
-            <element signature="e#3426#5163#0" expanded="false" />
-            <element signature="e#5198#6139#0" expanded="false" />
-            <element signature="e#6186#6515#0" expanded="false" />
-            <element signature="e#6557#6750#0" expanded="false" />
-            <element signature="e#6784#7253#0" expanded="false" />
-            <element signature="e#7286#10937#0" expanded="false" />
+            <element signature="e#75#127#0" expanded="false" />
+            <element signature="e#199#207#0" expanded="false" />
+            <element signature="e#497#556#0" expanded="false" />
+            <element signature="e#972#1002#0" expanded="false" />
+            <element signature="e#1407#1415#0" expanded="false" />
+            <element signature="e#1929#2040#0" expanded="false" />
+            <element signature="e#2046#2053#0" expanded="false" />
+            <element signature="e#2165#2324#0" expanded="false" />
+            <element signature="e#2408#2877#0" expanded="false" />
+            <element signature="e#2544#2823#0" expanded="false" />
+            <element signature="e#2640#2701#0" expanded="false" />
+            <element signature="e#2737#2823#0" expanded="false" />
+            <element signature="e#2930#12623#0" expanded="false" />
+            <element signature="e#2930#2943#0" expanded="false" />
+            <element signature="e#3030#3318#0" expanded="false" />
+            <element signature="e#3183#3303#0" expanded="false" />
+            <element signature="e#3324#3360#0" expanded="false" />
+            <element signature="e#3434#3635#0" expanded="false" />
+            <element signature="e#3731#4084#0" expanded="false" />
+            <element signature="e#3893#4009#0" expanded="false" />
+            <element signature="e#4141#4230#0" expanded="false" />
+            <element signature="e#4319#6062#0" expanded="false" />
+            <element signature="e#4392#6062#0" expanded="false" />
+            <element signature="e#4498#6062#0" expanded="false" />
+            <element signature="e#4566#5222#0" expanded="false" />
+            <element signature="e#4788#5222#0" expanded="false" />
+            <element signature="e#4886#5130#0" expanded="false" />
+            <element signature="e#5280#5991#0" expanded="false" />
+            <element signature="e#5722#5912#0" expanded="false" />
+            <element signature="e#6062#6074#0" expanded="false" />
+            <element signature="e#6139#7086#0" expanded="false" />
+            <element signature="e#6193#7086#0" expanded="false" />
+            <element signature="e#6310#6652#0" expanded="false" />
+            <element signature="e#6424#6623#0" expanded="false" />
+            <element signature="e#6702#7080#0" expanded="false" />
+            <element signature="e#6824#7051#0" expanded="false" />
+            <element signature="e#7086#7134#0" expanded="false" />
+            <element signature="e#7210#7539#0" expanded="false" />
+            <element signature="e#7234#7520#0" expanded="false" />
+            <element signature="e#7350#7477#0" expanded="false" />
+            <element signature="e#7412#7436#0" expanded="false" />
+            <element signature="e#7545#7552#0" expanded="false" />
+            <element signature="e#7668#7861#0" expanded="false" />
+            <element signature="e#7692#7842#0" expanded="false" />
+            <element signature="e#7867#7901#0" expanded="false" />
+            <element signature="e#8027#8496#0" expanded="false" />
+            <element signature="e#8051#8475#0" expanded="false" />
+            <element signature="e#8072#8292#0" expanded="false" />
+            <element signature="e#8344#8475#0" expanded="false" />
+            <element signature="e#8410#8434#0" expanded="false" />
+            <element signature="e#8557#12623#0" expanded="false" />
+            <element signature="e#8557#8586#0" expanded="false" />
+            <element signature="e#8724#9475#0" expanded="false" />
+            <element signature="e#8839#9005#0" expanded="false" />
+            <element signature="e#9040#9475#0" expanded="false" />
+            <element signature="e#9163#9386#0" expanded="false" />
+            <element signature="e#9475#9502#0" expanded="false" />
+            <element signature="e#9688#10061#0" expanded="false" />
+            <element signature="e#9797#9859#0" expanded="false" />
+            <element signature="e#9926#10051#0" expanded="false" />
+            <element signature="e#10061#10119#0" expanded="false" />
+            <element signature="e#10595#12623#0" expanded="false" />
+            <element signature="e#10702#10867#0" expanded="false" />
+            <element signature="e#11117#11179#0" expanded="false" />
+            <element signature="e#11270#11377#0" expanded="false" />
+            <element signature="e#11436#12145#0" expanded="false" />
+            <element signature="e#11535#11808#0" expanded="false" />
+            <element signature="e#11851#12145#0" expanded="false" />
+            <element signature="e#12203#12381#0" expanded="false" />
+            <element signature="e#12440#12621#0" expanded="false" />
           </folding>
         </state>
       </provider>

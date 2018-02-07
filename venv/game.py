@@ -1,7 +1,7 @@
-from game_client import client
 import socket
 import log
 import json as js
+
 
 class game:
 
@@ -15,11 +15,17 @@ class game:
         return
 
     def start(self):
-        self.name = input ( "What is your name? " )
-        self.client.start_client(self.name)
-        request = self.client.create_request(self.name,'data',self.name)
-        self.client.server_request(request)
+        self.name = self.get_name ( "What is your name? " )
 
+        if self.name:
+            self.client.start_client ( self.name )
+            request = self.client.create_request ( self.name , 'data' , self.name )
+            if self.client.server_request ( request ):
+                return
+            else:
+                print('Could not start')
+                return
+        return
     def print_main_menu(self):
         print ( "1. Play" )
         print ( "2. Connect" )
@@ -106,6 +112,13 @@ class game:
             finally:
                 break
         return cmd
+
+    def get_name(self,msg):
+        while True:
+            name = input(msg)
+            if len(msg) > 0:
+                break
+        return name
 
     def get_YN_input(self,msg):
         while True:
@@ -218,3 +231,80 @@ class game:
                     for coord in ship_coords:
                         new_board[ coord[ 0 ] ][ coord[ 1 ] ] = ship
         return new_board
+
+class client:
+    def __init__ ( self , host , port ):
+        self.server_ip = host
+        self.server_port = port
+        self.logger = log.logger('client')
+        self.msg_size = 2048
+        self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
+
+    def start_client ( self,name ):
+        print ( 'connecting to ' + str(self.server_ip) + ' port ' + str(self.server_port) )
+        self.name = name
+        try:
+            data = self.create_request(name,'connect',1)
+            self.sock.sendto (data.encode('utf-8'), (self.server_ip , self.server_port) )
+        except Exception as e:
+            print ( "Failed to connect to server" )
+            self.logger.log ( str ( e ) )
+            self.logger.write_log()
+
+        serverMessage = js.loads(self.sock.recv ( 1024 ).decode())
+        if serverMessage['type'] == "conn_request" and serverMessage['msg'] == 1:
+            self.GUID = serverMessage['game_id']
+            return
+        else:
+            self.logger.log("Failed to connect. Shutting down client")
+            self.logger.write_log()
+            exit(0)
+
+    def create_request(self,player,type,req,game_id=None):
+        data = {}
+        if game_id != None:
+            data['game_id'] = game_id
+        data['player'] = player
+        data['req_type'] = type
+        data['req'] = req
+        data = js.dumps ( data )
+        return data
+
+    def server_request(self,data):
+        try:
+            if self.sock.sendto(data.encode(),(self.server_ip,self.server_port)):
+                print("Sent: " + data)
+                return True
+            return False
+        except Exception as e:
+            print(str(e))
+        return
+
+    def send_msg(self,msg):
+        msg = str ( msg )
+        msg = msg.encode ( )
+        self.sock.sendto(msg,(self.server_ip,self.server_port))
+        print("Sent " + str(msg))
+        return
+
+    def get_reply(self):
+        reply = ""
+        try:
+            reply = self.sock.recv(self.msg_size).decode('UTF-8')
+        except socket.error as e:
+            err = e.args[0]
+            if err == errno.EAGAIN or err == errno.EWOULDBLOCK:
+                print('No data recieved')
+                self.logger.log(e)
+
+            else:
+                # a "real" error occurred
+                print(e)
+                self.logger.log(e)
+        self.logger.write_log()
+        return reply
+
+ip = input("What server are you trying to connect too? ")
+the_game = game(ip=ip,port=80)
+the_game.start()
+the_game.menu()
