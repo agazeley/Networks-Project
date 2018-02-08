@@ -4,12 +4,13 @@ import os
 import socket
 
 # https://stackoverflow.com/questions/36083964/i-got-a-connection-error-in-my-socket-program
-HOST="localhost"
-PORT=50001
+HOST="127.0.0.1"
+PORT=80
 
 mySocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 mySocket.bind( (HOST, PORT) )
 mySocket.listen(1)
+print(str((HOST,PORT)))
 print("Waiting for connection")
 
 connection, address=mySocket.accept()

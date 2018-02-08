@@ -171,7 +171,6 @@ class game_server:
     def __init__ ( self , host , port , logging ):
         self.host = host
         self.port = port
-
         #self.logger = log.logger ( 'server' )
         self.lobbies = {} # key = game_id, item = lobby  When new person creates a game make a lobby with the game in it and the players info stored
         self.players = [] # List of players on the server? Do I need this or to store info before they join a lobby?
@@ -190,10 +189,13 @@ class game_server:
         # Using out given host and port info we need to start the server up
         # Need to give the server a socket and bind the socket to the host:port
         self.sock = socket.socket ( socket.AF_INET , socket.SOCK_DGRAM )
-        print ( "Spinning up the server on port " + str ( self.port ) )
+
         try:
             self.sock.bind ( (self.host , self.port) )
-
+            print(str(self.sock))
+            print ( "Spinning up the server on port " + str ( self.port ) )
+            # print ( self.sock['laddr'][ 0 ] )
+            # print ( self.sock['laddr'][ 1 ] )
         except Exception as e:
             print ( "Server failed to startup...trying port 8080" )
 
@@ -218,11 +220,11 @@ class game_server:
         try:
             self.sock.shutdown ( socket.SHUT_RDWR )
             print ( "Shutting down server....." )
-            self.logger.log ( "Shutting down server....." )
+            #self.logger.log ( "Shutting down server....." )
         except Exception as e:
             print ( "Why was there an exception thrown at shutdown?" )
-            self.logger.log ( "Why was there an exception thrown at shutdown?" )
-        self.logger.write_log ( )
+            #self.logger.log ( "Why was there an exception thrown at shutdown?" )
+        #self.logger.write_log ( )
 
     def send_msg(self,msg):
         msg = str(msg)
@@ -383,5 +385,5 @@ class game_server:
         return
 
 
-server = game_server ( 'localhost' , 80 , True )
+server = game_server ( '' , 80 , True )
 server.start_server ( )

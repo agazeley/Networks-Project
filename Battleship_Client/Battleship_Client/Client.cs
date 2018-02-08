@@ -10,25 +10,38 @@ using System.Net;
 
 namespace Battleship_Client
 {
-    class Client
+    public class Client
     {
         private int server_port;
         private IPAddress server_ip;
-        private int msg_size = 2048;
         private UdpClient client;
         private IPEndPoint ep_server;
+        private Socket sock;
 
         public Client()
         {
-            this.client = new UdpClient();
+            this.sock = new Socket(SocketType.Dgram, ProtocolType.Udp);
         }
 
         public Client(string ip,int port)
         {
-            this.client = new UdpClient();
-            this.server_ip = IPAddress.Parse(ip);
+            this.sock = new Socket(AddressFamily.Unspecified,SocketType.Dgram, ProtocolType.Udp);
+
+
+            if (ip.ToLower() == "localhost")
+            {
+                this.server_ip = IPAddress.Parse("127.0.0.1");
+                this.ep_server = new IPEndPoint(this.server_ip, port);
+            }
+            else
+            {
+                this.server_ip = IPAddress.Parse(ip);
+                this.ep_server = new IPEndPoint(this.server_ip, port);
+            }
             this.server_port = port;
-            this.ep_server = new IPEndPoint(this.server_ip, port);
+
+
+
         }
 
         public bool start_client(string name)
@@ -39,25 +52,34 @@ namespace Battleship_Client
 
             try
             {
-                this.client.Send(byte_data, byte_data.Length, this.ep_server);
+                this.sock.SendTo(byte_data,this.ep_server);
             }
             catch (Exception e)
             {
+                Debug.WriteLine("Start error");
                 Debug.WriteLine(e.Message);
                 return false;
             }
+            string json = "";
 
-            byte[] server_message = this.client.Receive(ref this.ep_server);
-            string json = Encoding.ASCII.GetString(server_message);
+            while(json == "")
+            {
+                json = this.get_reply();
+
+            }
             var msg = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
             if (msg["type"] == "conn_request" && int.Parse(msg["msg"]) == 1)
             {
+
+                Debug.WriteLine("Successful connection!");
                 // Successful handshake!
                 return true;
             }
             else
             {
+
+                Debug.WriteLine("Failed to start :/");
                 // exit(0)?
                 return false;
             }
@@ -65,14 +87,16 @@ namespace Battleship_Client
 
         public bool send(string data)
         {
+
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                this.client.Send(byte_data, byte_data.Length);
+                this.sock.SendTo(byte_data,this.ep_server);
                 return true;
             }
             catch(Exception e)
             {
+                Debug.WriteLine("Send 1 error");
                 Debug.WriteLine(e.Message);
                 return false;
             }
@@ -83,11 +107,12 @@ namespace Battleship_Client
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                this.client.Send(byte_data, byte_data.Length, ep);
+                this.sock.SendTo(byte_data, ep);
                 return true;
             }
             catch(Exception e)
             {
+                Debug.WriteLine("Send 2 error");
                 Debug.WriteLine(e.Message);
                 return false;
             }
@@ -99,11 +124,13 @@ namespace Battleship_Client
 
             try
             {
-                this.client.Send(byte_data, byte_data.Length, this.ep_server);
+                this.sock.SendTo(byte_data,this.ep_server);
                 return true;
             }
             catch(Exception e)
             {
+
+                Debug.WriteLine("Server req error");
                 Debug.WriteLine(e.Message);
                 return false;
             }
@@ -139,11 +166,13 @@ namespace Battleship_Client
         {
             try
             {
-                string reply = this.client.Receive(ref this.ep_server).ToString();
+                byte[] bytes = new byte[1024];
+                string reply = this.sock.Receive(bytes).ToString();
                 return reply;
             }
             catch (Exception e)
             {
+                Debug.WriteLine("Reply error");
                 Debug.WriteLine(e.Message);
                 return "";
             }
