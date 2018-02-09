@@ -3,32 +3,36 @@ import sys
 import os
 import socket
 
+# UDP DGRAM BASED ECHO SERVER
+
 # https://stackoverflow.com/questions/36083964/i-got-a-connection-error-in-my-socket-program
-HOST="127.0.0.1"
+HOST="localhost"
 PORT=80
 
-mySocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mySocket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 mySocket.bind( (HOST, PORT) )
-mySocket.listen(1)
 print(str((HOST,PORT)))
 print("Waiting for connection")
 
-connection, address=mySocket.accept()
-print("Connection recieved from:", address[0])
+data, (ip,port) = mySocket.recvfrom(1024)
+print("Connection recieved from:", ip , ":", port)
 
-connection.send(bytearray("Connection successful", "utf-8"))
-clientMessage=connection.recv(1024)
+mySocket.sendto(bytearray("Connection successful", "utf-8"),(ip,port))
+clientMessage=mySocket.recv(1024)
 
 while clientMessage != "Client: end":
     if not clientMessage:
         break
     clientMessage = clientMessage.decode()
     print ("Message: " + clientMessage)
-    connection.send(bytearray(clientMessage, "utf-8"))
-    clientMessage=connection.recv(1024)
+    mySocket.sendto(bytearray(clientMessage, "utf-8"),(ip,port))
+    print("Message sent to " + str((ip,port)))
+
+    clientMessage=mySocket.recv(1024)
+    print('New MSG')
 
 print("Connection ended.")
-connection.close()
+mySocket.close()
 
 ''''Trying something new
 # get total bits in a filesize

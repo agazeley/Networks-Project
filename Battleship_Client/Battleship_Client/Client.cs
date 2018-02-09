@@ -16,17 +16,14 @@ namespace Battleship_Client
         private IPAddress server_ip;
         private UdpClient client;
         private IPEndPoint ep_server;
-        private Socket sock;
 
         public Client()
         {
-            this.sock = new Socket(SocketType.Dgram, ProtocolType.Udp);
+            this.client = new UdpClient();
         }
-
         public Client(string ip,int port)
         {
-            this.sock = new Socket(AddressFamily.Unspecified,SocketType.Dgram, ProtocolType.Udp);
-
+                this.client = new UdpClient();
 
             if (ip.ToLower() == "localhost")
             {
@@ -40,8 +37,6 @@ namespace Battleship_Client
             }
             this.server_port = port;
 
-
-
         }
 
         public bool start_client(string name)
@@ -52,7 +47,7 @@ namespace Battleship_Client
 
             try
             {
-                this.sock.SendTo(byte_data,this.ep_server);
+                // this.sock.SendTo(byte_data,this.ep_server);
             }
             catch (Exception e)
             {
@@ -91,7 +86,7 @@ namespace Battleship_Client
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                this.sock.SendTo(byte_data,this.ep_server);
+                // this.sock.SendTo(byte_data,this.ep_server);
                 return true;
             }
             catch(Exception e)
@@ -107,7 +102,7 @@ namespace Battleship_Client
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                this.sock.SendTo(byte_data, ep);
+                // this.sock.SendTo(byte_data, ep);
                 return true;
             }
             catch(Exception e)
@@ -124,7 +119,7 @@ namespace Battleship_Client
 
             try
             {
-                this.sock.SendTo(byte_data,this.ep_server);
+                // this.sock.SendTo(byte_data,this.ep_server);
                 return true;
             }
             catch(Exception e)
@@ -167,8 +162,9 @@ namespace Battleship_Client
             try
             {
                 byte[] bytes = new byte[1024];
-                string reply = this.sock.Receive(bytes).ToString();
-                return reply;
+                // string reply = this.sock.Receive(bytes).ToString();
+                // return reply;
+                return "";
             }
             catch (Exception e)
             {
