@@ -28,7 +28,7 @@ namespace Battleship_Client
 
         private void btn_logon_Click(object sender, EventArgs e)
         {
-
+            /*
             // Debug.WriteLine(tb_name.Text);
             // Debug.WriteLine(tb_ip.Text );           
 
@@ -44,12 +44,15 @@ namespace Battleship_Client
                 string reply = Encoding.ASCII.GetString(c.Receive(ref ep));
                 Debug.WriteLine(reply);
             }
+            */
+
             #region OLD CODE
-            /*
+            
             my_client = new Client(tb_ip.Text, 80);
             if (my_client.start_client(tb_name.Text))
             {
                 // Success
+                MessageBox.Show("Successfully connected!");
                 this.Hide();
             }
             else
@@ -57,7 +60,7 @@ namespace Battleship_Client
                 // Oh noooooo
                 MessageBox.Show("OH NO IT DIDNT WORK :/");
             }
-            */
+            
             #endregion
         }
     }

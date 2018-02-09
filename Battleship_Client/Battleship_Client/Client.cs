@@ -13,29 +13,27 @@ namespace Battleship_Client
     public class Client
     {
         private int server_port;
-        private IPAddress server_ip;
+        private string server_ip;
         private UdpClient client;
+        private IPEndPoint ep_client;
         private IPEndPoint ep_server;
 
         public Client()
         {
-            this.client = new UdpClient();
+            IPEndPoint localpt = new IPEndPoint(IPAddress.Any, 5000);
+            this.client = new UdpClient(localpt);
+            this.ep_client = localpt;
+            this.client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+
         }
         public Client(string ip,int port)
         {
-                this.client = new UdpClient();
-
-            if (ip.ToLower() == "localhost")
-            {
-                this.server_ip = IPAddress.Parse("127.0.0.1");
-                this.ep_server = new IPEndPoint(this.server_ip, port);
-            }
-            else
-            {
-                this.server_ip = IPAddress.Parse(ip);
-                this.ep_server = new IPEndPoint(this.server_ip, port);
-            }
+            IPEndPoint localpt = new IPEndPoint(IPAddress.Any, 5000);
+            // IPEndPoint srv_ep = new IPEndPoint(server_ip, server_port);
+            this.client = new UdpClient();
+            this.server_ip = ip;
             this.server_port = port;
+            this.client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
         }
 
@@ -47,7 +45,9 @@ namespace Battleship_Client
 
             try
             {
-                // this.sock.SendTo(byte_data,this.ep_server);
+                this.client.Connect(this.server_ip, this.server_port);
+                this.client.Send(byte_data,byte_data.Length);
+                Debug.WriteLine("Sending handshake");
             }
             catch (Exception e)
             {
@@ -86,7 +86,7 @@ namespace Battleship_Client
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                // this.sock.SendTo(byte_data,this.ep_server);
+                this.client.Send(byte_data, byte_data.Length);
                 return true;
             }
             catch(Exception e)
@@ -102,7 +102,7 @@ namespace Battleship_Client
             byte[] byte_data = Encoding.ASCII.GetBytes(data);
             try
             {
-                // this.sock.SendTo(byte_data, ep);
+                this.client.Send(byte_data, byte_data.Length);
                 return true;
             }
             catch(Exception e)
@@ -119,7 +119,7 @@ namespace Battleship_Client
 
             try
             {
-                // this.sock.SendTo(byte_data,this.ep_server);
+                this.client.Send(byte_data, byte_data.Length);
                 return true;
             }
             catch(Exception e)
@@ -162,9 +162,13 @@ namespace Battleship_Client
             try
             {
                 byte[] bytes = new byte[1024];
-                // string reply = this.sock.Receive(bytes).ToString();
-                // return reply;
-                return "";
+                if (client.Client.Available > 0)
+                {
+                    string reply = Encoding.ASCII.GetString(client.Receive(ref ep_server));
+                    return reply;
+                }
+                else { return ""; }
+                
             }
             catch (Exception e)
             {
