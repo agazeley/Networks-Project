@@ -17,6 +17,7 @@ namespace Battleship_Client
     {
         private Client my_client { get; set; }
         private UdpClient c;
+
         public LogOn()
         {
             InitializeComponent();
@@ -28,14 +29,15 @@ namespace Battleship_Client
 
         private void btn_logon_Click(object sender, EventArgs e)
         {
+            #region TEST CODE TEST CODE
             /*
             // Debug.WriteLine(tb_name.Text);
-            // Debug.WriteLine(tb_ip.Text );           
+            // Debug.WriteLine(tb_ip.Text );
 
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(tb_ip.Text), 80);
 
             c.Connect("localhost",80);
-            byte[] msg = Encoding.ASCII.GetBytes(tb_name.Text);
+            byte[] msg = Encoding.ASCII.GetBytes("Connect?");
             c.Send(msg, msg.Length);
             Debug.WriteLine("Sending: " + msg.ToString());
 
@@ -44,24 +46,27 @@ namespace Battleship_Client
                 string reply = Encoding.ASCII.GetString(c.Receive(ref ep));
                 Debug.WriteLine(reply);
             }
-            */
 
-            #region OLD CODE
-            
+            */
+            #endregion
+
+
+
             my_client = new Client(tb_ip.Text, 80);
             if (my_client.start_client(tb_name.Text))
             {
                 // Success
                 MessageBox.Show("Successfully connected!");
                 this.Hide();
+                MainForm Main = new MainForm(new User(tb_name.Text), my_client);
+                Main.Show();
             }
             else
             {
                 // Oh noooooo
                 MessageBox.Show("OH NO IT DIDNT WORK :/");
             }
-            
-            #endregion
+
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Battleship_Client
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        ///
+
         [STAThread]
         static void Main()
         {
