@@ -20,21 +20,23 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="387" column="0" lean-forward="true" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+            <state relative-caret-position="352">
+              <caret line="382" column="41" lean-forward="false" selection-start-line="382" selection-start-column="22" selection-end-line="382" selection-end-column="41" />
               <folding>
+                <element signature="e#63#276#0" expanded="false" />
                 <element signature="e#296#2554#0" expanded="false" />
-                <element signature="e#8764#8852#0" expanded="false" />
-                <element signature="e#8889#9069#0" expanded="false" />
-                <element signature="e#9108#9131#0" expanded="false" />
-                <element signature="e#10572#10918#0" expanded="false" />
-                <element signature="e#11663#12105#0" expanded="false" />
-                <element signature="e#12392#12999#0" expanded="false" />
-                <element signature="e#13054#13143#0" expanded="false" />
-                <element signature="e#14106#14179#0" expanded="false" />
-                <element signature="e#14233#14344#0" expanded="false" />
-                <element signature="e#14404#14482#0" expanded="false" />
-                <element signature="e#14541#14888#0" expanded="false" />
+                <element signature="e#5689#5816#0" expanded="false" />
+                <element signature="e#8702#8790#0" expanded="false" />
+                <element signature="e#8827#9007#0" expanded="false" />
+                <element signature="e#9046#9069#0" expanded="false" />
+                <element signature="e#10505#10846#0" expanded="false" />
+                <element signature="e#11576#12018#0" expanded="false" />
+                <element signature="e#12300#12897#0" expanded="false" />
+                <element signature="e#12952#13041#0" expanded="false" />
+                <element signature="e#13999#14072#0" expanded="false" />
+                <element signature="e#14126#14237#0" expanded="false" />
+                <element signature="e#14297#14375#0" expanded="false" />
+                <element signature="e#14434#14781#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -43,8 +45,8 @@
       <file leaf-file-name="client_demo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2732">
-              <caret line="244" column="29" lean-forward="true" selection-start-line="244" selection-start-column="29" selection-end-line="244" selection-end-column="29" />
+            <state relative-caret-position="1134">
+              <caret line="215" column="10" lean-forward="false" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -53,7 +55,7 @@
       <file leaf-file-name="game_server_demo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Demo/game_server_demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2635">
+            <state relative-caret-position="17">
               <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
@@ -93,6 +95,7 @@
       <find>logger</find>
       <find>log</find>
       <find>make_server</find>
+      <find>make_server_request</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,8 +160,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,6 +181,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -211,18 +214,36 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.client_demo">
-    <configuration name="client_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="client_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/client_demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -290,12 +311,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Final Project" />
+      <module name="Networks-Project" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -320,24 +341,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,7 +351,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
-      <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -367,7 +369,6 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -428,18 +429,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13489583" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="649" y="71" width="1127" height="955" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="649" y="71" width="1127" height="955" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5596621" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -534,21 +534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2619">
           <caret line="149" column="25" lean-forward="true" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
-          <folding>
-            <element signature="e#63#276#0" expanded="false" />
-            <element signature="e#119#276#0" expanded="false" />
-            <element signature="e#296#2554#0" expanded="false" />
-            <element signature="e#9210#10629#0" expanded="false" />
-            <element signature="e#10671#11024#0" expanded="false" />
-            <element signature="e#11060#11212#0" expanded="false" />
-            <element signature="e#11268#11737#0" expanded="false" />
-            <element signature="e#11790#12232#0" expanded="false" />
-            <element signature="e#12285#12476#0" expanded="false" />
-            <element signature="e#12527#13148#0" expanded="false" />
-            <element signature="e#13203#13292#0" expanded="false" />
-            <element signature="e#13342#13878#0" expanded="false" />
-            <element signature="e#14694#15041#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -723,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Demo/game_server_demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2635">
+        <state relative-caret-position="17">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
@@ -733,49 +718,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
           <caret line="324" column="42" lean-forward="false" selection-start-line="324" selection-start-column="42" selection-end-line="324" selection-end-column="42" />
-          <folding>
-            <element signature="e#63#276#0" expanded="false" />
-            <element signature="e#119#276#0" expanded="false" />
-            <element signature="e#296#2554#0" expanded="false" />
-            <element signature="e#9210#10629#0" expanded="false" />
-            <element signature="e#10671#11024#0" expanded="false" />
-            <element signature="e#11060#11212#0" expanded="false" />
-            <element signature="e#11268#11737#0" expanded="false" />
-            <element signature="e#11790#12232#0" expanded="false" />
-            <element signature="e#12285#12476#0" expanded="false" />
-            <element signature="e#12527#13148#0" expanded="false" />
-            <element signature="e#13203#13292#0" expanded="false" />
-            <element signature="e#13342#13878#0" expanded="false" />
-            <element signature="e#14694#15041#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="387" column="0" lean-forward="true" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+        <state relative-caret-position="352">
+          <caret line="382" column="41" lean-forward="false" selection-start-line="382" selection-start-column="22" selection-end-line="382" selection-end-column="41" />
           <folding>
+            <element signature="e#63#276#0" expanded="false" />
             <element signature="e#296#2554#0" expanded="false" />
-            <element signature="e#8764#8852#0" expanded="false" />
-            <element signature="e#8889#9069#0" expanded="false" />
-            <element signature="e#9108#9131#0" expanded="false" />
-            <element signature="e#10572#10918#0" expanded="false" />
-            <element signature="e#11663#12105#0" expanded="false" />
-            <element signature="e#12392#12999#0" expanded="false" />
-            <element signature="e#13054#13143#0" expanded="false" />
-            <element signature="e#14106#14179#0" expanded="false" />
-            <element signature="e#14233#14344#0" expanded="false" />
-            <element signature="e#14404#14482#0" expanded="false" />
-            <element signature="e#14541#14888#0" expanded="false" />
+            <element signature="e#5689#5816#0" expanded="false" />
+            <element signature="e#8702#8790#0" expanded="false" />
+            <element signature="e#8827#9007#0" expanded="false" />
+            <element signature="e#9046#9069#0" expanded="false" />
+            <element signature="e#10505#10846#0" expanded="false" />
+            <element signature="e#11576#12018#0" expanded="false" />
+            <element signature="e#12300#12897#0" expanded="false" />
+            <element signature="e#12952#13041#0" expanded="false" />
+            <element signature="e#13999#14072#0" expanded="false" />
+            <element signature="e#14126#14237#0" expanded="false" />
+            <element signature="e#14297#14375#0" expanded="false" />
+            <element signature="e#14434#14781#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2732">
-          <caret line="244" column="29" lean-forward="true" selection-start-line="244" selection-start-column="29" selection-end-line="244" selection-end-column="29" />
+        <state relative-caret-position="1134">
+          <caret line="215" column="10" lean-forward="false" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
           <folding />
         </state>
       </provider>

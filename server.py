@@ -125,9 +125,9 @@ class lobby:
         for p in [self.player1, self.player2]:
             c = []
             if _player == p:
-                c.append(self.make_server_request(game_id, 'win', p.name))
+                c.append(make_server_request(game_id, 'win', p.name))
             else:
-                c.append((self.make_server_request(game_id, 'lose', p.name)))
+                c.append((make_server_request(game_id, 'lose', p.name)))
             c.append(p.ip)
             c.append(p.port)
             request.append(c)
@@ -155,9 +155,9 @@ class lobby:
             for player in [self.player1, self.player2]:
                 c = []
                 if self.is_p1(player.name):
-                    c.append(self.make_server_request(self.id, 'game_start', 1))
+                    c.append(make_server_request(self.id, 'game_start', 1))
                 else:
-                    c.append(self.make_server_request(self.id, 'game_start', 0))
+                    c.append(make_server_request(self.id, 'game_start', 0))
                 c.append(player.ip)
                 c.append(player.port)
                 request.append(c)
@@ -171,14 +171,21 @@ class lobby:
         for p in [self.player1, self.player2]:
             c = []
             if p == _player:
-                c.append(self.make_server_request(self.id, 'move_result', (result, x, y)))
+                c.append(make_server_request(self.id, 'move_result', (result, x, y)))
             else:
-                c.append(self.make_server_request(self.id, 'turn', (result, x, y)))
+                c.append(make_server_request(self.id, 'turn', (result, x, y)))
             c.append(p.ip)
             c.append(p.port)
             request.append(c)
         return request
 
+def make_server_request(game_id, type, msg):
+    data = {}
+    data['game_id'] = game_id
+    data['type'] = type
+    data['msg'] = msg
+    data = js.dumps(data)
+    return data
 
 class game_server:
     def __init__(self, host, port, logging):
@@ -189,13 +196,7 @@ class game_server:
         self.players = []  # List of players on the server? Do I need this or to store info before they join a lobby?
         self.id_int = 0
 
-    def make_server_request(self,game_id, type, msg):
-        data = {}
-        data['game_id'] = game_id
-        data['type'] = type
-        data['msg'] = msg
-        data = js.dumps(data)
-        return data
+
 
     def start_server(self):
 
@@ -291,7 +292,7 @@ class game_server:
                     print("New connection recieved from: " + str((ip, port)))
                     new_player = player(data['player'], ip, port)
                     self.players.append(new_player)
-                    self.sock.sendto(bytearray(self.make_server_request(0, 'conn_request', 1), "utf-8"),
+                    self.sock.sendto(bytearray(make_server_request(0, 'conn_request', 1), "utf-8"),
                                      (ip, port))
                 else:
                     request = self.handle(data)
@@ -310,14 +311,14 @@ class game_server:
         new_lobby = lobby(self.id_int, player, None)
         self.lobbies[self.id_int] = new_lobby
         # return success message if successful
-        request = self.make_server_request(self.id_int, 'game_made', 1)
+        request = make_server_request(self.id_int, 'game_made', 1)
         print("Game made: " + str(new_lobby.player1.name))
         self.id_int += 1
         return request
 
     def lobby_data(self):
         _lobbies = self.get_lobbies()
-        request = self.make_server_request(0, 'lobby_data', _lobbies)
+        request = make_server_request(0, 'lobby_data', _lobbies)
         print(request)
         return request
 
@@ -326,11 +327,11 @@ class game_server:
         if _lobby and _lobby.get_players() != 2:
             _lobby.add_player(new_player)
             # return success message if successful
-            request = self.make_server_request(game_id, 'join_result', 1)
+            request = make_server_request(game_id, 'join_result', 1)
             print(str((_lobby.player1.name, _lobby.player2.name)))
             return request
         else:
-            request = self.make_server_request(game_id, 'join_result', 0)
+            request = make_server_request(game_id, 'join_result', 0)
             return request
 
     def move(self, x, y, game_id, player):
@@ -347,7 +348,7 @@ class game_server:
     def lobby_exit(self, game_id, player):
         self.remove_player_from_lobby(game_id, player)
         _lobbies = self.get_lobbies()
-        request = self.make_server_request(game_id, 'lobby_data', _lobbies)
+        request = make_server_request(game_id, 'lobby_data', _lobbies)
         return request
 
     def lobby_rdy(self, game_id,player):
@@ -359,9 +360,9 @@ class game_server:
             request = _lobby.game_start()
         else:
             if (p1, p2) == (True, False):
-                request = self.make_server_request(game_id, 'lobby_resp', (True, False))
+                request = make_server_request(game_id, 'lobby_resp', (True, False))
             else:
-                request = self.make_server_request(game_id, 'lobby_resp', (False, True))
+                request = make_server_request(game_id, 'lobby_resp', (False, True))
                 # Logic behind ready requests
                 print("Players ready: " + str(_lobby.ready))
         return request
@@ -379,7 +380,7 @@ class game_server:
         if _lobby.is_p1(player.name):
             _lobby.game.update_boards(p1_board=new_board)
             print("Player 1's board updated")
-            request = self.make_server_request(game_id, "move_req", 1)
+            request = make_server_request(game_id, "move_req", 1)
             return request
         else:
             _lobby.game.update_boards(p2_board=new_board)
