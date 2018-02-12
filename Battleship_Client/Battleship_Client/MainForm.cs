@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace Battleship_Client
 {
@@ -26,12 +27,20 @@ namespace Battleship_Client
 
             string req = Client.create_request(usr.name, "data", usr.name);
             my_client.server_request(req);
+            Message some = GetMessage();
 
-            Message lobby_data = GetMessageOfType(InfoType.LobbyData);
+            if(some.type == InfoType.LobbyData)
+            {
+                List<Tuple<int, int>> info = some.msg.Select(x => new Tuple<int, int>(int.Parse(x[0]), int.Parse(x[1]))).ToList();
+                
+            }
+            //Message lobby_data = GetMessageOfType(InfoType.LobbyData);
 
 
         }
 
+        // ProcessMessage PROTOS
+        /*
         public Tuple<Message, bool> ProcessMessage(Newtonsoft.Json.Linq.JObject msg,int i)
         {
             if (msg != null)
@@ -56,21 +65,26 @@ namespace Battleship_Client
             }
             return new Tuple<Message, bool>(new Message(), true);
         }
-
-        public Message GetMessageOfType(InfoType type)
+        
+        */
+        public Message GetMessage()
         {
+            Newtonsoft.Json.Linq.JObject msg = new Newtonsoft.Json.Linq.JObject();
             bool data_recv = false;
-            Tuple < Message, bool> Processed = new Tuple< Message, bool>(new Message(), false);
+            
             while (!data_recv)
             {
-                Newtonsoft.Json.Linq.JObject msg = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(my_client.get_reply());
-                Processed = ProcessMessage(msg);
-                data_recv = Processed.Item2;
+                msg = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(my_client.get_reply());
+                if(msg != new Newtonsoft.Json.Linq.JObject())
+                {
+                    data_recv = true;
+                }
             }
-            return Processed.Item1;
+            Debug.WriteLine(msg["game_id"].ToString());
+            return new Message(msg["game_id"].ToString(),msg["type"].ToString(),msg["msg"].ToObject<JObject>());
 
         }
-
+        
 
     }
 }

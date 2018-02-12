@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,14 +42,23 @@ namespace Battleship_Client
     {
         public int game_id { get; set; }
         public InfoType  type { get; set; }
-        public Object msg { get; set; }
+        public JObject msg { get; set; }
         public Message() { }
-        public Message(string game_id,string type,string msg)
+        public Message(string game_id,string type,Object msg)
         {
             this.game_id = int.Parse(game_id);
 
             switch (type)
             {
+                case "lose":
+                    this.type = InfoType.Lose;
+                    break;
+                case "win":
+                    this.type = InfoType.Win;
+                    break;
+                case "conn_req":
+                    this.type = InfoType.ConnReq;
+                    break;
                 case "game_made":
                     this.type = InfoType.GameMade;
                     break;
@@ -81,6 +91,6 @@ namespace Battleship_Client
 
     public enum InfoType
     {
-        GameMade, LobbyData,JoinResult,MoveResult,Turn,LobbyResp,MoveReq
+        GameMade, LobbyData,JoinResult,MoveResult,Turn,LobbyResp,MoveReq,ConnReq,Win,Lose
     };
 }
