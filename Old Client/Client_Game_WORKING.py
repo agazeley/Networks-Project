@@ -41,7 +41,8 @@ class client:
         return data
 
     def server_request(self,data):
-        self.sock.sendto(data.encode(),(self.server_ip,self.server_port))
+        self.
+		data.encode(),(self.server_ip,self.server_port))
         print("Sent: " + data)
         return
 
