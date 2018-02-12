@@ -26,6 +26,7 @@ namespace Battleship_Client
             this.client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
         }
+
         public Client(string ip,int port)
         {
             IPEndPoint localpt = new IPEndPoint(IPAddress.Any, 5000);
@@ -133,7 +134,7 @@ namespace Battleship_Client
 
 
         // Need to make it so id is optional field
-        public string create_request(string player, string type,string req, int id)
+        public static string create_request(string player, string type,string req, int id)
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
 
@@ -148,7 +149,7 @@ namespace Battleship_Client
             return JsonConvert.SerializeObject(data);
         }
 
-        public string create_request(string player, string type, string req)
+        public static string create_request(string player, string type, string req)
         {
             Dictionary<string, string> data = new Dictionary<string, string>();
             data["player"] = player;
@@ -168,7 +169,7 @@ namespace Battleship_Client
                     return reply;
                 }
                 else { return ""; }
-                
+
             }
             catch (Exception e)
             {
