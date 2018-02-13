@@ -76,7 +76,7 @@ namespace Battleship_Client
             }
             else if(type == InfoType.LobbyResp)
             {
-                return msg.ToObject<Tuple<bool, bool>>();
+                return msg.ToObject<List<bool>>();
             }
             else if(type == InfoType.LobbyData)
             {

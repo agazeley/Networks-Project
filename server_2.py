@@ -398,23 +398,23 @@ class game_server:
         elif data['req_type'] == 'data':
             return self.lobby_data()
         elif data['req_type'] == 'join_game':
-            game_id = data['req']
+            game_id = int(data[ 'req' ])
             return self.join_game(game_id, _player)
         elif data['req_type'] == 'move':
             (x, y) = data['req']
-            game_id = data['game_id']
+            game_id = int ( data[ 'game_id' ] )
             return self.move(x, y, game_id, _player)
         elif data['req_type'] == 'lobby_exit':
-            game_id = data['game_id']
+            game_id = int ( data[ 'game_id' ] )
             return self.lobby_exit(game_id, _player)
         elif data['req_type'] == 'lobby_rdy':
             # make a lobby class to deal with lobby stuff?
             if data['req'] == 1:
-                game_id = data['game_id']
+                game_id = int ( data[ 'game_id' ] )
                 return self.lobby_rdy(game_id,_player)
             elif data['req'] == 0:
                 # remove player from game
-                game_id = data['game_id']
+                game_id = int ( data[ 'game_id' ] )
                 self.lobby_remove(game_id, _player)
         elif data['req_type'] == 'board_setup':
             return self.board_setup(data,_player)

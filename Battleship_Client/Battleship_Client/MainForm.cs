@@ -27,15 +27,15 @@ namespace Battleship_Client
 
             string req = Client.create_request(usr.name, "data", usr.name);
             my_client.server_request(req);
-            Message some = GetMessage();
-            IList<int> list = (IList<int>)some.msg;
+            Message msg = GetMessage();
 
+            IList<int> list = (IList<int>)msg.msg;
             for(int i =0; i < list.Count;)
             {
                 dgv_lob.Rows.Add(list[i],list[i + 1]);
                 i = i + 2;
             }
-            Debug.WriteLine(some);
+
 
         }
 
@@ -60,5 +60,33 @@ namespace Battleship_Client
 
         }
 
+        private void btn_join_Click(object sender, EventArgs e)
+        {
+            int selected_count = dgv_lob.SelectedRows.Count;
+
+            if(selected_count == 1)
+            {
+                int game_id = (int)dgv_lob.SelectedRows[0].Cells[0].Value;
+                Debug.WriteLine(game_id.ToString());
+
+                string data = Client.create_request(usr.name, "join_game", game_id.ToString());
+                if (my_client.server_request(data))
+                {
+                    Message msg = GetMessage();
+                    if(msg.type == InfoType.JoinResult && (int)msg.msg == 1)
+                    {
+                        MessageBox.Show("SUCCESSFULLY JOINED A GAME");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Did not join game number " + game_id.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selected more than one lobby to join. Please try again.");
+            }
+        }
     }
 }

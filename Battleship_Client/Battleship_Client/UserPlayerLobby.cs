@@ -34,9 +34,7 @@ namespace Battleship_Client
         private int id { get; set; }
         private Player p1 { get; set; }
         private Player p2 { get; set; }
-        private Tuple<bool, bool> ready = new Tuple<bool, bool>(false, false);
+        private Tuple<bool, bool> ready { get; set; }
 
     }
-
-    
 }

@@ -32,6 +32,7 @@
             this.btn_join = new System.Windows.Forms.Button();
             this.game_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.num_players = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lob)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +42,7 @@
             this.dgv_lob.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.game_id,
             this.num_players});
-            this.dgv_lob.Location = new System.Drawing.Point(49, 108);
+            this.dgv_lob.Location = new System.Drawing.Point(57, 74);
             this.dgv_lob.Name = "dgv_lob";
             this.dgv_lob.RowTemplate.Height = 24;
             this.dgv_lob.Size = new System.Drawing.Size(543, 296);
@@ -49,12 +50,13 @@
             // 
             // btn_join
             // 
-            this.btn_join.Location = new System.Drawing.Point(517, 54);
+            this.btn_join.Location = new System.Drawing.Point(517, 45);
             this.btn_join.Name = "btn_join";
             this.btn_join.Size = new System.Drawing.Size(75, 23);
             this.btn_join.TabIndex = 1;
             this.btn_join.Text = "Join";
             this.btn_join.UseVisualStyleBackColor = true;
+            this.btn_join.Click += new System.EventHandler(this.btn_join_Click);
             // 
             // game_id
             // 
@@ -68,17 +70,29 @@
             this.num_players.Name = "num_players";
             this.num_players.Width = 300;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.label1.Location = new System.Drawing.Point(49, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 46);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Lobbies";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 453);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_join);
             this.Controls.Add(this.dgv_lob);
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lob)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -88,5 +102,6 @@
         private System.Windows.Forms.Button btn_join;
         private System.Windows.Forms.DataGridViewTextBoxColumn game_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn num_players;
+        private System.Windows.Forms.Label label1;
     }
 }

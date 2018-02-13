@@ -40,38 +40,36 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Location = new System.Drawing.Point(9, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 46);
+            this.label1.Size = new System.Drawing.Size(330, 58);
             this.label1.TabIndex = 0;
             this.label1.Text = "BATTLESHIP";
             // 
             // tb_ip
             // 
-            this.tb_ip.Location = new System.Drawing.Point(79, 80);
-            this.tb_ip.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_ip.Location = new System.Drawing.Point(105, 98);
+            this.tb_ip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ip.Name = "tb_ip";
-            this.tb_ip.Size = new System.Drawing.Size(76, 20);
+            this.tb_ip.Size = new System.Drawing.Size(100, 22);
             this.tb_ip.TabIndex = 1;
             this.tb_ip.Text = "127.0.0.1";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 82);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(29, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(70, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Server IP:";
             // 
             // btn_logon
             // 
-            this.btn_logon.Location = new System.Drawing.Point(158, 80);
-            this.btn_logon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_logon.Location = new System.Drawing.Point(211, 71);
+            this.btn_logon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_logon.Name = "btn_logon";
-            this.btn_logon.Size = new System.Drawing.Size(56, 19);
+            this.btn_logon.Size = new System.Drawing.Size(75, 49);
             this.btn_logon.TabIndex = 3;
             this.btn_logon.Text = "Log On";
             this.btn_logon.UseVisualStyleBackColor = true;
@@ -80,33 +78,32 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 59);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(29, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Name:";
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(79, 57);
-            this.tb_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_name.Location = new System.Drawing.Point(105, 70);
+            this.tb_name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(76, 20);
+            this.tb_name.Size = new System.Drawing.Size(100, 22);
             this.tb_name.TabIndex = 4;
             // 
             // LogOn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 108);
+            this.ClientSize = new System.Drawing.Size(331, 133);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.btn_logon);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_ip);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LogOn";
             this.Text = "Log on and play!";
             this.ResumeLayout(false);
