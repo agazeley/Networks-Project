@@ -7,45 +7,20 @@ using System.Threading.Tasks;
 
 namespace Battleship_Client
 {
-    public class User
-    {
-        public string name { get; set; }
-
-        public User()
-        {
-
-        }
-        public User(string name)
-        {
-            this.name = name;
-        }
-    }
-
-    public class Player : User
-    {
-        private int id { get; set; }
-        private string ip { get; set; }
-        private int port { get; set; }
-
-    }
-
-    public class Lobby
-    {
-        private int id { get; set; }
-        private Player p1 { get; set; }
-        private Player p2 { get; set; }
-        private Tuple<bool, bool> ready = new Tuple<bool, bool>(false, false);
-
-    }
-
     public class Message : Object
     {
         public int game_id { get; set; }
-        public InfoType  type { get; set; }
-        public JObject msg { get; set; }
+        public InfoType type { get; set; }
+        public Object msg { get; set; }
+
         public Message() { }
-        public Message(string game_id,string type,Object msg)
+
+        public Message(JObject msg)
         {
+
+            string type = "";
+            string game_id = "";
+
             this.game_id = int.Parse(game_id);
 
             switch (type)
@@ -84,13 +59,36 @@ namespace Battleship_Client
                     break;
             }
 
-
-            this.msg = msg;
         }
     }
 
     public enum InfoType
     {
-        GameMade, LobbyData,JoinResult,MoveResult,Turn,LobbyResp,MoveReq,ConnReq,Win,Lose
+        GameMade, LobbyData, JoinResult, MoveResult, Turn, LobbyResp, MoveReq, ConnReq, Win, Lose
     };
+
+    public class LobbyRespMsg : Message
+    {
+        public Tuple<bool, bool> msg { get; set; }
+    }
+
+    public class VictoryRespMsg : Message
+    {
+        public string msg { get; set; }
+    }
+
+    public class LobbyDataMsg : Message
+    {
+        public Tuple<int,int> msg { get; set; }
+    }
+
+    public class MoveMsg : Message
+    {
+        public Tuple<bool,int,int> msg { get; set; }
+    }
+
+    public class ConfirmMsg : Message
+    {
+        public int msg { get; set; }
+    }
 }
