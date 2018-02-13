@@ -30,12 +30,17 @@
         {
             this.dgv_lob = new System.Windows.Forms.DataGridView();
             this.btn_join = new System.Windows.Forms.Button();
+            this.game_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.num_players = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lob)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_lob
             // 
             this.dgv_lob.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_lob.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.game_id,
+            this.num_players});
             this.dgv_lob.Location = new System.Drawing.Point(49, 108);
             this.dgv_lob.Name = "dgv_lob";
             this.dgv_lob.RowTemplate.Height = 24;
@@ -50,6 +55,18 @@
             this.btn_join.TabIndex = 1;
             this.btn_join.Text = "Join";
             this.btn_join.UseVisualStyleBackColor = true;
+            // 
+            // game_id
+            // 
+            this.game_id.HeaderText = "Game ID";
+            this.game_id.Name = "game_id";
+            this.game_id.Width = 200;
+            // 
+            // num_players
+            // 
+            this.num_players.HeaderText = "Number of Players";
+            this.num_players.Name = "num_players";
+            this.num_players.Width = 300;
             // 
             // MainForm
             // 
@@ -69,5 +86,7 @@
 
         private System.Windows.Forms.DataGridView dgv_lob;
         private System.Windows.Forms.Button btn_join;
+        private System.Windows.Forms.DataGridViewTextBoxColumn game_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn num_players;
     }
 }

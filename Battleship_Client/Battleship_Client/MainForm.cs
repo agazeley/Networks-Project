@@ -28,10 +28,14 @@ namespace Battleship_Client
             string req = Client.create_request(usr.name, "data", usr.name);
             my_client.server_request(req);
             Message some = GetMessage();
+            IList<int> list = (IList<int>)some.msg;
+
+            for(int i =0; i < list.Count;)
+            {
+                dgv_lob.Rows.Add(list[i],list[i + 1]);
+                i = i + 2;
+            }
             Debug.WriteLine(some);
-
-            //Message lobby_data = GetMessageOfType(InfoType.LobbyData);
-
 
         }
 
@@ -55,7 +59,6 @@ namespace Battleship_Client
             return Utility.ProcessMessage(msg);
 
         }
-
 
     }
 }
