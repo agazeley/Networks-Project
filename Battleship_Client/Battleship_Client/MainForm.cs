@@ -83,9 +83,13 @@ namespace Battleship_Client
                     }
                 }
             }
-            else
+            else if(selected_count > 1)
             {
                 MessageBox.Show("Selected more than one lobby to join. Please try again.");
+            }
+            else
+            {
+                //Did not select a row so don't do anything
             }
         }
     }

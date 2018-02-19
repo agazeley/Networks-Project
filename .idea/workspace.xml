@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d7285bd-2a1d-456d-b9c0-8bbd0eccbb91" name="Default" comment="Adding MySocket class">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/LogOn.Designer.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/LogOn.Designer.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.Designer.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.Designer.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/UserPlayerLobby.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/UserPlayerLobby.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/Utility.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/Utility.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_2.py" afterPath="$PROJECT_DIR$/server_2.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/Networks-Project.iml" afterPath="$PROJECT_DIR$/.idea/Networks-Project.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.Designer.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.Designer.cs" />
+      <change beforePath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.cs" afterPath="$PROJECT_DIR$/Battleship_Client/Battleship_Client/MainForm.cs" />
+      <change beforePath="$PROJECT_DIR$/server_2.py" afterPath="$PROJECT_DIR$/server_2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,68 +20,18 @@
     <SUITE FILE_PATH="coverage/Networks_Project$game_client.coverage" NAME="game_client Coverage Results" MODIFIED="1512447455875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Networks_Project$game_server.coverage" NAME="game_server Coverage Results" MODIFIED="1512447452875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="game_server_demo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/game_server_demo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="399" column="33" lean-forward="true" selection-start-line="399" selection-start-column="12" selection-end-line="399" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server_2.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="669">
-              <caret line="417" column="0" lean-forward="true" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#63#276#0" expanded="false" />
-                <element signature="e#296#2554#0" expanded="false" />
-                <element signature="e#2574#5638#0" expanded="false" />
-                <element signature="e#5689#5816#0" expanded="false" />
-                <element signature="e#9225#10474#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client_demo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="112" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="336" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="client_demo_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client_demo_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="167" column="35" lean-forward="false" selection-start-line="167" selection-start-column="35" selection-end-line="167" selection-end-column="35" />
+            <state relative-caret-position="45">
+              <caret line="145" column="2" lean-forward="false" selection-start-line="145" selection-start-column="2" selection-end-line="145" selection-end-column="2" />
               <folding>
                 <element signature="e#75#127#0" expanded="false" />
-                <element signature="e#199#2879#0" expanded="false" />
                 <element signature="e#199#207#0" expanded="false" />
                 <element signature="e#292#491#0" expanded="false" />
                 <element signature="e#497#556#0" expanded="false" />
-                <element signature="e#633#1407#0" expanded="false" />
                 <element signature="e#742#876#0" expanded="false" />
                 <element signature="e#920#1039#0" expanded="false" />
                 <element signature="e#972#1002#0" expanded="false" />
@@ -110,8 +59,6 @@
                 <element signature="e#4804#5238#0" expanded="false" />
                 <element signature="e#4902#5146#0" expanded="false" />
                 <element signature="e#6078#6090#0" expanded="false" />
-                <element signature="e#6155#7102#0" expanded="false" />
-                <element signature="e#6209#7102#0" expanded="false" />
                 <element signature="e#6326#6668#0" expanded="false" />
                 <element signature="e#6440#6639#0" expanded="false" />
                 <element signature="e#6718#7096#0" expanded="false" />
@@ -130,18 +77,14 @@
                 <element signature="e#8088#8308#0" expanded="false" />
                 <element signature="e#8360#8491#0" expanded="false" />
                 <element signature="e#8426#8450#0" expanded="false" />
-                <element signature="e#8573#12639#0" expanded="false" />
+                <element signature="e#8573#12637#0" expanded="false" />
                 <element signature="e#8573#8602#0" expanded="false" />
-                <element signature="e#8740#9491#0" expanded="false" />
                 <element signature="e#8855#9021#0" expanded="false" />
-                <element signature="e#9056#9491#0" expanded="false" />
                 <element signature="e#9179#9402#0" expanded="false" />
                 <element signature="e#9491#9518#0" expanded="false" />
-                <element signature="e#9704#10077#0" expanded="false" />
                 <element signature="e#9813#9875#0" expanded="false" />
                 <element signature="e#9942#10067#0" expanded="false" />
                 <element signature="e#10077#10135#0" expanded="false" />
-                <element signature="e#10611#12639#0" expanded="false" />
                 <element signature="e#10718#10883#0" expanded="false" />
                 <element signature="e#11133#11195#0" expanded="false" />
                 <element signature="e#11286#11393#0" expanded="false" />
@@ -150,6 +93,100 @@
                 <element signature="e#11867#12161#0" expanded="false" />
                 <element signature="e#12219#12397#0" expanded="false" />
                 <element signature="e#12456#12637#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="109" column="20" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
+              <folding>
+                <element signature="e#63#276#0" expanded="false" />
+                <element signature="e#119#276#0" expanded="false" />
+                <element signature="e#296#2554#0" expanded="false" />
+                <element signature="e#372#639#0" expanded="false" />
+                <element signature="e#717#1049#0" expanded="false" />
+                <element signature="e#1118#1454#0" expanded="false" />
+                <element signature="e#1143#1273#0" expanded="false" />
+                <element signature="e#1188#1273#0" expanded="false" />
+                <element signature="e#1309#1439#0" expanded="false" />
+                <element signature="e#1354#1439#0" expanded="false" />
+                <element signature="e#1514#2418#0" expanded="false" />
+                <element signature="e#1599#1671#0" expanded="false" />
+                <element signature="e#1720#2004#0" expanded="false" />
+                <element signature="e#1797#1942#0" expanded="false" />
+                <element signature="e#2055#2324#0" expanded="false" />
+                <element signature="e#2132#2262#0" expanded="false" />
+                <element signature="e#2351#2399#0" expanded="false" />
+                <element signature="e#2460#2554#0" expanded="false" />
+                <element signature="e#2619#2759#0" expanded="false" />
+                <element signature="e#2796#2888#0" expanded="false" />
+                <element signature="e#2923#3016#0" expanded="false" />
+                <element signature="e#3061#3230#0" expanded="false" />
+                <element signature="e#3420#3706#0" expanded="false" />
+                <element signature="e#3460#3550#0" expanded="false" />
+                <element signature="e#3601#3691#0" expanded="false" />
+                <element signature="e#3758#4135#0" expanded="false" />
+                <element signature="e#3830#4112#0" expanded="false" />
+                <element signature="e#4188#4246#0" expanded="false" />
+                <element signature="e#4287#4498#0" expanded="false" />
+                <element signature="e#4354#4399#0" expanded="false" />
+                <element signature="e#4426#4471#0" expanded="false" />
+                <element signature="e#4534#5181#0" expanded="false" />
+                <element signature="e#4596#5095#0" expanded="false" />
+                <element signature="e#4736#5068#0" expanded="false" />
+                <element signature="e#5122#5181#0" expanded="false" />
+                <element signature="e#5239#5638#0" expanded="false" />
+                <element signature="e#5311#5615#0" expanded="false" />
+                <element signature="e#5689#5816#0" expanded="false" />
+                <element signature="e#5890#6271#0" expanded="false" />
+                <element signature="e#6310#7582#0" expanded="false" />
+                <element signature="e#6310#6377#0" expanded="false" />
+                <element signature="e#6553#6791#0" expanded="false" />
+                <element signature="e#6708#6743#0" expanded="false" />
+                <element signature="e#6835#7391#0" expanded="false" />
+                <element signature="e#6986#7094#0" expanded="false" />
+                <element signature="e#7146#7391#0" expanded="false" />
+                <element signature="e#7616#7919#0" expanded="false" />
+                <element signature="e#7675#7820#0" expanded="false" />
+                <element signature="e#7958#8078#0" expanded="false" />
+                <element signature="e#8120#8231#0" expanded="false" />
+                <element signature="e#8161#8216#0" expanded="false" />
+                <element signature="e#8299#8653#0" expanded="false" />
+                <element signature="e#8413#8638#0" expanded="false" />
+                <element signature="e#8459#8531#0" expanded="false" />
+                <element signature="e#8566#8638#0" expanded="false" />
+                <element signature="e#8700#8788#0" expanded="false" />
+                <element signature="e#9070#9093#0" expanded="false" />
+                <element signature="e#9134#10487#0" expanded="false" />
+                <element signature="e#9223#10472#0" expanded="false" />
+                <element signature="e#9223#9280#0" expanded="false" />
+                <element signature="e#9479#10472#0" expanded="false" />
+                <element signature="e#9608#9932#0" expanded="false" />
+                <element signature="e#9975#10472#0" expanded="false" />
+                <element signature="e#10059#10472#0" expanded="false" />
+                <element signature="e#10233#10351#0" expanded="false" />
+                <element signature="e#10529#10870#0" expanded="false" />
+                <element signature="e#11102#11547#0" expanded="false" />
+                <element signature="e#11194#11437#0" expanded="false" />
+                <element signature="e#11464#11547#0" expanded="false" />
+                <element signature="e#11600#12042#0" expanded="false" />
+                <element signature="e#11799#11929#0" expanded="false" />
+                <element signature="e#12095#12273#0" expanded="false" />
+                <element signature="e#12976#13065#0" expanded="false" />
+                <element signature="e#13115#13639#0" expanded="false" />
+                <element signature="e#13322#13506#0" expanded="false" />
+                <element signature="e#13533#13624#0" expanded="false" />
+                <element signature="e#13719#14950#0" expanded="false" />
+                <element signature="e#14023#14103#0" expanded="false" />
+                <element signature="e#14157#14278#0" expanded="false" />
+                <element signature="e#14338#14426#0" expanded="false" />
+                <element signature="e#14485#14852#0" expanded="false" />
+                <element signature="e#14581#14671#0" expanded="false" />
+                <element signature="e#14723#14852#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -257,50 +294,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Old Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Networks-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="Networks-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networks-Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,25 +338,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.server_2">
-    <configuration default="false" name="client_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Networks-Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/client_demo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Client_Game_WORKING" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Client_Game_WORKING" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -366,61 +354,7 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="new_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Networks-Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_server.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="server_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Networks-Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="client_demo_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Networks-Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/client_demo_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -438,7 +372,115 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-      <method />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="client_demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/client_demo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="client_demo_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/client_demo_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="new_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="server" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="server_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Networks-Project" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="server_game" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Resources" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Final Project" />
+      <option name="SCRIPT_NAME" value="C:\Users\Andrew Gazeley\Documents\School\School 2018\CS313\Final Project\server_game.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -450,7 +492,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Final Project" />
-      <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -469,7 +510,6 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -484,43 +524,6 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method />
-    </configuration>
-    <configuration default="false" name="server_game" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Resources" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Final Project" />
-      <option name="SCRIPT_NAME" value="C:\Users\Andrew Gazeley\Documents\School\School 2018\CS313\Final Project\server_game.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="server" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Dev\Python36\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Networks-Project" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.server_game" />
@@ -533,8 +536,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.client_demo_2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.server_2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.server_2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.client_demo_2" />
         <item index="2" class="java.lang.String" itemvalue="Python.client_demo" />
         <item index="3" class="java.lang.String" itemvalue="Python.Client_Game_WORKING" />
         <item index="4" class="java.lang.String" itemvalue="Python.new_server" />
@@ -569,17 +572,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2703549" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.108037576" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="522" y="38" width="1233" height="955" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.39736554" sideWeight="0.51875" order="6" side_tool="true" content_ui="tabs" x="522" y="38" width="1233" height="955" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55872667" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55872667" sideWeight="0.48125" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -590,6 +592,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +647,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="167" />
+      <option name="time" value="168" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -654,41 +657,17 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/log.py" />
-    <entry file="file://$PROJECT_DIR$/game_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2619">
-          <caret line="149" column="25" lean-forward="true" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/echo_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/game_server.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/echo_server.py" />
     <entry file="file://$PROJECT_DIR$/game_client.py" />
     <entry file="file://$PROJECT_DIR$/simple_server.py" />
     <entry file="file://$PROJECT_DIR$/MySocket.py" />
-    <entry file="file://$PROJECT_DIR$/Resources/Ideas.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/Ideas.txt" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-836061827/_socket.py" />
     <entry file="file://$PROJECT_DIR$/Resources/really_simple_server.py" />
     <entry file="file://C:/Dev/Python36/Lib/json/decoder.py" />
     <entry file="file://C:/Dev/Python36/Lib/json/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/server_log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/server_log.txt" />
     <entry file="file://C:/Python/Python36-32/Lib/json/encoder.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -701,27 +680,9 @@
     <entry file="file://C:/Python/Python36-32/Lib/json/decoder.py" />
     <entry file="file://C:/Python/Python36-32/Lib/codecs.py" />
     <entry file="file://$PROJECT_DIR$/BS2.txt" />
-    <entry file="file://$PROJECT_DIR$/Resources/json_practice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/ask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/json_practice.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/ask.py" />
+    <entry file="file://$PROJECT_DIR$/game_log.txt" />
     <entry file="file://C:/Python/Python36-32/Lib/_bootlocale.py" />
     <entry file="file://$PROJECT_DIR$/log.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
@@ -732,46 +693,9 @@
       </provider>
     </entry>
     <entry file="file://C:/Python/Python36-32/Lib/json/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/Resources/battleship2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-317">
-          <caret line="176" column="51" lean-forward="false" selection-start-line="176" selection-start-column="51" selection-end-line="176" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/battleship2.py" />
     <entry file="file://$PROJECT_DIR$/textbox.py" />
-    <entry file="file://$PROJECT_DIR$/Resources/battleship.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="947">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding>
-            <element signature="e#609#637#0" expanded="true" />
-            <element signature="e#8054#8409#0" expanded="false" />
-            <element signature="e#8448#9013#0" expanded="false" />
-            <element signature="e#9062#9338#0" expanded="false" />
-            <element signature="e#9399#9870#0" expanded="false" />
-            <element signature="e#9927#10610#0" expanded="false" />
-            <element signature="e#10640#10804#0" expanded="false" />
-            <element signature="e#10851#11366#0" expanded="false" />
-            <element signature="e#11410#12752#0" expanded="false" />
-            <element signature="e#11410#11529#1" expanded="false" />
-            <element signature="e#11622#12165#0" expanded="false" />
-            <element signature="e#12786#13522#0" expanded="false" />
-            <element signature="e#13565#14418#0" expanded="false" />
-            <element signature="e#14467#15930#0" expanded="false" />
-            <element signature="e#16016#17482#0" expanded="false" />
-            <element signature="e#17537#18095#0" expanded="false" />
-            <element signature="e#18146#18518#0" expanded="false" />
-            <element signature="e#18558#19125#0" expanded="false" />
-            <element signature="e#19175#19469#0" expanded="false" />
-            <element signature="e#19501#21109#0" expanded="false" />
-            <element signature="e#21143#21556#0" expanded="false" />
-            <element signature="e#21607#21916#0" expanded="false" />
-            <element signature="e#21965#23525#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/battleship.py" />
     <entry file="file://$PROJECT_DIR$/client_log.txt" />
     <entry file="file://$PROJECT_DIR$/BS1.txt" />
     <entry file="file://$PROJECT_DIR$/Client_Game_WORKING.py" />
@@ -781,98 +705,27 @@
     <entry file="file://$PROJECT_DIR$/inputbox.py" />
     <entry file="file://$PROJECT_DIR$/game_client.py" />
     <entry file="file://$PROJECT_DIR$/game.py" />
-    <entry file="file://$PROJECT_DIR$/Resources/simple_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old Client/server_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/simple_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/UDP_Client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/echo_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="324" column="42" lean-forward="false" selection-start-line="324" selection-start-column="42" selection-end-line="324" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/game_server_demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="414" column="3" lean-forward="false" selection-start-line="414" selection-start-column="3" selection-end-line="414" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old Client/Client_Game_WORKING.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/client_demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="112" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="336" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/simple_server.py" />
+    <entry file="file://$PROJECT_DIR$/Old Client/server_game.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/simple_client.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/UDP_Client.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/UDP_Server.py" />
+    <entry file="file://$PROJECT_DIR$/Resources/echo_server.py" />
+    <entry file="file://$PROJECT_DIR$/game_server.py" />
+    <entry file="file://$PROJECT_DIR$/Demo/game_server_demo.py" />
+    <entry file="file://$PROJECT_DIR$/new_server.py" />
+    <entry file="file://$PROJECT_DIR$/Old Client/Client_Game_WORKING.py" />
+    <entry file="file://$PROJECT_DIR$/Demo/client_demo.py" />
+    <entry file="file://$PROJECT_DIR$/server.py" />
     <entry file="file://$PROJECT_DIR$/client_demo_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="167" column="35" lean-forward="false" selection-start-line="167" selection-start-column="35" selection-end-line="167" selection-end-column="35" />
+        <state relative-caret-position="45">
+          <caret line="145" column="2" lean-forward="false" selection-start-line="145" selection-start-column="2" selection-end-line="145" selection-end-column="2" />
           <folding>
             <element signature="e#75#127#0" expanded="false" />
-            <element signature="e#199#2879#0" expanded="false" />
             <element signature="e#199#207#0" expanded="false" />
             <element signature="e#292#491#0" expanded="false" />
             <element signature="e#497#556#0" expanded="false" />
-            <element signature="e#633#1407#0" expanded="false" />
             <element signature="e#742#876#0" expanded="false" />
             <element signature="e#920#1039#0" expanded="false" />
             <element signature="e#972#1002#0" expanded="false" />
@@ -900,8 +753,6 @@
             <element signature="e#4804#5238#0" expanded="false" />
             <element signature="e#4902#5146#0" expanded="false" />
             <element signature="e#6078#6090#0" expanded="false" />
-            <element signature="e#6155#7102#0" expanded="false" />
-            <element signature="e#6209#7102#0" expanded="false" />
             <element signature="e#6326#6668#0" expanded="false" />
             <element signature="e#6440#6639#0" expanded="false" />
             <element signature="e#6718#7096#0" expanded="false" />
@@ -920,18 +771,14 @@
             <element signature="e#8088#8308#0" expanded="false" />
             <element signature="e#8360#8491#0" expanded="false" />
             <element signature="e#8426#8450#0" expanded="false" />
-            <element signature="e#8573#12639#0" expanded="false" />
+            <element signature="e#8573#12637#0" expanded="false" />
             <element signature="e#8573#8602#0" expanded="false" />
-            <element signature="e#8740#9491#0" expanded="false" />
             <element signature="e#8855#9021#0" expanded="false" />
-            <element signature="e#9056#9491#0" expanded="false" />
             <element signature="e#9179#9402#0" expanded="false" />
             <element signature="e#9491#9518#0" expanded="false" />
-            <element signature="e#9704#10077#0" expanded="false" />
             <element signature="e#9813#9875#0" expanded="false" />
             <element signature="e#9942#10067#0" expanded="false" />
             <element signature="e#10077#10135#0" expanded="false" />
-            <element signature="e#10611#12639#0" expanded="false" />
             <element signature="e#10718#10883#0" expanded="false" />
             <element signature="e#11133#11195#0" expanded="false" />
             <element signature="e#11286#11393#0" expanded="false" />
@@ -944,25 +791,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="399" column="33" lean-forward="true" selection-start-line="399" selection-start-column="12" selection-end-line="399" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="417" column="0" lean-forward="true" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="109" column="20" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
             <element signature="e#63#276#0" expanded="false" />
+            <element signature="e#119#276#0" expanded="false" />
             <element signature="e#296#2554#0" expanded="false" />
-            <element signature="e#2574#5638#0" expanded="false" />
+            <element signature="e#372#639#0" expanded="false" />
+            <element signature="e#717#1049#0" expanded="false" />
+            <element signature="e#1118#1454#0" expanded="false" />
+            <element signature="e#1143#1273#0" expanded="false" />
+            <element signature="e#1188#1273#0" expanded="false" />
+            <element signature="e#1309#1439#0" expanded="false" />
+            <element signature="e#1354#1439#0" expanded="false" />
+            <element signature="e#1514#2418#0" expanded="false" />
+            <element signature="e#1599#1671#0" expanded="false" />
+            <element signature="e#1720#2004#0" expanded="false" />
+            <element signature="e#1797#1942#0" expanded="false" />
+            <element signature="e#2055#2324#0" expanded="false" />
+            <element signature="e#2132#2262#0" expanded="false" />
+            <element signature="e#2351#2399#0" expanded="false" />
+            <element signature="e#2460#2554#0" expanded="false" />
+            <element signature="e#2619#2759#0" expanded="false" />
+            <element signature="e#2796#2888#0" expanded="false" />
+            <element signature="e#2923#3016#0" expanded="false" />
+            <element signature="e#3061#3230#0" expanded="false" />
+            <element signature="e#3420#3706#0" expanded="false" />
+            <element signature="e#3460#3550#0" expanded="false" />
+            <element signature="e#3601#3691#0" expanded="false" />
+            <element signature="e#3758#4135#0" expanded="false" />
+            <element signature="e#3830#4112#0" expanded="false" />
+            <element signature="e#4188#4246#0" expanded="false" />
+            <element signature="e#4287#4498#0" expanded="false" />
+            <element signature="e#4354#4399#0" expanded="false" />
+            <element signature="e#4426#4471#0" expanded="false" />
+            <element signature="e#4534#5181#0" expanded="false" />
+            <element signature="e#4596#5095#0" expanded="false" />
+            <element signature="e#4736#5068#0" expanded="false" />
+            <element signature="e#5122#5181#0" expanded="false" />
+            <element signature="e#5239#5638#0" expanded="false" />
+            <element signature="e#5311#5615#0" expanded="false" />
             <element signature="e#5689#5816#0" expanded="false" />
-            <element signature="e#9225#10474#0" expanded="false" />
+            <element signature="e#5890#6271#0" expanded="false" />
+            <element signature="e#6310#7582#0" expanded="false" />
+            <element signature="e#6310#6377#0" expanded="false" />
+            <element signature="e#6553#6791#0" expanded="false" />
+            <element signature="e#6708#6743#0" expanded="false" />
+            <element signature="e#6835#7391#0" expanded="false" />
+            <element signature="e#6986#7094#0" expanded="false" />
+            <element signature="e#7146#7391#0" expanded="false" />
+            <element signature="e#7616#7919#0" expanded="false" />
+            <element signature="e#7675#7820#0" expanded="false" />
+            <element signature="e#7958#8078#0" expanded="false" />
+            <element signature="e#8120#8231#0" expanded="false" />
+            <element signature="e#8161#8216#0" expanded="false" />
+            <element signature="e#8299#8653#0" expanded="false" />
+            <element signature="e#8413#8638#0" expanded="false" />
+            <element signature="e#8459#8531#0" expanded="false" />
+            <element signature="e#8566#8638#0" expanded="false" />
+            <element signature="e#8700#8788#0" expanded="false" />
+            <element signature="e#9070#9093#0" expanded="false" />
+            <element signature="e#9134#10487#0" expanded="false" />
+            <element signature="e#9223#10472#0" expanded="false" />
+            <element signature="e#9223#9280#0" expanded="false" />
+            <element signature="e#9479#10472#0" expanded="false" />
+            <element signature="e#9608#9932#0" expanded="false" />
+            <element signature="e#9975#10472#0" expanded="false" />
+            <element signature="e#10059#10472#0" expanded="false" />
+            <element signature="e#10233#10351#0" expanded="false" />
+            <element signature="e#10529#10870#0" expanded="false" />
+            <element signature="e#11102#11547#0" expanded="false" />
+            <element signature="e#11194#11437#0" expanded="false" />
+            <element signature="e#11464#11547#0" expanded="false" />
+            <element signature="e#11600#12042#0" expanded="false" />
+            <element signature="e#11799#11929#0" expanded="false" />
+            <element signature="e#12095#12273#0" expanded="false" />
+            <element signature="e#12976#13065#0" expanded="false" />
+            <element signature="e#13115#13639#0" expanded="false" />
+            <element signature="e#13322#13506#0" expanded="false" />
+            <element signature="e#13533#13624#0" expanded="false" />
+            <element signature="e#13719#14950#0" expanded="false" />
+            <element signature="e#14023#14103#0" expanded="false" />
+            <element signature="e#14157#14278#0" expanded="false" />
+            <element signature="e#14338#14426#0" expanded="false" />
+            <element signature="e#14485#14852#0" expanded="false" />
+            <element signature="e#14581#14671#0" expanded="false" />
+            <element signature="e#14723#14852#0" expanded="false" />
           </folding>
         </state>
       </provider>

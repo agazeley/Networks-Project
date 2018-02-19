@@ -196,8 +196,6 @@ class game_server:
         self.players = []  # List of players on the server? Do I need this or to store info before they join a lobby?
         self.id_int = 0
 
-
-
     def start_server(self):
 
         # Using out given host and port info we need to start the server up
